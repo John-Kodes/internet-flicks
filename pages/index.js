@@ -1,10 +1,6 @@
 import Head from "next/head";
-import Image from "next/image";
 // components
 import Nav from "../components/Nav";
-// styling and animation
-import styled from "styled-components";
-import { motion } from "framer-motion";
 
 export const Home = () => {
   return (

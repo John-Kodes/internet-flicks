@@ -1,21 +1,35 @@
-// background transition to dark grey when scroll added
+//////// background transition to dark grey when scroll added
+// Next
+import Link from "next/link";
 // styling and animation
-import styled from "styled-components";
-import { motion } from "framer-motion";
+import classes from "./Nav.module.scss";
 
 const Nav = () => {
   return (
-    <StyledNav>
-      <h1>NAV BB</h1>
-    </StyledNav>
+    <nav className={classes.nav}>
+      <div className={classes.nav__info}>
+        <Link href="/">
+          <div className={classes.nav__logo}>Internet Flicks</div>
+        </Link>
+
+        <Link href="/">
+          <div className={classes.nav__link}>Home</div>
+        </Link>
+        <Link href="/">
+          <div className={classes.nav__link}>TV Shows</div>
+        </Link>
+        <Link href="/">
+          <div className={classes.nav__link}>Movies</div>
+        </Link>
+        <Link href="/">
+          <div className={classes.nav__link}>New & Popular</div>
+        </Link>
+        <Link href="/">
+          <div className={classes.nav__link}>My List</div>
+        </Link>
+      </div>
+    </nav>
   );
 };
-const StyledNav = styled(motion.div)`
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.7) 10%,
-    rgba(0, 0, 0, 0)
-  );
-`;
 
 export default Nav;
