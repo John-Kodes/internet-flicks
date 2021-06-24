@@ -1,0 +1,52 @@
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  width: 100vw;
+  height: calc(100vw / 1.77); // temp
+  max-height: 90vh;
+  padding: 0 6rem;
+
+  background-color: rgb(71, 71, 71);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(#333, 0) 80%,
+    rgba(#333, 1)
+  );
+}
+
+.description {
+  width: 40ch;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 1rem;
+
+  svg {
+    display: block;
+    height: 1.4vw;
+    width: 1.4vw;
+  }
+}
+
+.btnFill {
+  background-color: #fff;
+}
+
+.btnGhost {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.ageRating {
+  position: absolute;
+  right: 0;
+  bottom: 30%;
+
+  background-color: #00000055;
+  padding: 1rem;
+}

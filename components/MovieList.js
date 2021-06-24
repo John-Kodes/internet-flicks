@@ -1,10 +1,9 @@
-// styling and animation
-import styled from "styled-components";
-import { motion } from "framer-motion";
+// Styles
+import classes from "./MovieList.module.scss";
 
 const MovieList = () => {
   return (
-    <div>
+    <div className={classes.test}>
       <h1>MovieList</h1>
     </div>
   );

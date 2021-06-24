@@ -1,0 +1,69 @@
+:root {
+  --primaryColor100: #00ecb9;
+  --pageBg100: #333;
+}
+
+* {
+  box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  background-color: var(--pageBg100);
+  font-size: 1.4rem;
+
+  color: #fff;
+}
+
+p {
+  font-size: 1.2vw;
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 7vw;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 1.4vw;
+
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.8vw 1.6vw;
+
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    filter: brightness(80%);
+  }
+}
+
+::selection {
+  background-color: var(--primaryColor100);
+  color: #000;
+}
