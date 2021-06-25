@@ -14,10 +14,17 @@ export const Home = () => {
       <Nav />
       <Header />
       <main>
-        <MovieList />
+        <MovieList category="What's Popular" />
+        <MovieList category="Trending" />
+        <MovieList category="Upcoming" />
+        <MovieList category="Comedy" />
       </main>
     </>
   );
 };
+// What's popular
+// Trending
+// Upcoming
+// Genres
 
 export default Home;

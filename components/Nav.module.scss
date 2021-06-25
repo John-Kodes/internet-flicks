@@ -48,11 +48,24 @@
   &__user {
     &__search {
       cursor: pointer;
+      > svg {
+        min-height: 1.4vw;
+        max-height: 1.4vw;
+        min-width: 1.4vw;
+        max-width: 1.4vw;
+      }
     }
 
     &__notifsContainer {
       position: relative;
       cursor: pointer;
+
+      > svg {
+        min-height: 1.6vw;
+        max-height: 1.6vw;
+        min-width: 1.6vw;
+        max-width: 1.6vw;
+      }
     }
 
     &__notifsBox {
@@ -86,7 +99,7 @@
     &__buttons {
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.4vw;
 
       svg {
         display: block;

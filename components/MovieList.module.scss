@@ -3,9 +3,9 @@
   flex-direction: column;
   gap: 1vw;
 
-  min-height: 12vw;
+  min-height: 14vw;
   padding: 0 4vw;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .listContainer {
@@ -32,10 +32,6 @@
   overflow: hidden;
 
   transition: transform 0.2s 0.2s;
-
-  &:hover {
-    transform: scale(1.4);
-  }
 
   img {
     width: 100%;

@@ -1,7 +1,7 @@
 // Styles
 import classes from "./MovieList.module.scss";
 
-const MovieList = () => {
+const MovieList = ({ category = "Category" }) => {
   const MovieCards = () => {
     const MovieCardsArr = [];
 
@@ -20,7 +20,7 @@ const MovieList = () => {
   };
   return (
     <div className={classes.container}>
-      <h2>Category</h2>
+      <h2>{category}</h2>
       <div className={classes.listContainer}>
         <div className={classes.sliderMask}>{MovieCards()}</div>
       </div>
