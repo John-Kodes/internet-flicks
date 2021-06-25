@@ -40,7 +40,7 @@
 
   &__logo {
     font-family: "Pacifico", sans-serif;
-    font-size: 2.8rem;
+    font-size: 1.8vw;
     color: var(--primaryColor100);
     cursor: pointer;
   }
@@ -56,7 +56,7 @@
       }
     }
 
-    &__notifsContainer {
+    &__notifsIcon {
       position: relative;
       cursor: pointer;
 
@@ -66,6 +66,12 @@
         min-width: 1.6vw;
         max-width: 1.6vw;
       }
+    }
+
+    &__notifsIcon:not(:hover) > &__notifsBox {
+      visibility: hidden;
+      opacity: 0;
+      transition-delay: 0.2s;
     }
 
     &__notifsBox {
@@ -85,7 +91,8 @@
 
       border-top: 2px solid #fff;
 
-      transition: all 0.4s 3s;
+      opacity: 1;
+      transition: all 0.4s;
 
       &__pointer {
         position: absolute;
@@ -106,7 +113,7 @@
       }
     }
 
-    &__accountBtn {
+    &__accBtn {
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -117,8 +124,37 @@
         transition: all 0.25s;
       }
 
-      &:hover svg {
+      &:hover > svg {
         transform: rotate(180deg);
+      }
+    }
+
+    &__accBox {
+      position: absolute;
+      right: 0;
+      top: 7.2rem;
+      cursor: default;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 12rem;
+      width: 40rem;
+      color: #777;
+
+      border-top: 2px solid #fff;
+
+      opacity: 1;
+      transition: all 0.4s;
+
+      &__pointer {
+        position: absolute;
+        right: 0.6rem;
+        top: -1rem;
+
+        transform: rotate(180deg) scale(1.5);
       }
     }
 
@@ -130,3 +166,7 @@
     }
   }
 }
+
+// .nav__user__notifsIcon:hover > .nav__user__notifsBox {
+//   border: 1px solid orange;
+// }

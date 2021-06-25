@@ -1,11 +1,25 @@
 .container {
+  flex: 0 0 14vw;
   display: flex;
   flex-direction: column;
   gap: 1vw;
 
-  min-height: 14vw;
   padding: 0 4vw;
   overflow-x: hidden;
+  border: 1px solid greenyellow;
+
+  @media only screen and (max-width: 68.75em) {
+    flex: 0 0 14vw;
+  }
+  @media only screen and (max-width: 64em) {
+    flex: 0 0 17vw;
+  }
+  @media only screen and (max-width: 49em) {
+    flex: 0 0 21vw;
+  }
+  @media only screen and (max-width: 31.25em) {
+    flex: 0 0 30vw;
+  }
 }
 
 .listContainer {
@@ -32,6 +46,19 @@
   overflow: hidden;
 
   transition: transform 0.2s 0.2s;
+
+  @media only screen and (max-width: 68.75em) {
+    width: calc((100vw - 10vw - 8px) / 5);
+  }
+  @media only screen and (max-width: 64em) {
+    width: calc((100vw - 10vw - 8px) / 4);
+  }
+  @media only screen and (max-width: 49em) {
+    width: calc((100vw - 10vw - 8px) / 3);
+  }
+  @media only screen and (max-width: 31.25em) {
+    width: calc((100vw - 10vw - 8px) / 2);
+  }
 
   img {
     width: 100%;

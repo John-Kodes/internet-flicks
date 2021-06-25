@@ -9,16 +9,6 @@ import ArrowTiny from "../img/ArrowTiny.js";
 import SearchIcon from "../img/SearchIcon.js";
 
 const Nav = () => {
-  const [open, setOpen] = useState(false);
-
-  const mouseEnter = () => {
-    setOpen(true);
-  };
-
-  const mouseLeave = () => {
-    setOpen(false);
-  };
-
   return (
     <nav className={classes.nav}>
       <div className={classes.nav__info}>
@@ -46,34 +36,27 @@ const Nav = () => {
         <div className={classes.nav__user__search}>
           <SearchIcon />
         </div>
-        <div
-          className={classes.nav__user__notifsContainer}
-          onMouseEnter={mouseEnter}
-          onMouseLeave={mouseLeave}
-        >
+        <div className={classes.nav__user__notifsIcon}>
           <BellIcon />
-          <DropDownMenu open={open} />
+          <div className={classes.nav__user__notifsBox}>
+            <div className={classes.nav__user__notifsBox__pointer}>
+              <ArrowTiny />
+            </div>
+            No recent notifications
+          </div>
         </div>
-        <div className={classes.nav__user__accountBtn}>
-          <div className={classes.nav__user__pfp}></div>
+        <div className={classes.nav__user__accBtn}>
+          <div className={classes.nav__user__pfp} />
           <ArrowTiny />
+          <div className={classes.nav__user__accBox}>
+            <div className={classes.nav__user__accBox__pointer}>
+              <ArrowTiny />
+            </div>
+            Account Settings
+          </div>
         </div>
       </div>
     </nav>
-  );
-};
-
-const DropDownMenu = ({ open }) => {
-  return (
-    <div
-      className={classes.nav__user__notifsBox}
-      style={{ display: open ? "flex" : "none" }}
-    >
-      <div className={classes.nav__user__notifsBox__pointer}>
-        <ArrowTiny />
-      </div>
-      No recent notifications
-    </div>
   );
 };
 
