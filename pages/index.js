@@ -2,7 +2,7 @@ import Head from "next/head";
 // components
 import Nav from "../components/Nav";
 import Header from "../components/Header";
-import MovieList from "";
+import MovieList from "../components/MovieList";
 
 export const Home = () => {
   return (
@@ -14,6 +14,7 @@ export const Home = () => {
       <Nav />
       <main>
         <Header />
+        <MovieList />
       </main>
     </>
   );
