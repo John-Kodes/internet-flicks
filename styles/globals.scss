@@ -22,13 +22,21 @@ body {
   color: #fff;
 }
 
+main {
+  transform: translateY(-4rem);
+}
+
 p {
-  font-size: 1.2vw;
+  font-size: 1.1vw;
   line-height: 1.5;
 }
 
 h1 {
   font-size: 7vw;
+}
+
+h2 {
+  font-size: 1.6vw;
 }
 
 a {
@@ -47,13 +55,13 @@ button {
 
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  font-size: 1.4vw;
+  font-size: 1.2vw;
 
   background: none;
   border: none;
   cursor: pointer;
   border-radius: 4px;
-  padding: 0.8vw 1.6vw;
+  padding: 0.6vw 1.6vw;
 
   transition: all 0.2s;
 

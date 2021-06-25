@@ -1,27 +1,43 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1vw;
 
-  height: 40rem;
-  background-color: rgb(134, 110, 110);
+  min-height: 12vw;
   padding: 0 4vw;
   overflow: hidden;
 }
 
 .listContainer {
+  position: relative;
   display: flex;
 }
 
 .sliderMask {
+  position: absolute;
+  top: 0;
+  transform: translateX(0%);
+
   display: flex;
   gap: 4px;
-  border: 1px solid greenyellow;
+
+  transition: transform 0.8s;
 }
 
 .movieCard {
+  cursor: pointer;
+
+  width: calc((100vw - 10vw - 8px) / 6);
   border-radius: 4px;
   overflow: hidden;
 
-  border: 1px solid orange;
+  transition: transform 0.2s 0.2s;
+
+  &:hover {
+    transform: scale(1.4);
+  }
+
+  img {
+    width: 100%;
+  }
 }
