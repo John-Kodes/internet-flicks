@@ -71,13 +71,13 @@
     &__notifsIcon:not(:hover) > &__notifsBox {
       visibility: hidden;
       opacity: 0;
-      transition-delay: 0.2s;
+      transition-delay: 0.1s;
     }
 
     &__notifsBox {
       position: absolute;
       right: 0;
-      top: 5rem;
+      top: 5.2rem;
       cursor: default;
 
       display: flex;
@@ -114,6 +114,7 @@
     }
 
     &__accBtn {
+      position: relative;
       display: flex;
       align-items: center;
       gap: 1rem;
@@ -131,19 +132,17 @@
 
     &__accBox {
       position: absolute;
-      right: 0;
-      top: 7.2rem;
+      right: 2.6rem;
+      top: 5.6rem;
       cursor: default;
 
       display: flex;
-      justify-content: center;
       align-items: center;
 
-      background-color: rgba(0, 0, 0, 0.7);
-      height: 12rem;
-      width: 40rem;
       color: #777;
-
+      width: 15vw;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1.5rem 1rem;
       border-top: 2px solid #fff;
 
       opacity: 1;
@@ -151,11 +150,51 @@
 
       &__pointer {
         position: absolute;
-        right: 0.6rem;
-        top: -1rem;
+        right: 3%;
+        bottom: 99%;
 
         transform: rotate(180deg) scale(1.5);
       }
+
+      &__btnsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+
+        button {
+          position: relative;
+
+          font-weight: 400;
+          font-size: 0.95vw;
+          color: #fff;
+
+          &:hover {
+            transform: none;
+          }
+
+          &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            background-color: #fff;
+            height: 1px;
+            width: 0;
+            transition: width 0.2s;
+          }
+
+          &:hover::after {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    &__accBtn:not(:hover) > &__accBox {
+      visibility: hidden;
+      opacity: 0;
+      transition-delay: 0.1s;
     }
 
     &__pfp {

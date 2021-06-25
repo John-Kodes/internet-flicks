@@ -26,6 +26,10 @@
   display: flex;
   gap: 1rem;
 
+  > * {
+    padding: 0.6vw 1.6vw;
+  }
+
   svg {
     display: block;
     height: 1.4vw;

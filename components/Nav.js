@@ -52,7 +52,11 @@ const Nav = () => {
             <div className={classes.nav__user__accBox__pointer}>
               <ArrowTiny />
             </div>
-            Account Settings
+            <div className={classes.nav__user__accBox__btnsContainer}>
+              <button>Account</button>
+              <button>Sign Out</button>
+              <button>Back to portfolio</button>
+            </div>
           </div>
         </div>
       </div>
