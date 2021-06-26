@@ -15,24 +15,25 @@ const Nav = () => {
         <Link href="/">
           <div className={classes.nav__logo}>Internet Flicks</div>
         </Link>
-
-        <Link href="/">
-          <div className={classes.nav__link}>Home</div>
-        </Link>
-        <Link href="/">
-          <div className={classes.nav__link}>TV Shows</div>
-        </Link>
-        <Link href="/">
-          <div className={classes.nav__link}>Movies</div>
-        </Link>
-        <Link href="/">
-          <div className={classes.nav__link}>New & Popular</div>
-        </Link>
-        <Link href="/">
-          <div className={classes.nav__link}>My List</div>
-        </Link>
+        <div className={classes.nav__link__container}>
+          <Link href="/">
+            <div className={classes.nav__link}>Home</div>
+          </Link>
+          <Link href="/">
+            <div className={classes.nav__link}>TV Shows</div>
+          </Link>
+          <Link href="/">
+            <div className={classes.nav__link}>Movies</div>
+          </Link>
+          <Link href="/">
+            <div className={classes.nav__link}>New & Popular</div>
+          </Link>
+          <Link href="/">
+            <div className={classes.nav__link}>My List</div>
+          </Link>
+        </div>
       </div>
-      <div className={classes.nav__user__buttons}>
+      <div className={classes.nav__user}>
         <div className={classes.nav__user__search}>
           <SearchIcon />
         </div>
