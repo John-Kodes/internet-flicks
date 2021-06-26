@@ -1,6 +1,15 @@
 :root {
   --primaryColor100: #00ecb9;
   --pageBg100: #333;
+  --fontSize100: 1vw;
+  --fontSize200: 1.1vw;
+  --fontSize300: 1.6vw;
+
+  @media only screen and (max-width: 60em) {
+    --fontSize100: 1.4vw;
+    --fontSize200: 1.8vw;
+    --fontSize300: 3vw;
+  }
 }
 
 * {
@@ -17,7 +26,7 @@ body {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   background-color: var(--pageBg100);
-  font-size: 1.4rem;
+  font-size: var(--fontSize100);
 
   color: #fff;
 }
@@ -30,7 +39,7 @@ main {
 }
 
 p {
-  font-size: 1.1vw;
+  font-size: var(--fontSize200);
   line-height: 1.5;
 }
 
@@ -39,7 +48,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.6vw;
+  font-size: var(--fontSize300);
 }
 
 a {
@@ -58,7 +67,7 @@ button {
 
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  font-size: 1.2vw;
+  font-size: var(--fontSize200);
 
   background: none;
   border: none;

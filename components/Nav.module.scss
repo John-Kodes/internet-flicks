@@ -27,13 +27,11 @@
   &__link__container {
     display: flex;
     align-items: center;
-    gap: 1vw;
-
-    border: 1px solid greenyellow;
+    gap: 1.5vw;
   }
 
   &__link {
-    font-size: 1.1vw;
+    font-size: var(--fontSize100);
     color: #fff;
     cursor: pointer;
 
@@ -67,13 +65,18 @@
       cursor: pointer;
       height: 100%;
 
-      border: 1px solid greenyellow;
-
       > svg {
-        min-height: 1.4vw;
-        max-height: 1.4vw;
-        min-width: 1.4vw;
-        max-width: 1.4vw;
+        min-height: 1.8vw;
+        max-height: 1.8vw;
+        min-width: 1.8vw;
+        max-width: 1.8vw;
+
+        @media only screen and (max-width: 52.5em) {
+          min-height: 2.6vw;
+          max-height: 2.6vw;
+          min-width: 2.6vw;
+          max-width: 2.6vw;
+        }
       }
     }
 
@@ -84,13 +87,18 @@
       cursor: pointer;
       height: 100%;
 
-      border: 1px solid greenyellow;
-
       > svg {
-        min-height: 1.6vw;
-        max-height: 1.6vw;
-        min-width: 1.6vw;
-        max-width: 1.6vw;
+        min-height: 2vw;
+        max-height: 2vw;
+        min-width: 2vw;
+        max-width: 2vw;
+
+        @media only screen and (max-width: 52.5em) {
+          min-height: 2.9vw;
+          max-height: 2.9vw;
+          min-width: 2.9vw;
+          max-width: 2.9vw;
+        }
       }
     }
 
@@ -111,8 +119,8 @@
       align-items: center;
 
       background-color: rgba(0, 0, 0, 0.7);
-      height: 12rem;
-      width: 40rem;
+      height: 12vw;
+      width: 30vw;
       color: #777;
 
       border-top: 2px solid #fff;
@@ -140,8 +148,6 @@
       align-items: center;
       cursor: pointer;
       height: 100%;
-
-      border: 1px solid greenyellow;
 
       svg {
         transition: all 0.25s;
@@ -222,8 +228,8 @@
     }
 
     &__pfp {
-      height: 3.2rem;
-      width: 3.2rem;
+      height: 5vw;
+      width: 5vw;
       background-color: var(--primaryColor100);
       border-radius: 4px;
     }
