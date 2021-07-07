@@ -3,6 +3,8 @@ import Head from "next/head";
 import Nav from "../components/Nav";
 import Header from "../components/Header";
 import MovieList from "../components/MovieList";
+// styles
+import styles from "@/styles/Home.module.scss";
 
 export const Home = () => {
   return (
@@ -13,7 +15,7 @@ export const Home = () => {
       </Head>
       <Nav />
       <Header />
-      <main>
+      <main className={styles.main}>
         <MovieList category="What's Popular" />
         <MovieList category="Trending" />
         <MovieList category="Upcoming" />

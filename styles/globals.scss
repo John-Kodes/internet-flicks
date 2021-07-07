@@ -31,13 +31,6 @@ body {
   color: #fff;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 0.8vw;
-  transform: translateY(-4rem);
-}
-
 p {
   font-size: var(--fontSize200);
   line-height: 1.5;

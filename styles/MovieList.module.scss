@@ -2,6 +2,37 @@
   display: flex;
   flex-direction: column;
   gap: 1vw;
+
+  padding: 0 4vw;
+  overflow-x: hidden;
+}
+
+.sliderContainer {
+  position: relative;
+}
+
+.sliderMask {
+  position: absolute;
+  top: 0;
+  transform: translateX(0%);
+
+  display: flex;
+  gap: 4px;
+
+  transition: transform 0.8s;
+}
+
+.slider {
+  display: flex;
+  gap: 4px;
+  height: 12rem;
+}
+
+.testThumbnail {
+  width: 25rem;
+  height: 12rem;
+  background-color: orange;
+  border-radius: 4px;
 }
 
 //////// OLD
