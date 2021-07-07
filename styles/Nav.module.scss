@@ -228,14 +228,10 @@
     }
 
     &__pfp {
-      height: 5vw;
-      width: 5vw;
+      height: 4vw;
+      width: 4vw;
       background-color: var(--primaryColor100);
-      border-radius: 4px;
+      border-radius: 0.6vw;
     }
   }
 }
-
-// .nav__user__notifsIcon:hover > .nav__user__notifsBox {
-//   border: 1px solid orange;
-// }
