@@ -1,10 +1,9 @@
 import Head from "next/head";
 // components
-import Nav from "@/components/Nav";
 import Header from "@/components/Header";
 import MovieList from "@/components/MovieList";
 // styles
-import styles from "@/styles/Home.module.scss";
+import styles from "@/styles/Browse.module.scss";
 
 export const Home = () => {
   return (
@@ -23,9 +22,5 @@ export const Home = () => {
     </>
   );
 };
-// What's popular
-// Trending
-// Upcoming
-// Genres
 
 export default Home;

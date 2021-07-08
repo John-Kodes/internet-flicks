@@ -18,19 +18,19 @@ const Nav = () => {
           <div className={styles.nav__logo}>Internet Flicks</div>
         </Link>
         <div className={styles.nav__link__container}>
-          <Link href="/">
+          <Link href="/browse">
             <div className={styles.nav__link}>Home</div>
           </Link>
-          <Link href="/">
+          <Link href="/browse/tv-shows">
             <div className={styles.nav__link}>TV Shows</div>
           </Link>
-          <Link href="/">
+          <Link href="/browse/movies">
             <div className={styles.nav__link}>Movies</div>
           </Link>
-          <Link href="/">
+          <Link href="/browse/New-And-Popular">
             <div className={styles.nav__link}>New & Popular</div>
           </Link>
-          <Link href="/">
+          <Link href="/browse/my-list">
             <div className={styles.nav__link}>My List</div>
           </Link>
         </div>
