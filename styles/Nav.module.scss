@@ -19,6 +19,8 @@
     rgba(0, 0, 0, 0)
   );
 
+  transition: background-color 0.5s;
+
   &__info {
     display: flex;
     gap: 2rem;

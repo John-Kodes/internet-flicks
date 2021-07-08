@@ -1,13 +1,21 @@
+import React from "react";
+import { useRouter } from "next/router";
+
 import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
-import React from "react";
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+
   return (
     <React.StrictMode>
-      <Layout>
+      {router.pathname !== "/" ? (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      ) : (
         <Component {...pageProps} />
-      </Layout>
+      )}
     </React.StrictMode>
   );
 }

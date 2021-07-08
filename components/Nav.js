@@ -2,17 +2,20 @@
 import React, { useState } from "react";
 // Next
 import Link from "next/link";
-// styling and animation
+// styling
 import styles from "@/styles/Nav.module.scss";
+
+// Icons
 import BellIcon from "../public/images/BellIcon.js";
 import ArrowTiny from "../public/images/ArrowTiny.js";
 import SearchIcon from "../public/images/SearchIcon.js";
 
-const Nav = () => {
-  const [scrollActive, setScrollActive] = useState(false);
-
+const Nav = ({ inView = true }) => {
   return (
-    <nav className={styles.nav} style={{ backgroundColor: "transparent" }}>
+    <nav
+      className={styles.nav}
+      style={{ backgroundColor: inView ? "transparent" : "var(--pageBg100)" }}
+    >
       <div className={styles.nav__info}>
         <Link href="/">
           <div className={styles.nav__logo}>Internet Flicks</div>
