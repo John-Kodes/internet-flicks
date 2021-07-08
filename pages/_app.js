@@ -1,10 +1,13 @@
-import "../styles/globals.scss";
+import Layout from "@/components/Layout";
+import "@/styles/globals.scss";
 import React from "react";
 
 function MyApp({ Component, pageProps }) {
   return (
     <React.StrictMode>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </React.StrictMode>
   );
 }

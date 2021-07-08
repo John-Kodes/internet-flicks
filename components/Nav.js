@@ -1,5 +1,5 @@
 //////// background transition to dark grey when scroll added
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // Next
 import Link from "next/link";
 // styling and animation
@@ -9,8 +9,10 @@ import ArrowTiny from "../public/images/ArrowTiny.js";
 import SearchIcon from "../public/images/SearchIcon.js";
 
 const Nav = () => {
+  const [scrollActive, setScrollActive] = useState(false);
+
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} style={{ backgroundColor: "transparent" }}>
       <div className={styles.nav__info}>
         <Link href="/">
           <div className={styles.nav__logo}>Internet Flicks</div>
