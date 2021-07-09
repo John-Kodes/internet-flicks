@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Layout from "@/components/Layout";
+import { ContextProvider } from "context/Context";
 import "@/styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
@@ -9,13 +10,19 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <React.StrictMode>
-      {router.pathname !== "/" ? (
-        <Layout>
+      <ContextProvider>
+        {router.pathname !== "/" ? (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        ) : router.pathname !== "/_error" ? (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        ) : (
           <Component {...pageProps} />
-        </Layout>
-      ) : (
-        <Component {...pageProps} />
-      )}
+        )}
+      </ContextProvider>
     </React.StrictMode>
   );
 }
