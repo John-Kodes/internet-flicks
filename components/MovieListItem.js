@@ -18,7 +18,7 @@ const MovieListItem = ({ movie }) => {
         backgroundSize: "cover",
       }}
     >
-      {movie.original_title}
+      {/* {movie.original_title} */}
     </div>
   );
 };
