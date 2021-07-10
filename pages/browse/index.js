@@ -5,8 +5,11 @@ import MovieList from "@/components/MovieList";
 import MovieModal from "@/components/MovieModal";
 // styles
 import styles from "@/styles/Browse.module.scss";
+// API
+import { TMDB_API, API_KEY } from "@/config/index";
 
-export const Home = () => {
+export const Home = ({ popularMovies }) => {
+  console.log(popularMovies);
   return (
     <>
       <Head>
@@ -16,13 +19,25 @@ export const Home = () => {
       <MovieModal />
       <Header />
       <main className={styles.main}>
-        <MovieList category="What's Popular" />
-        <MovieList category="Trending" />
-        <MovieList category="Upcoming" />
-        <MovieList category="Comedy" />
+        <MovieList category="What's Popular" movies={popularMovies} />
+        <MovieList category="Trending" movies={popularMovies} />
+        <MovieList category="Upcoming" movies={popularMovies} />
+        <MovieList category="Comedy" movies={popularMovies} />
       </main>
     </>
   );
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+  const popularRes = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);
+
+  const popularMovies = await popularRes.json();
+
+  return {
+    props: {
+      popularMovies: popularMovies.results,
+    },
+  };
+};

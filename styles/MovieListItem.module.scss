@@ -28,30 +28,30 @@
   }
 }
 
-.movieCard {
-  cursor: pointer;
+// .movieCard {
+//   cursor: pointer;
 
-  height: 10vw;
-  width: 10rem;
-  border-radius: 4px;
-  overflow: hidden;
+//   height: 10vw;
+//   width: 10rem;
+//   border-radius: 4px;
+//   overflow: hidden;
 
-  transition: transform 0.2s 0.2s;
+//   transition: transform 0.2s 0.2s;
 
-  @media only screen and (max-width: 68.75em) {
-    width: calc((100vw - 10vw - 8px) / 5);
-  }
-  @media only screen and (max-width: 64em) {
-    width: calc((100vw - 10vw - 8px) / 4);
-  }
-  @media only screen and (max-width: 49em) {
-    width: calc((100vw - 10vw - 8px) / 3);
-  }
-  @media only screen and (max-width: 31.25em) {
-    width: calc((100vw - 10vw - 8px) / 2);
-  }
+//   @media only screen and (max-width: 68.75em) {
+//     width: calc((100vw - 10vw - 8px) / 5);
+//   }
+//   @media only screen and (max-width: 64em) {
+//     width: calc((100vw - 10vw - 8px) / 4);
+//   }
+//   @media only screen and (max-width: 49em) {
+//     width: calc((100vw - 10vw - 8px) / 3);
+//   }
+//   @media only screen and (max-width: 31.25em) {
+//     width: calc((100vw - 10vw - 8px) / 2);
+//   }
 
-  img {
-    width: 100%;
-  }
-}
+//   img {
+//     width: 100%;
+//   }
+// }
