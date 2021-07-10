@@ -8,7 +8,12 @@ import styles from "@/styles/Browse.module.scss";
 // API
 import { TMDB_API, API_KEY } from "@/config/index";
 
-export const Home = ({ popularMovies }) => {
+export const Home = ({
+  popularMovies,
+  upcomingMovies,
+  topRatedMovies,
+  nowPlayingMovies,
+}) => {
   console.log(popularMovies);
   return (
     <>
@@ -20,9 +25,9 @@ export const Home = ({ popularMovies }) => {
       <Header />
       <main className={styles.main}>
         <MovieList category="What's Popular" movies={popularMovies} />
-        <MovieList category="Trending" movies={popularMovies} />
-        <MovieList category="Upcoming" movies={popularMovies} />
-        <MovieList category="Comedy" movies={popularMovies} />
+        <MovieList category="Top Rated" movies={topRatedMovies} />
+        <MovieList category="Upcoming" movies={upcomingMovies} />
+        <MovieList category="Now Playing" movies={nowPlayingMovies} />
       </main>
     </>
   );
@@ -32,12 +37,23 @@ export default Home;
 
 export const getServerSideProps = async () => {
   const popularRes = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);
-
   const popularMovies = await popularRes.json();
+
+  const upcomingRes = await fetch(`${TMDB_API}/movie/upcoming${API_KEY}`);
+  const upcomingMovies = await upcomingRes.json();
+
+  const topRatedRes = await fetch(`${TMDB_API}/movie/top_rated${API_KEY}`);
+  const topRatedMovies = await topRatedRes.json();
+
+  const nowPlayingRes = await fetch(`${TMDB_API}/movie/now_playing${API_KEY}`);
+  const nowPlayingMovies = await nowPlayingRes.json();
 
   return {
     props: {
       popularMovies: popularMovies.results,
+      upcomingMovies: upcomingMovies.results,
+      topRatedMovies: topRatedMovies.results,
+      nowPlayingMovies: nowPlayingMovies.results,
     },
   };
 };
