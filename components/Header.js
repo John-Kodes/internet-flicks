@@ -7,8 +7,6 @@ import InfoIcon from "../public/images/InfoIcon";
 import PlayIcon from "../public/images/PlayIcon";
 
 const Header = ({ movie }) => {
-  console.log(movie);
-
   return (
     <header
       className={styles.header}

@@ -14,7 +14,10 @@ export const Home = ({
   upcomingMovies,
   topRatedMovies,
   nowPlayingMovies,
+  genres,
 }) => {
+  console.log(nowPlayingMovies[0]);
+
   return (
     <>
       <Head>
@@ -49,9 +52,16 @@ export const getServerSideProps = async () => {
   const nowPlayingMovies = await nowPlayingRes.json();
 
   const featuredRes = await fetch(
-    `${TMDB_API}/movie/${upcomingMovies.results[0].id}${API_KEY}`
+    `${TMDB_API}/movie/${upcomingMovies.results[8].id}${API_KEY}`
   );
   const featuredMovie = await featuredRes.json();
+
+  const genresRes = await fetch(
+    `${TMDB_API}/genre/movie/list${API_KEY}&language=en-US`
+  );
+  const genres = await genresRes.json();
+
+  console.log(genres);
 
   return {
     props: {
@@ -60,6 +70,7 @@ export const getServerSideProps = async () => {
       topRatedMovies: topRatedMovies.results,
       nowPlayingMovies: nowPlayingMovies.results,
       featuredMovie,
+      genres: genres.genres,
     },
   };
 };

@@ -21,8 +21,9 @@
 
 .movieTitle {
   position: relative;
-  font-size: 8vw;
+  font-size: calc(2vw + 2vh + 2vmin);
   z-index: 1;
+  width: 14ch;
 
   &::before {
     content: "";
@@ -36,7 +37,7 @@
     width: 8vw;
     background-color: transparent;
     border-radius: 1vw;
-    box-shadow: 0 12vw 5vw 4vw rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12vw 5vw 4vw rgba(0, 0, 0, 0.3);
   }
 }
 
