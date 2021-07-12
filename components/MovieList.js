@@ -9,14 +9,16 @@ const MovieList = ({ category = "Category", movies }) => {
   ));
 
   return (
-    <div className={styles.container}>
-      <h2>{category}</h2>
-      <div className={styles.sliderContainer}>
-        <div className={styles.slider}>
-          <div className={styles.sliderMask}>{[...movieNames]}</div>
+    <>
+      <div className={styles.container}>
+        <h2>{category}</h2>
+        <div className={styles.sliderContainer}>
+          <div className={styles.slider}>
+            <div className={styles.sliderMask}>{[...movieNames]}</div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

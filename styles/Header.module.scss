@@ -12,23 +12,18 @@
   padding: 0 4vw;
 
   background-color: rgb(71, 71, 71);
-  background-image: linear-gradient(
-    to bottom,
-    rgba(20, 20, 20, 0) 85%,
-    rgba(20, 20, 20, 1)
-  );
 }
 
 .movieTitle {
   position: relative;
   font-size: calc(2vw + 2vh + 2vmin);
   z-index: 1;
-  width: 14ch;
+  max-width: 14ch;
 
   &::before {
     content: "";
     position: absolute;
-    top: -50%;
+    top: -180%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
@@ -37,7 +32,7 @@
     width: 8vw;
     background-color: transparent;
     border-radius: 1vw;
-    box-shadow: 0 12vw 5vw 4vw rgba(0, 0, 0, 0.3);
+    box-shadow: 0 12vw 3vw 2vw rgba(0, 0, 0, 0.4);
   }
 }
 

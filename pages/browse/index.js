@@ -51,8 +51,10 @@ export const getServerSideProps = async () => {
   const nowPlayingRes = await fetch(`${TMDB_API}/movie/now_playing${API_KEY}`);
   const nowPlayingMovies = await nowPlayingRes.json();
 
+  const rng = Math.floor(Math.random() * upcomingMovies.results.length + 1);
+
   const featuredRes = await fetch(
-    `${TMDB_API}/movie/${upcomingMovies.results[8].id}${API_KEY}`
+    `${TMDB_API}/movie/${upcomingMovies.results[rng].id}${API_KEY}`
   );
   const featuredMovie = await featuredRes.json();
 
