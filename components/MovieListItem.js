@@ -6,22 +6,28 @@ import { TMDB_IMAGE } from "@/config/index";
 import Context from "@/context/Context";
 // Styles
 import styles from "@/styles/MovieListItem.module.scss";
+// Helpers
+import { fetchMovie } from "@/helpers/index";
 
 const MovieListItem = ({ movie }) => {
-  const { setModalOpen } = useContext(Context);
+  const { setModalOpen, setModalData } = useContext(Context);
+
+  const clickHandler = async () => {
+    setModalOpen(true);
+    const mov = await fetchMovie(movie.id);
+    setModalData(mov);
+  };
 
   return (
-    <>
-      <div className={styles.container} onClick={() => setModalOpen(true)}>
-        <div className={styles.image}>
-          <Image
-            src={`${TMDB_IMAGE}/w500/${movie.backdrop_path}`}
-            layout="fill"
-            alt={movie.original_title}
-          />
-        </div>
+    <div className={styles.container} onClick={clickHandler}>
+      <div className={styles.image}>
+        <Image
+          src={`${TMDB_IMAGE}/w500/${movie.backdrop_path}`}
+          layout="fill"
+          alt={movie.original_title}
+        />
       </div>
-    </>
+    </div>
   );
 };
 

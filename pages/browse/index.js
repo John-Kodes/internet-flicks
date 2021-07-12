@@ -16,7 +16,7 @@ export const Home = ({
   nowPlayingMovies,
   genres,
 }) => {
-  console.log(nowPlayingMovies[0]);
+  console.log(featuredMovie);
 
   return (
     <>

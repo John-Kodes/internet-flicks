@@ -1,0 +1,40 @@
+.sliderContainer {
+  position: relative;
+  z-index: 10000000;
+  height: 1rem;
+  border: 1px solid orange;
+  margin-left: 4vw;
+}
+
+.sliderMask {
+  position: absolute;
+  top: 0;
+  transform: translateX(-0%);
+
+  display: flex;
+  gap: 4px;
+
+  transition: transform 0.8s;
+}
+
+.slider {
+  display: flex;
+  gap: 4px;
+  height: 8vw;
+  @media only screen and (max-width: 68.75em) {
+    height: 9.5vw;
+    width: calc((100vw - 10vw - 8px) / 5);
+  }
+  @media only screen and (max-width: 64em) {
+    height: 12vw;
+    width: calc((100vw - 10vw - 8px) / 4);
+  }
+  @media only screen and (max-width: 49em) {
+    height: 15.5vw;
+    width: calc((100vw - 10vw - 8px) / 3);
+  }
+  @media only screen and (max-width: 31.25em) {
+    height: 24vw;
+    width: calc((100vw - 10vw - 8px) / 2);
+  }
+}

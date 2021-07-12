@@ -2,9 +2,9 @@
   display: flex;
   flex-direction: column;
   gap: 1vw;
+  overflow-x: hidden;
 
   padding: 0 4vw;
-  overflow-x: hidden;
 }
 
 .sliderContainer {
