@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 // API
 import { TMDB_IMAGE } from "@/config/index";
 // Context
@@ -11,9 +12,11 @@ import { fetchMovie } from "@/helpers/index";
 
 const MovieListItem = ({ movie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
+  const router = useRouter();
 
   const clickHandler = async () => {
     setModalOpen(true);
+    router.push("/test", undefined, { shallow: true });
     const mov = await fetchMovie(movie.id);
     setModalData(mov);
   };

@@ -28,10 +28,20 @@ const MovieModal = () => {
     setModalData({});
   };
 
+  const overlayHandler = (e) => {
+    if (!e.target.classList.contains(`${styles.overlay}`)) return;
+    closeHandler();
+  };
+
+  const ArrStr = (genres) => {
+    if (!genres) return;
+    return genres.map((genre) => genre.name).join(", ");
+  };
+
   return (
     <>
       {modalOpen && (
-        <div className={styles.overlay} onClick={closeHandler}>
+        <div className={styles.overlay} onClick={overlayHandler}>
           <div className={styles.modal}>
             <CloseBtn closeHandler={closeHandler} />
             <div
@@ -60,12 +70,23 @@ const MovieModal = () => {
                     {movie.vote_average} / 10
                   </div>
                   <div className={styles.year}>
-                    {movie.release_date.slice(0, 4)}
+                    {movie.release_date && movie.release_date.slice(0, 4)}
                   </div>
                 </div>
                 <p className={styles.description}>{movie.overview}</p>
               </div>
-              <div className={styles.detailsSecondary}>secondary</div>
+              <div className={styles.detailsSecondary}>
+                <div className={styles.genres}>
+                  <span>
+                    Genre{movie.genres && movie.genres.length > 1 ? "s" : ""}:{" "}
+                  </span>
+                  {ArrStr(movie.genres)}
+                </div>
+                <div className={styles.studios}>
+                  <span>Produced by: </span>
+                  {ArrStr(movie.production_companies)}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -73,7 +94,6 @@ const MovieModal = () => {
     </>
   );
 };
-//  audience score, year of release, description, genres
 
 /* <div className={styles.heroImage}>
                 <Image

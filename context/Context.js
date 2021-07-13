@@ -6,8 +6,6 @@ export const ContextProvider = ({ children }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  useEffect(() => console.log(modalData));
-
   return (
     <Context.Provider
       value={{ modalOpen, setModalOpen, modalData, setModalData }}
