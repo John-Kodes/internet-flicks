@@ -16,8 +16,6 @@ export const BrowsePage = ({
   nowPlayingMovies,
   genres,
 }) => {
-  console.log(featuredMovie);
-
   return (
     <>
       <Head>

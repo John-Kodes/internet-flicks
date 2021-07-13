@@ -16,7 +16,9 @@ const MovieListItem = ({ movie }) => {
 
   const clickHandler = async () => {
     setModalOpen(true);
-    router.push("/test", undefined, { shallow: true });
+    router.push({ pathname: "/browse", query: { id: movie.id } }, undefined, {
+      shallow: true,
+    });
     const mov = await fetchMovie(movie.id);
     setModalData(mov);
   };

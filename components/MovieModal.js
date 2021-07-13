@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useRouter } from "next/router";
 
 import { TMDB_IMAGE } from "@/config/index";
 
@@ -21,9 +22,12 @@ const MovieModal = () => {
     modalData: movie,
   } = useContext(Context);
 
-  console.log(movie);
+  const router = useRouter();
 
   const closeHandler = () => {
+    router.push({ pathname: "/browse" }, undefined, {
+      shallow: true,
+    });
     setModalOpen(false);
     setModalData({});
   };
