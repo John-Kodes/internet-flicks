@@ -11,17 +11,22 @@ function MyApp({ Component, pageProps }) {
   return (
     <React.StrictMode>
       <ContextProvider>
-        {router.pathname !== "/" ? (
+        {router.pathname === "/_error" ? (
+          <Component {...pageProps} />
+        ) : router.pathname === "/" ? (
+          <Component {...pageProps} />
+        ) : (
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        ) : router.pathname !== "/_error" ? (
+        )}
+        {/* {router.pathname !== "/" ? (
           <Layout>
             <Component {...pageProps} />
           </Layout>
         ) : (
           <Component {...pageProps} />
-        )}
+        )} */}
       </ContextProvider>
     </React.StrictMode>
   );
