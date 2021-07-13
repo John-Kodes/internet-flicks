@@ -3,8 +3,8 @@ import { TMDB_IMAGE } from "@/config/index";
 // Styles
 import styles from "@/styles/Header.module.scss";
 // Icons
-import InfoIcon from "../public/images/InfoIcon";
-import PlayIcon from "../public/images/PlayIcon";
+import InfoIcon from "@/images/InfoIcon";
+import PlayIcon from "@/images/PlayIcon";
 
 const Header = ({ movie }) => {
   return (

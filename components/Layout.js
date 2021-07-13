@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 // Components
 import Nav from "@/components/Nav";
-import MagicBtn from "./MagicBtn";
+import MagicBtn from "@/components/MagicBtn";
 // Context
 import ContextProvider from "context/Context";
 // Obeserver

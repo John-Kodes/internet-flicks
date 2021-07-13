@@ -1,14 +1,11 @@
-//////// background transition to dark grey when scroll added
-import React, { useState } from "react";
 // Next
 import Link from "next/link";
 // styling
 import styles from "@/styles/Nav.module.scss";
-
 // Icons
-import BellIcon from "../public/images/BellIcon.js";
-import ArrowTiny from "../public/images/ArrowTiny.js";
-import SearchIcon from "../public/images/SearchIcon.js";
+import BellIcon from "@/images/BellIcon.js";
+import ArrowTiny from "@/images/ArrowTiny.js";
+import SearchIcon from "@/images/SearchIcon.js";
 
 const Nav = ({ inView = true }) => {
   return (

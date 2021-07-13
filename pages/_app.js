@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 import Layout from "@/components/Layout";
-import { ContextProvider } from "context/Context";
+import { ContextProvider } from "@/context/Context";
 import "@/styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {

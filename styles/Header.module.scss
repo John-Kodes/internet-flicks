@@ -19,21 +19,12 @@
   font-size: calc(2vw + 2vh + 2vmin);
   z-index: 1;
   max-width: 14ch;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: -180%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-
-    height: 1vw;
-    width: 8vw;
-    background-color: transparent;
-    border-radius: 1vw;
-    box-shadow: 0 12vw 3vw 2vw rgba(0, 0, 0, 0.4);
-  }
+  padding: 0 0 2vw;
+  background-image: radial-gradient(
+    closest-side,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .description {

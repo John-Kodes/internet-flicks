@@ -8,7 +8,7 @@ import styles from "@/styles/Browse.module.scss";
 // API
 import { TMDB_API, API_KEY } from "@/config/index";
 
-export const Home = ({
+export const BrowsePage = ({
   featuredMovie,
   popularMovies,
   upcomingMovies,
@@ -36,7 +36,7 @@ export const Home = ({
   );
 };
 
-export default Home;
+export default BrowsePage;
 
 export const getServerSideProps = async () => {
   const popularRes = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);

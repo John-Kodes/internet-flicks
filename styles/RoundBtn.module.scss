@@ -1,0 +1,23 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 3.5vw;
+  width: 3.5vw;
+  color: #fff;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.65);
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 1);
+  }
+}
+
+.svg {
+  position: relative;
+  height: 2vw;
+  width: 2vw;
+}

@@ -3,7 +3,7 @@ import Link from "next/dist/client/link";
 // styles
 import styles from "@/styles/Home.module.scss";
 
-export const Home = () => {
+export const HomePage = () => {
   return (
     <>
       <Head>
@@ -23,4 +23,4 @@ export const Home = () => {
 // Upcoming
 // Genres
 
-export default Home;
+export default HomePage;
