@@ -19,6 +19,7 @@
   min-height: 100rem;
   width: 100%;
   max-width: 85rem;
+
   background-color: var(--pageBg100);
   border-radius: 7px;
   box-shadow: 0 0.5rem 2rem rgba(#000, 0.9);
@@ -91,4 +92,40 @@
   padding: 0.7vw 1.4vw;
   font-size: 1.2vw;
   background-color: #fff;
+}
+
+.detailsBox {
+  display: flex;
+  padding: 0 4rem;
+  gap: 4rem;
+
+  > * {
+    border: 1px solid orange;
+  }
+}
+
+.detailsMain {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.metaData {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--fontSize200);
+  font-weight: 500;
+
+  .audienceScore {
+    font-size: calc(var(--fontSize200) + 0.4vw);
+
+    color: var(--primaryColor100);
+    font-weight: 600;
+  }
+}
+
+.detailsSecondary {
+  flex: 1;
 }

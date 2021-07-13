@@ -28,11 +28,10 @@ const MovieModal = () => {
     setModalData({});
   };
 
-  // title, watch trailer, add to list, thumb up/down, audience score, year of release, description, genres
   return (
     <>
       {modalOpen && (
-        <div className={styles.overlay}>
+        <div className={styles.overlay} onClick={closeHandler}>
           <div className={styles.modal}>
             <CloseBtn closeHandler={closeHandler} />
             <div
@@ -54,12 +53,27 @@ const MovieModal = () => {
                 </div>
               </div>
             </div>
+            <div className={styles.detailsBox}>
+              <div className={styles.detailsMain}>
+                <div className={styles.metaData}>
+                  <div className={styles.audienceScore}>
+                    {movie.vote_average} / 10
+                  </div>
+                  <div className={styles.year}>
+                    {movie.release_date.slice(0, 4)}
+                  </div>
+                </div>
+                <p className={styles.description}>{movie.overview}</p>
+              </div>
+              <div className={styles.detailsSecondary}>secondary</div>
+            </div>
           </div>
         </div>
       )}
     </>
   );
 };
+//  audience score, year of release, description, genres
 
 /* <div className={styles.heroImage}>
                 <Image

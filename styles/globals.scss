@@ -23,12 +23,14 @@ html {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
-  background-color: var(--pageBg100);
-  font-size: var(--fontSize100);
 
+  font-family: "Montserrat", sans-serif;
+  font-size: var(--fontSize100);
   color: #fff;
+  letter-spacing: 0.2px;
+
+  background-color: var(--pageBg100);
 }
 
 p {
