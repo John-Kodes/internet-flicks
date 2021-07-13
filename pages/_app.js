@@ -20,13 +20,6 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           </Layout>
         )}
-        {/* {router.pathname !== "/" ? (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        ) : (
-          <Component {...pageProps} />
-        )} */}
       </ContextProvider>
     </React.StrictMode>
   );

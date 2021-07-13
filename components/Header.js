@@ -1,3 +1,6 @@
+import { useContext } from "react";
+// Components
+import Context from "@/context/Context";
 // API
 import { TMDB_IMAGE } from "@/config/index";
 // Styles
@@ -7,6 +10,13 @@ import InfoIcon from "@/images/InfoIcon";
 import PlayIcon from "@/images/PlayIcon";
 
 const Header = ({ movie }) => {
+  const { setModalOpen, setModalData } = useContext(Context);
+
+  const showInfoHandler = () => {
+    setModalOpen(true);
+    setModalData(movie);
+  };
+
   return (
     <header
       className={styles.header}
@@ -22,7 +32,7 @@ const Header = ({ movie }) => {
           <PlayIcon />
           Play
         </button>
-        <button className={styles.btnGhost}>
+        <button className={styles.btnGhost} onClick={showInfoHandler}>
           <InfoIcon />
           More Info
         </button>
