@@ -17,6 +17,11 @@ const Header = ({ movie }) => {
     setModalData(movie);
   };
 
+  const cutDesc = (desc) => {
+    if (desc.length < 219) return desc;
+    return desc.slice(0, 219) + "...";
+  };
+
   return (
     <header
       className={styles.header}
@@ -26,7 +31,15 @@ const Header = ({ movie }) => {
       }}
     >
       <h2 className={styles.movieTitle}>{movie.original_title}</h2>
-      <p className={styles.description}>{movie.overview}</p>
+      <div className={styles.descriptionContainer}>
+        <p
+          className={`${styles.description} ${
+            movie.overview.length < 219 && styles.removeMask
+          }`}
+        >
+          {movie.overview && cutDesc(movie.overview)}
+        </p>
+      </div>
       <div className={styles.btnContainer}>
         <button className={styles.btnFill}>
           <PlayIcon />

@@ -20,19 +20,26 @@
   z-index: 1;
   max-width: 14ch;
   padding: 0 0 2vw;
-  background-image: radial-gradient(
-    closest-side,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0) 100%
-  );
+  text-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+
+  transform: translateY(2vw);
+}
+
+.descriptionContainer {
+  background-color: rgba(25, 25, 25, 0.7);
+  padding: 1vw;
+  padding-bottom: 0;
+  border-radius: 4px;
 }
 
 .description {
-  width: 50ch;
+  width: 45ch;
+  mask-image: linear-gradient(rgba(0, 0, 0, 1) 80%, transparent);
+}
 
-  background-color: rgba(25, 25, 25, 0.7);
-  padding: 1vw;
-  border-radius: 4px;
+.removeMask {
+  mask-image: none;
+  padding-bottom: 1vw;
 }
 
 .btnContainer {

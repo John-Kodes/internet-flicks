@@ -61,8 +61,6 @@ export const getServerSideProps = async () => {
   );
   const genres = await genresRes.json();
 
-  console.log(genres);
-
   return {
     props: {
       popularMovies: popularMovies.results,
