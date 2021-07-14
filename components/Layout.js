@@ -5,10 +5,13 @@ import Nav from "@/components/Nav";
 import ContextProvider from "context/Context";
 // Obeserver
 import { useInView } from "react-intersection-observer";
+import { useRouter } from "next/router";
 
 const Layout = ({ children }) => {
   const [element, inView] = useInView();
   const { modalOpen } = useContext(ContextProvider);
+
+  const router = useRouter();
 
   useEffect(() => {
     if (document)
@@ -18,7 +21,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <div ref={element} style={{ height: "0.1px" }} />
-      <Nav inView={inView} />
+      <Nav inView={inView} category={router.query.category} />
       {children}
     </>
   );
