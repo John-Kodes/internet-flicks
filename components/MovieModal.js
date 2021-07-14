@@ -14,7 +14,7 @@ import ThumbsUp from "@/images/ThumbsUp.svg";
 import Context from "@/context/Context";
 import styles from "@/styles/MovieModal.module.scss";
 
-const MovieModal = () => {
+const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const {
     modalOpen,
     setModalOpen,
@@ -45,9 +45,16 @@ const MovieModal = () => {
   return (
     <>
       {modalOpen && (
-        <div className={styles.overlay} onClick={overlayHandler}>
+        <div
+          className={styles.overlay}
+          onClick={
+            (leavePageHandler &&
+              ((e) => leavePageHandler(e, styles.overlay))) ||
+            overlayHandler
+          }
+        >
           <div className={styles.modal}>
-            <CloseBtn closeHandler={closeHandler} />
+            <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
             <div
               className={styles.hero}
               style={{
@@ -98,12 +105,5 @@ const MovieModal = () => {
     </>
   );
 };
-
-/* <div className={styles.heroImage}>
-                <Image
-                  src={`${TMDB_IMAGE}/original/${movie.backdrop_path}`}
-                  layout="fill"
-                />
-              </div> */
 
 export default MovieModal;
