@@ -1,28 +1,31 @@
+import { useContext, useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 // components
 import Header from "@/components/Header";
 import MovieList from "@/components/MovieList";
 import MovieModal from "@/components/MovieModal";
+// Context
+import Context from "@/context/Context";
 // styles
 import styles from "@/styles/Browse.module.scss";
 // API
 import { TMDB_API, API_KEY } from "@/config/index";
-import { useEffect } from "react";
 
-export const BrowsePage = ({
+export const MovieDetailsPage = ({
   featuredMovie,
   popularMovies,
-  upcomingMovies,
   topRatedMovies,
-  nowPlayingMovies,
-  genres,
+  modalMovie,
 }) => {
   const router = useRouter();
 
+  const { setModalOpen, setModalData } = useContext(Context);
+
   useEffect(() => {
-    if (router.query.id) router.push(`/browse/title/${router.query.id}`);
-  }, []);
+    setModalOpen(true);
+    setModalData(modalMovie);
+  });
 
   return (
     <>
@@ -35,16 +38,14 @@ export const BrowsePage = ({
       <main className={styles.main}>
         <MovieList category="What's Popular" movies={popularMovies} />
         <MovieList category="Top Rated" movies={topRatedMovies} />
-        <MovieList category="Upcoming" movies={upcomingMovies} />
-        <MovieList category="Now Playing" movies={nowPlayingMovies} />
       </main>
     </>
   );
 };
 
-export default BrowsePage;
+export default MovieDetailsPage;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ query }) => {
   const popularRes = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);
   const popularMovies = await popularRes.json();
 
@@ -54,9 +55,6 @@ export const getServerSideProps = async () => {
   const topRatedRes = await fetch(`${TMDB_API}/movie/top_rated${API_KEY}`);
   const topRatedMovies = await topRatedRes.json();
 
-  const nowPlayingRes = await fetch(`${TMDB_API}/movie/now_playing${API_KEY}`);
-  const nowPlayingMovies = await nowPlayingRes.json();
-
   const rng = Math.floor(Math.random() * upcomingMovies.results.length + 1);
 
   const featuredRes = await fetch(
@@ -64,19 +62,15 @@ export const getServerSideProps = async () => {
   );
   const featuredMovie = await featuredRes.json();
 
-  const genresRes = await fetch(
-    `${TMDB_API}/genre/movie/list${API_KEY}&language=en-US`
-  );
-  const genres = await genresRes.json();
+  const modalMovieRes = await fetch(`${TMDB_API}/movie/${query.id}${API_KEY}`);
+  const modalMovie = await modalMovieRes.json();
 
   return {
     props: {
       popularMovies: popularMovies.results,
-      upcomingMovies: upcomingMovies.results,
       topRatedMovies: topRatedMovies.results,
-      nowPlayingMovies: nowPlayingMovies.results,
       featuredMovie,
-      genres: genres.genres,
+      modalMovie,
     },
   };
 };

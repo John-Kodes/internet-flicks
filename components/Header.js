@@ -43,7 +43,7 @@ const Header = ({ movie }) => {
       <div className={styles.btnContainer}>
         <button className={styles.btnFill}>
           <PlayIcon />
-          Play
+          Play Trailer
         </button>
         <button className={styles.btnGhost} onClick={showInfoHandler}>
           <InfoIcon />

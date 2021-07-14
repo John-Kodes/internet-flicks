@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <React.StrictMode>
       <ContextProvider>
-        {router.pathname === "/_error" ? (
+        {router.pathname === "/404" ? (
           <Component {...pageProps} />
         ) : router.pathname === "/" ? (
           <Component {...pageProps} />

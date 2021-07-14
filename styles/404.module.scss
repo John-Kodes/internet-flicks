@@ -1,0 +1,34 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3vw;
+
+  height: 100vh;
+  width: 100%;
+
+  h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+
+    svg {
+      display: block;
+    }
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.homeBtn {
+  background-color: #fff;
+  padding: 1vw 2vw;
+
+  &:hover {
+    background-color: var(--primaryColor100);
+  }
+}
