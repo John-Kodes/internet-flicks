@@ -13,49 +13,50 @@ const Nav = ({ inView = true }) => {
       className={styles.nav}
       style={{ backgroundColor: inView ? "transparent" : "var(--pageBg100)" }}
     >
-      <div className={styles.nav__info}>
+      {/* <div className={styles.navContainer}> */}
+      <div className={styles.info}>
         <Link href="/">
-          <div className={styles.nav__logo}>Internet Flicks</div>
+          <div className={styles.logo}>Internet Flicks</div>
         </Link>
-        <div className={styles.nav__link__container}>
+        <div className={styles.linkContainer}>
           <Link href="/browse">
-            <div className={styles.nav__link}>Home</div>
+            <div className={styles.link}>Home</div>
           </Link>
           <Link href="/browse/tv-shows">
-            <div className={styles.nav__link}>TV Shows</div>
+            <div className={styles.link}>TV Shows</div>
           </Link>
           <Link href="/browse/movies">
-            <div className={styles.nav__link}>Movies</div>
+            <div className={styles.link}>Movies</div>
           </Link>
           <Link href="/browse/New-And-Popular">
-            <div className={styles.nav__link}>New & Popular</div>
+            <div className={styles.link}>New & Popular</div>
           </Link>
           <Link href="/browse/my-list">
-            <div className={styles.nav__link}>My List</div>
+            <div className={styles.link}>My List</div>
           </Link>
         </div>
       </div>
-      <div className={styles.nav__user}>
-        <div className={styles.nav__user__search}>
+      <div className={styles.user}>
+        <div className={styles.search}>
           <SearchIcon />
         </div>
-        <div className={styles.nav__user__notifsIcon}>
+        <div className={styles.notifsIcon}>
           <BellIcon />
-          <div className={styles.nav__user__notifsBox}>
-            <div className={styles.nav__user__notifsBox__pointer}>
+          <div className={styles.notifsBox}>
+            <div className={styles.pointer}>
               <ArrowTiny />
             </div>
             No recent notifications
           </div>
         </div>
-        <div className={styles.nav__user__accBtn}>
-          <div className={styles.nav__user__pfp} />
+        <div className={styles.accBtn}>
+          <div className={styles.pfp} />
           <ArrowTiny />
-          <div className={styles.nav__user__accBox}>
-            <div className={styles.nav__user__accBox__pointer}>
+          <div className={styles.accBox}>
+            <div className={styles.pointer}>
               <ArrowTiny />
             </div>
-            <div className={styles.nav__user__accBox__btnsContainer}>
+            <div className={styles.btnsContainer}>
               <button>Account</button>
               <button>Sign Out</button>
               <button>Back to portfolio</button>
@@ -63,6 +64,7 @@ const Nav = ({ inView = true }) => {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </nav>
   );
 };
