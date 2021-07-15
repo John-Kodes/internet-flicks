@@ -12,6 +12,7 @@ const Layout = ({ children }) => {
   const { modalOpen } = useContext(ContextProvider);
 
   const router = useRouter();
+  const category = router.query.category && router.query.category.split("?")[0]; // for nav category name
 
   useEffect(() => {
     if (document)
@@ -21,7 +22,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <div ref={element} style={{ height: "0.1px" }} />
-      <Nav inView={inView} category={router.query.category} />
+      <Nav inView={inView} category={category} />
       {children}
     </>
   );

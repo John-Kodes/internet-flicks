@@ -25,7 +25,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const router = useRouter();
 
   const closeHandler = () => {
-    router.push({ pathname: "/browse" }, undefined, {
+    router.push({ pathname: router.asPath.split("?")[0] }, undefined, {
       shallow: true,
     });
     setModalOpen(false);

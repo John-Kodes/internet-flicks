@@ -16,9 +16,14 @@ const MovieListItem = ({ movie }) => {
 
   const clickHandler = async () => {
     setModalOpen(true);
-    router.push({ pathname: "/browse", query: { id: movie.id } }, undefined, {
-      shallow: true,
-    });
+
+    router.push(
+      { pathname: router.asPath, query: { id: movie.id } },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
     const mov = await fetchMovie(movie.id);
     setModalData(mov);
   };
@@ -27,7 +32,7 @@ const MovieListItem = ({ movie }) => {
     <div className={styles.container} onClick={clickHandler}>
       <div className={styles.image}>
         <Image
-          src={`${TMDB_IMAGE}/w500/${movie.backdrop_path}`}
+          src={`${TMDB_IMAGE}/w300/${movie.backdrop_path}`}
           layout="fill"
           alt={movie.original_title}
         />

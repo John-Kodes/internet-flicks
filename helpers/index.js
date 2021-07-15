@@ -4,7 +4,5 @@ export const fetchMovie = async (id) => {
   const res = await fetch(`${TMDB_API}/movie/${id}${API_KEY}`);
   const movie = await res.json();
 
-  console.log(`${TMDB_API}/movie/${id}${API_KEY}`);
-
   return movie;
 };
