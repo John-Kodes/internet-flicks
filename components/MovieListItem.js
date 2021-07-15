@@ -41,7 +41,7 @@ const MovieListItem = ({ movie }) => {
           }
           layout="fill"
           alt={movie.original_title}
-          className={!movie.backdrop_path && styles.imgFix}
+          className={!movie.backdrop_path ? styles.imgFix : undefined}
         />
       </div>
     </div>

@@ -12,7 +12,9 @@ import ThumbsDown from "@/images/ThumbsDown.svg";
 import ThumbsUp from "@/images/ThumbsUp.svg";
 
 import Context from "@/context/Context";
+
 import styles from "@/styles/MovieModal.module.scss";
+import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
 
 const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const {
@@ -57,8 +59,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
             <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
             <div
               className={styles.hero}
+              // sets background image to movieImage. If unavailable, default image is used
               style={{
-                backgroundImage: `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), url('${TMDB_IMAGE}/original/${movie.backdrop_path}')`,
+                backgroundImage:
+                  (movie.backdrop_path &&
+                    `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), 
+                url(${TMDB_IMAGE}/original/${movie.backdrop_path})`) ||
+                  `url(${DefaultBackdropMain.src})`,
               }}
             >
               <div className={styles.heroContent}>
@@ -84,18 +91,20 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     {movie.release_date && movie.release_date.slice(0, 4)}
                   </div>
                 </div>
-                <p className={styles.description}>{movie.overview}</p>
+                <p className={styles.description}>
+                  {movie.overview || "Unavailable"}
+                </p>
               </div>
               <div className={styles.detailsSecondary}>
                 <div className={styles.genres}>
                   <span>
                     Genre{movie.genres && movie.genres.length > 1 ? "s" : ""}:{" "}
                   </span>
-                  {ArrStr(movie.genres)}
+                  {ArrStr(movie.genres) || "Unavailable"}
                 </div>
                 <div className={styles.studios}>
                   <span>Produced by: </span>
-                  {ArrStr(movie.production_companies)}
+                  {ArrStr(movie.production_companies) || "Unavailable"}
                 </div>
               </div>
             </div>
