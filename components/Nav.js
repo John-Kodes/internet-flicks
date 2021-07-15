@@ -14,6 +14,7 @@ const Nav = ({ inView = true, category }) => {
       style={{
         backgroundColor: inView ? "transparent" : "var(--pageBg100)",
         top: !category && "0",
+        position: category && "sticky",
       }}
     >
       <div className={styles.navContainer}>
