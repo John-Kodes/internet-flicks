@@ -10,7 +10,7 @@ import { TMDB_API, API_KEY } from "@/config/index";
 import styles from "@/styles/Category.module.scss";
 import { useRouter } from "next/router";
 
-const Category = ({ movies, FETCH_URL }) => {
+const CategoryPage = ({ movies, FETCH_URL }) => {
   const [pageNum, setPageNum] = useState(3);
   const [movieArr, setMovieArr] = useState(movies);
 
@@ -49,7 +49,7 @@ const Category = ({ movies, FETCH_URL }) => {
   );
 };
 
-export default Category;
+export default CategoryPage;
 
 export const getServerSideProps = async ({ query: { category } }) => {
   const whatCategory = () => {

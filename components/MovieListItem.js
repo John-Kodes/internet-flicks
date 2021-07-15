@@ -7,6 +7,8 @@ import { TMDB_IMAGE } from "@/config/index";
 import Context from "@/context/Context";
 // Styles
 import styles from "@/styles/MovieListItem.module.scss";
+// Images
+import DefaultBackDropThumbnail from "@/images/DefaultBackdropThumbnail.svg";
 // Helpers
 import { fetchMovie } from "@/helpers/index";
 
@@ -32,9 +34,14 @@ const MovieListItem = ({ movie }) => {
     <div className={styles.container} onClick={clickHandler}>
       <div className={styles.image}>
         <Image
-          src={`${TMDB_IMAGE}/w300/${movie.backdrop_path}`}
+          src={
+            (movie.backdrop_path &&
+              `${TMDB_IMAGE}/w300/${movie.backdrop_path}`) ||
+            DefaultBackDropThumbnail
+          }
           layout="fill"
           alt={movie.original_title}
+          className={!movie.backdrop_path && styles.imgFix}
         />
       </div>
     </div>
