@@ -69,7 +69,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               }}
             >
               <div className={styles.heroContent}>
-                <h1 className={styles.title}>{movie.original_title}</h1>
+                <h1 className={styles.title}>
+                  {movie.original_title || movie.name}
+                </h1>
                 <div className={styles.btnContainer}>
                   <button className={styles.trailerBtn}>
                     <PlayIcon />

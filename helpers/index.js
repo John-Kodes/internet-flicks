@@ -1,11 +1,11 @@
 import { TMDB_API, API_KEY } from "@/config/index";
 import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
 
-export const fetchMovie = async (id) => {
-  const res = await fetch(`${TMDB_API}/movie/${id}${API_KEY}`);
-  const movie = await res.json();
+export const fetchMediaDetails = async (id, media = "movie") => {
+  const res = await fetch(`${TMDB_API}/${media}/${id}${API_KEY}`);
+  const mediaData = await res.json();
 
-  return movie;
+  return mediaData;
 };
 
 export const defaultMovie = {

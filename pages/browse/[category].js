@@ -15,9 +15,9 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
   const [movieArr, setMovieArr] = useState(movies);
 
   const router = useRouter();
+  console.log(router.query);
 
-  const getMoreTests = async () => {
-    //https://api.themoviedb.org/3/movie/popular?api_key=4c02ca062c903e28bf9d33dfa893cb3c&language=en-US&page=3
+  const getMoreMovies = async () => {
     const res = await fetch(
       `${TMDB_API}/${FETCH_URL}${API_KEY}&language=en-US&page=${pageNum}`
     );
@@ -32,17 +32,23 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
   }, []);
 
   return (
-    <main>
+    <main className={styles.containerMain}>
       <MovieModal />
       <InfiniteScroll
         dataLength={movieArr.length}
-        next={getMoreTests}
+        next={getMoreMovies}
         hasMore={true}
         loader={<h4>Loading...</h4>}
         className={styles.container}
+        // for some reason, it's automatically auto
+        style={{ overflow: "hidden" }}
       >
         {movieArr.map((movie) => (
-          <MovieListItem movie={movie} key={movie.id} />
+          <MovieListItem
+            movie={movie}
+            key={movie.id}
+            mediaType={router.query.category.split("-")[0]}
+          />
         ))}
       </InfiniteScroll>
     </main>
@@ -56,6 +62,8 @@ export const getServerSideProps = async ({ query: { category } }) => {
     switch (category) {
       case "movies":
         return "movie/popular";
+      case "tv-shows":
+        return "tv/popular";
       default:
         return "movie/popular";
     }

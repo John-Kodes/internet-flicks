@@ -10,9 +10,9 @@ import styles from "@/styles/MovieListItem.module.scss";
 // Images
 import DefaultBackDropThumbnail from "@/images/DefaultBackdropThumbnail.svg";
 // Helpers
-import { fetchMovie } from "@/helpers/index";
+import { fetchMediaDetails } from "@/helpers/index";
 
-const MovieListItem = ({ movie }) => {
+const MovieListItem = ({ movie, mediaType }) => {
   const { setModalOpen, setModalData } = useContext(Context);
   const router = useRouter();
 
@@ -26,8 +26,9 @@ const MovieListItem = ({ movie }) => {
         shallow: true,
       }
     );
-    const mov = await fetchMovie(movie.id);
+    const mov = await fetchMediaDetails(movie.id, mediaType);
     setModalData(mov);
+    console.log(mov);
   };
 
   return (
