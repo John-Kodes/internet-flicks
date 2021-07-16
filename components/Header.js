@@ -3,13 +3,17 @@ import { useContext } from "react";
 import Context from "@/context/Context";
 // API
 import { TMDB_IMAGE } from "@/config/index";
+// Helpers
+import { defaultMovie } from "@/helpers/index";
 // Styles
 import styles from "@/styles/Header.module.scss";
 // Icons
 import InfoIcon from "@/images/InfoIcon";
 import PlayIcon from "@/images/PlayIcon";
+// Images
+import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
 
-const Header = ({ movie }) => {
+const Header = ({ movie = defaultMovie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
 
   const showInfoHandler = () => {
@@ -25,8 +29,13 @@ const Header = ({ movie }) => {
   return (
     <header
       className={styles.header}
+      // If backdrop image is not available, default backdrop image will be used
       style={{
-        backgroundImage: `linear-gradient(to bottom,rgba(20, 20, 20, 0) 85%,rgba(20, 20, 20, 1)), url(${TMDB_IMAGE}/t/p/original/${movie.backdrop_path})`,
+        backgroundImage:
+          (movie.backdrop_path &&
+            `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), 
+      url(${TMDB_IMAGE}/original/${movie.backdrop_path})`) ||
+          `url(${DefaultBackdropMain.src})`,
         backgroundSize: "cover",
       }}
     >

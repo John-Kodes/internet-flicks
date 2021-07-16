@@ -1,9 +1,11 @@
 // Components
 import MovieListItem from "@/components/MovieListItem";
+// Helpers
+import { defaultMovie } from "@/helpers/index";
 // Styles
 import styles from "@/styles/MovieList.module.scss";
 
-const MovieList = ({ category = "Category", movies }) => {
+const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
   const movieNames = movies.map((movie, i) => (
     <MovieListItem key={i} movie={movie} />
   ));
