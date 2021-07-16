@@ -46,7 +46,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   return (
     <>
-      {modalOpen && (
+      {modalOpen && movie.id && (
         <div
           className={styles.overlay}
           onClick={
