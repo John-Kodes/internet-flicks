@@ -50,7 +50,7 @@
   transition: all 0.2s;
 
   &:hover {
-    color: #aaa;
+    color: #ddd;
   }
 }
 
@@ -73,11 +73,17 @@
   }
 }
 
-.search {
+.searchBox {
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: 100%;
+  gap: 1vw;
+
+  padding: 0.5vw;
+  border: 1px solid #aaa;
+  background-color: rgba(0, 0, 0, 0.9);
+
+  transition: all 0.5s 0s;
 
   > svg {
     min-height: 1.4vw;
@@ -91,6 +97,30 @@
       min-width: 2.6vw;
       max-width: 2.6vw;
     }
+  }
+}
+
+.hideSearch {
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding-right: 0;
+  margin-right: -1.5vw;
+}
+
+.searchField {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+
+  width: 0;
+
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  transition: all 0.4s;
+
+  &:focus {
+    width: 15vw;
   }
 }
 

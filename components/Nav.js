@@ -1,6 +1,6 @@
-// Next
+// Next and React
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useState } from "react";
 // styling
 import styles from "@/styles/Nav.module.scss";
 // Icons
@@ -9,6 +9,14 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 
 const Nav = ({ inView = true, category }) => {
+  const [childFocus, setChildFocus] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(searchValue);
+  };
+
   return (
     <nav
       className={styles.nav}
@@ -42,9 +50,31 @@ const Nav = ({ inView = true, category }) => {
           </div>
         </div>
         <div className={styles.user}>
-          <div className={styles.search}>
-            <SearchIcon />
-          </div>
+          <form
+            className={`${styles.searchBox}  ${
+              !childFocus && styles.hideSearch
+            }`}
+            onSubmit={submitHandler}
+          >
+            <label htmlFor="search">
+              <SearchIcon />
+            </label>
+            <input
+              className={styles.searchField}
+              id="search"
+              type="text"
+              name="search"
+              placeholder="Movies, TV shows, genres"
+              onFocus={() => setChildFocus(true)}
+              onBlur={() => setChildFocus(false)}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <input
+              type="submit"
+              style={{ visibility: "hidden", position: "absolute" }}
+            />
+          </form>
+
           <div className={styles.notifsIcon}>
             <BellIcon />
             <div className={styles.notifsBox}>
