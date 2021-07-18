@@ -15,8 +15,8 @@ const Layout = ({ children }) => {
   const category = router.query.category && router.query.category.split("?")[0]; // for nav category name
 
   useEffect(() => {
-    if (document)
-      document.body.style.overflowY = modalOpen ? "hidden" : "scroll";
+    if (!document) return;
+    document.body.style.overflowY = modalOpen ? "hidden" : "scroll";
   }, [modalOpen]);
 
   return (

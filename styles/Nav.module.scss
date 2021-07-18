@@ -15,7 +15,7 @@
   justify-content: space-between;
 
   width: 100%;
-  height: 5vw;
+  height: 4.5vw;
   padding: 0 4vw;
 
   background-image: linear-gradient(
@@ -43,7 +43,7 @@
 }
 
 .link {
-  font-size: var(--fontSize100);
+  font-size: var(--fontSize90);
   color: #fff;
   cursor: pointer;
 
@@ -60,12 +60,13 @@
   font-size: 1.8vw;
   color: var(--primaryColor100);
   cursor: pointer;
+  margin-right: 2vw;
 }
 
 .user {
   display: flex;
   align-items: center;
-  gap: 1.4vw;
+  gap: 1.6vw;
 
   svg {
     display: block;
@@ -79,10 +80,10 @@
   height: 100%;
 
   > svg {
-    min-height: 1.8vw;
-    max-height: 1.8vw;
-    min-width: 1.8vw;
-    max-width: 1.8vw;
+    min-height: 1.4vw;
+    max-height: 1.4vw;
+    min-width: 1.4vw;
+    max-width: 1.4vw;
 
     @media only screen and (max-width: 52.5em) {
       min-height: 2.6vw;
@@ -101,10 +102,10 @@
   height: 100%;
 
   > svg {
-    min-height: 2vw;
-    max-height: 2vw;
-    min-width: 2vw;
-    max-width: 2vw;
+    min-height: 1.6vw;
+    max-height: 1.6vw;
+    min-width: 1.6vw;
+    max-width: 1.6vw;
 
     @media only screen and (max-width: 52.5em) {
       min-height: 2.9vw;
@@ -123,7 +124,7 @@
 
 .notifsBox {
   position: absolute;
-  right: 0;
+  right: 0.4vw;
   top: 6vw;
   cursor: default;
 
@@ -131,15 +132,19 @@
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
   height: 12vw;
   width: 30vw;
-  color: #777;
+  color: #aaa;
 
   border-top: 2px solid #fff;
 
   opacity: 1;
-  transition: all 0.4s;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #000;
+  }
 
   .pointer {
     position: absolute;
@@ -162,7 +167,11 @@
   cursor: pointer;
   height: 100%;
 
-  svg {
+  > svg {
+    min-height: 0.8vw;
+    max-height: 0.8vw;
+    min-width: 0.8vw;
+    max-width: 0.8vw;
     transition: all 0.25s;
   }
 
@@ -173,7 +182,7 @@
 
 .accBox {
   position: absolute;
-  right: 2.6rem;
+  right: 1.8vw;
   top: 6vw;
   cursor: default;
 
@@ -182,12 +191,16 @@
 
   color: #777;
   width: 15vw;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.85);
   padding: 1.5rem 1rem;
   border-top: 2px solid #fff;
 
   opacity: 1;
-  transition: all 0.4s;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #000;
+  }
 
   .pointer {
     position: absolute;
@@ -241,8 +254,8 @@
 }
 
 .pfp {
-  height: 4vw;
-  width: 4vw;
+  height: 2vw;
+  width: 2vw;
   background-color: var(--primaryColor100);
-  border-radius: 0.6vw;
+  border-radius: 0.3vw;
 }

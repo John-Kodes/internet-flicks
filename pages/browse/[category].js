@@ -15,7 +15,6 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
   const [movieArr, setMovieArr] = useState(movies);
 
   const router = useRouter();
-  console.log(router.query);
 
   const getMoreMovies = async () => {
     const res = await fetch(
@@ -28,7 +27,7 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
   };
 
   useEffect(() => {
-    if (router.query.id) router.push(`/browse/title/${router.query.id}`);
+    if (router.query.id) return router.push(`/browse/title/${router.query.id}`);
   }, []);
 
   return (

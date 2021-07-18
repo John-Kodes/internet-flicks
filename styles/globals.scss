@@ -1,11 +1,13 @@
 :root {
   --primaryColor100: #00ecb9;
   --pageBg100: #141414;
+  --fontSize90: 0.9vw;
   --fontSize100: 1vw;
   --fontSize200: 1.1vw;
   --fontSize300: 1.6vw;
 
   @media only screen and (max-width: 60em) {
+    --fontSize90: 1.2vw;
     --fontSize100: 1.5vw;
     --fontSize200: 1.9vw;
     --fontSize300: 3vw;

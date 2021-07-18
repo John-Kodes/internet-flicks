@@ -1,5 +1,6 @@
 // Next
 import Link from "next/link";
+import { useRouter } from "next/router";
 // styling
 import styles from "@/styles/Nav.module.scss";
 // Icons
@@ -29,7 +30,7 @@ const Nav = ({ inView = true, category }) => {
             <Link href="/browse/tv-shows">
               <div className={styles.link}>TV Shows</div>
             </Link>
-            <Link href="/browse/movies">
+            <Link href="/browse/movie">
               <div className={styles.link}>Movies</div>
             </Link>
             <Link href="/browse/New-And-Popular">
@@ -55,7 +56,7 @@ const Nav = ({ inView = true, category }) => {
           </div>
           <div className={styles.accBtn}>
             <div className={styles.pfp} />
-            <ArrowTiny />
+            <ArrowTiny className={styles.pfpArrow} />
             <div className={styles.accBox}>
               <div className={styles.pointer}>
                 <ArrowTiny />
