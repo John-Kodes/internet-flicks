@@ -116,16 +116,10 @@
   }
 }
 
-.notifsIcon:not(:hover) > .notifsBox {
-  visibility: hidden;
-  opacity: 0;
-  transition-delay: 0.1s;
-}
-
 .notifsBox {
   position: absolute;
-  right: 0.4vw;
-  top: 6vw;
+  right: 0;
+  top: 5vw;
   cursor: default;
 
   display: flex;
@@ -137,6 +131,7 @@
   width: 30vw;
   color: #aaa;
 
+  border: 1px solid #252525;
   border-top: 2px solid #fff;
 
   opacity: 1;
@@ -146,12 +141,30 @@
     background-color: #000;
   }
 
+  @media only screen and (max-width: 52.5em) {
+    border-top: 1px solid #fff;
+  }
+
   .pointer {
     position: absolute;
-    right: 0.1vw;
-    bottom: 99%;
+    right: 2%;
+    bottom: calc(100%);
 
     transform: rotate(180deg) scale(1.5);
+
+    > svg {
+      min-height: 0.8vw;
+      max-height: 0.8vw;
+      min-width: 0.8vw;
+      max-width: 0.8vw;
+
+      @media only screen and (max-width: 52.5em) {
+        min-height: 1.2vw;
+        max-height: 1.2vw;
+        min-width: 1.2vw;
+        max-width: 1.2vw;
+      }
+    }
   }
 }
 
@@ -182,9 +195,10 @@
 
 .accBox {
   position: absolute;
-  right: 1.8vw;
-  top: 6vw;
+  right: 1.5vw;
+  top: 5vw;
   cursor: default;
+  box-sizing: content-box;
 
   display: flex;
   align-items: center;
@@ -193,6 +207,8 @@
   width: 15vw;
   background-color: rgba(0, 0, 0, 0.85);
   padding: 1.5rem 1rem;
+
+  border: 1px solid #252525;
   border-top: 2px solid #fff;
 
   opacity: 1;
@@ -202,12 +218,30 @@
     background-color: #000;
   }
 
+  @media only screen and (max-width: 52.5em) {
+    border-top: 1px solid #fff;
+  }
+
   .pointer {
     position: absolute;
-    right: 3%;
-    bottom: 99%;
+    right: 2%;
+    bottom: calc(100%);
 
     transform: rotate(180deg) scale(1.5);
+
+    > svg {
+      min-height: 0.8vw;
+      max-height: 0.8vw;
+      min-width: 0.8vw;
+      max-width: 0.8vw;
+
+      @media only screen and (max-width: 52.5em) {
+        min-height: 1.2vw;
+        max-height: 1.2vw;
+        min-width: 1.2vw;
+        max-width: 1.2vw;
+      }
+    }
   }
 
   .btnsContainer {
@@ -245,6 +279,12 @@
       }
     }
   }
+}
+
+.notifsIcon:not(:hover) > .notifsBox {
+  visibility: hidden;
+  opacity: 0;
+  transition-delay: 0.1s;
 }
 
 .accBtn:not(:hover) > .accBox {
