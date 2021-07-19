@@ -35,6 +35,13 @@ body {
   background-color: var(--pageBg100);
 }
 
+input {
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
 p {
   font-size: var(--fontSize200);
   line-height: 1.5;
