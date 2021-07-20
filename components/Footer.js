@@ -13,8 +13,10 @@ const Footer = () => {
           website
         </a>
       </p>
-      <p>&copy; 2021 by John Daniel Semine.</p>
-      <p>Made with the TMDb API.</p>
+      <p className={styles.copyright}>
+        &copy; 2021 Internet Flicks by John Daniel Semine
+      </p>
+      <p>Made with the TMDb API</p>
     </footer>
   );
 };

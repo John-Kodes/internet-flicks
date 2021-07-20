@@ -4,6 +4,24 @@
 
   padding: 2vw 4vw;
   background-color: #000;
+  color: #aaa;
+
+  @media only screen and (max-width: 60em) {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    .copyright {
+      order: 3;
+    }
+  }
+
+  p {
+    transition: color 0.5s;
+    &:hover {
+      color: #fff;
+    }
+  }
 }
 
 .link {
@@ -25,7 +43,7 @@
 
     width: 0;
     height: 1px;
-    background-color: currentColor;
-    transition: all 0.5s 0.2s;
+    background-color: var(--primaryColor100);
+    transition: all 0.25s;
   }
 }
