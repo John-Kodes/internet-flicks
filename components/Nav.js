@@ -1,6 +1,6 @@
 // Next and React
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // styling
 import styles from "@/styles/Nav.module.scss";
 // Icons
@@ -9,21 +9,43 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 
 const Nav = ({ inView = true, category }) => {
+  // for search component
   const [childFocus, setChildFocus] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+
+  // for navbar anim scroll thing
+  const [scrollUp, setScrollUp] = useState(true);
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(searchValue);
   };
 
+  useEffect(() => {
+    if (!window) return;
+
+    let prevScrollpos = window.pageYOffset;
+
+    window.onscroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        setScrollUp(true);
+      }
+      if (prevScrollpos < currentScrollPos) {
+        setScrollUp(false);
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  }, []);
+
   return (
     <nav
       className={styles.nav}
       style={{
         backgroundColor: inView ? "transparent" : "var(--pageBg100)",
-        top: !category && "0",
+        top: (!category && "0") || (scrollUp && "0"),
         position: category && "sticky",
+        // for scroll anim
       }}
     >
       <div className={styles.navContainer}>

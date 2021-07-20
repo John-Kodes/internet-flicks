@@ -7,7 +7,7 @@
 
   background-color: var(--pageBg100);
 
-  transition: background-color 0.5s;
+  transition: background-color 0.5s, top 0.2s;
 }
 
 .navContainer {
@@ -26,7 +26,7 @@
 }
 
 .category {
-  padding: 1.5vw 4vw;
+  padding: 2vw 4vw 1.5vw;
   text-transform: uppercase;
   background-color: var(--pageBg100);
 }
