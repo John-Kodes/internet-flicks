@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import Head from "next/dist/next-server/lib/head";
 // Components
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 // Context
 import ContextProvider from "context/Context";
 // Obeserver
@@ -16,6 +17,7 @@ const Layout = ({
   title = "Internet Flicks",
   description = desc,
   useNav = true,
+  useFooter = true,
   category,
 }) => {
   const [element, inView] = useInView();
@@ -38,6 +40,7 @@ const Layout = ({
       <div ref={element} style={{ height: "0.1px" }} />
       {useNav && <Nav inView={inView} category={category} />}
       {children}
+      {useFooter && <Footer />}
     </>
   );
 };

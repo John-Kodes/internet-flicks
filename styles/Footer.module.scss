@@ -1,0 +1,31 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 2vw 4vw;
+  background-color: #000;
+}
+
+.link {
+  position: relative;
+  transition: color 0.5s;
+
+  &:hover {
+    color: var(--primaryColor100);
+
+    &::before {
+      width: 100%;
+    }
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+
+    width: 0;
+    height: 1px;
+    background-color: currentColor;
+    transition: all 0.5s 0.2s;
+  }
+}

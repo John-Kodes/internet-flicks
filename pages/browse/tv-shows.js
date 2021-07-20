@@ -33,7 +33,7 @@ const TVShowsPage = ({ shows, mediaType }) => {
   }, []);
 
   return (
-    <Layout category="tv shows">
+    <Layout category="tv shows" useFooter={false}>
       <main className={styles.containerMain}>
         <MovieModal />
         <InfiniteScroll
