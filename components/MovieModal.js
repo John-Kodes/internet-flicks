@@ -69,8 +69,16 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               }}
             >
               <div className={styles.heroContent}>
-                <h1 className={styles.title}>
-                  {movie.original_title || movie.name}
+                <h1
+                  className={styles.title}
+                  style={
+                    movie.original_title?.length > 33 ||
+                    movie.original_name?.length > 33
+                      ? { fontSize: "3rem", maxWidth: "30ch" }
+                      : {}
+                  }
+                >
+                  {movie.original_title || movie.original_name}
                 </h1>
                 <div className={styles.btnContainer}>
                   <button className={styles.trailerBtn}>

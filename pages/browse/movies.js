@@ -45,8 +45,8 @@ const MoviesPage = ({ movies, mediaType }) => {
           // for some reason, it's automatically auto
           style={{ overflow: "hidden" }}
         >
-          {movieArr.map((movie) => (
-            <MovieListItem movie={movie} key={movie.id} mediaType={mediaType} />
+          {movieArr.map((movie, i) => (
+            <MovieListItem movie={movie} key={i} mediaType={mediaType} />
           ))}
         </InfiniteScroll>
       </main>

@@ -19,7 +19,7 @@ const TVShowsPage = ({ shows, mediaType }) => {
 
   const getMoreShows = async () => {
     const res = await fetch(
-      `${TMDB_API}/movie/popular${API_KEY}&language=en-US&page=${pageNum}`
+      `${TMDB_API}/tv/popular${API_KEY}&language=en-US&page=${pageNum}`
     );
     const newShows = await res.json();
 
@@ -45,8 +45,8 @@ const TVShowsPage = ({ shows, mediaType }) => {
           // for some reason, it's automatically auto
           style={{ overflow: "hidden" }}
         >
-          {showsArr.map((movie) => (
-            <MovieListItem movie={movie} key={movie.id} mediaType={mediaType} />
+          {showsArr.map((movie, i) => (
+            <MovieListItem movie={movie} key={i} mediaType={mediaType} />
           ))}
         </InfiniteScroll>
       </main>
