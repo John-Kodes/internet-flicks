@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 // Components
+import Layout from "@/components/Layout";
 import MovieListItem from "@/components/MovieListItem";
 import MovieModal from "@/components/MovieModal";
 // NPM
@@ -10,7 +11,7 @@ import { TMDB_API, API_KEY } from "@/config/index";
 import styles from "@/styles/Category.module.scss";
 import { useRouter } from "next/router";
 
-const CategoryPage = ({ movies, FETCH_URL }) => {
+const CategoryPage = ({ movies, mediaType }) => {
   const [pageNum, setPageNum] = useState(3);
   const [movieArr, setMovieArr] = useState(movies);
 
@@ -18,7 +19,7 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
 
   const getMoreMovies = async () => {
     const res = await fetch(
-      `${TMDB_API}/${FETCH_URL}${API_KEY}&language=en-US&page=${pageNum}`
+      `${TMDB_API}/${mediaType}/popular${API_KEY}&language=en-US&page=${pageNum}`
     );
     const newMovies = await res.json();
 
@@ -27,30 +28,33 @@ const CategoryPage = ({ movies, FETCH_URL }) => {
   };
 
   useEffect(() => {
-    if (router.query.id) return router.push(`/browse/title/${router.query.id}`);
+    if (router.query.id)
+      return router.push(`/browse/title/${router.query.id}?media=${mediaType}`);
   }, []);
 
   return (
-    <main className={styles.containerMain}>
-      <MovieModal />
-      <InfiniteScroll
-        dataLength={movieArr.length}
-        next={getMoreMovies}
-        hasMore={true}
-        loader={<h4>Loading...</h4>}
-        className={styles.container}
-        // for some reason, it's automatically auto
-        style={{ overflow: "hidden" }}
-      >
-        {movieArr.map((movie) => (
-          <MovieListItem
-            movie={movie}
-            key={movie.id}
-            mediaType={router.query.category.split("-")[0]}
-          />
-        ))}
-      </InfiniteScroll>
-    </main>
+    <Layout>
+      <main className={styles.containerMain}>
+        <MovieModal />
+        <InfiniteScroll
+          dataLength={movieArr.length}
+          next={getMoreMovies}
+          hasMore={true}
+          loader={<h4>Loading...</h4>}
+          className={styles.container}
+          // for some reason, it's automatically auto
+          style={{ overflow: "hidden" }}
+        >
+          {movieArr.map((movie) => (
+            <MovieListItem
+              movie={movie}
+              key={movie.id}
+              mediaType={router.query.category.split("-")[0]}
+            />
+          ))}
+        </InfiniteScroll>
+      </main>
+    </Layout>
   );
 };
 
@@ -60,26 +64,26 @@ export const getServerSideProps = async ({ query: { category } }) => {
   const whatCategory = () => {
     switch (category) {
       case "movies":
-        return "movie/popular";
+        return "movie";
       case "tv-shows":
-        return "tv/popular";
+        return "tv";
       default:
-        return "movie/popular";
+        return "movie";
     }
   };
 
-  const res = await fetch(`${TMDB_API}/${whatCategory()}${API_KEY}`);
+  const res = await fetch(`${TMDB_API}/${whatCategory()}/popular${API_KEY}`);
   const movies = await res.json();
 
   const res2 = await fetch(
-    `${TMDB_API}/${whatCategory()}${API_KEY}&language=en-US&page=2`
+    `${TMDB_API}/${whatCategory()}/popular${API_KEY}&language=en-US&page=2`
   );
   const movies2 = await res2.json();
 
   return {
     props: {
       movies: [...movies.results, ...movies2.results],
-      FETCH_URL: whatCategory(),
+      mediaType: whatCategory(),
     },
   };
 };

@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import Head from "next/dist/next-server/lib/head";
 // Components
 import Nav from "@/components/Nav";
 // Context
@@ -7,7 +8,15 @@ import ContextProvider from "context/Context";
 import { useInView } from "react-intersection-observer";
 import { useRouter } from "next/router";
 
-const Layout = ({ children }) => {
+const desc =
+  "Internet Flicks is a user editable database for movies and TV shows using the TMDb API";
+
+const Layout = ({
+  children,
+  title = "Internet Flicks",
+  description = desc,
+  useNav = true,
+}) => {
   const [element, inView] = useInView();
   const { modalOpen } = useContext(ContextProvider);
 
@@ -21,8 +30,13 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Head>
+
       <div ref={element} style={{ height: "0.1px" }} />
-      <Nav inView={inView} category={category} />
+      {useNav && <Nav inView={inView} category={category} />}
       {children}
     </>
   );
