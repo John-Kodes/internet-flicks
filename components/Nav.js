@@ -22,6 +22,10 @@ const Nav = ({ inView = true, category }) => {
   };
 
   useEffect(() => {
+    let mounted = true;
+
+    if (!mounted) return;
+
     if (!window) return;
 
     let prevScrollpos = window.pageYOffset;
@@ -35,6 +39,10 @@ const Nav = ({ inView = true, category }) => {
         setScrollUp(false);
       }
       prevScrollpos = currentScrollPos;
+    };
+
+    return function cleanup() {
+      mounted = false;
     };
   }, []);
 
@@ -66,7 +74,7 @@ const Nav = ({ inView = true, category }) => {
             <Link href="/browse/New-And-Popular">
               <div className={styles.link}>New & Popular</div>
             </Link>
-            <Link href="/browse/my-list">
+            <Link href="/account/my-list">
               <div className={styles.link}>My List</div>
             </Link>
           </div>

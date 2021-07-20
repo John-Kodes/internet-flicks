@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { useRouter } from "next/router";
 // Components
 import Layout from "@/components/Layout";
@@ -22,7 +21,8 @@ export const BrowsePage = ({
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query.id) router.push(`/browse/title/${router.query.id}`);
+    if (router.query.id)
+      router.push(`/browse/title/${router.query.id}?media=movie`);
   }, []);
 
   return (

@@ -1,8 +1,11 @@
+// Components
+import Layout from "@/components/Layout";
+
 const MyListPage = () => {
   return (
-    <div>
+    <Layout>
       <h1>My List</h1>
-    </div>
+    </Layout>
   );
 };
 
