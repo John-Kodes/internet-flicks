@@ -16,12 +16,12 @@ const Layout = ({
   title = "Internet Flicks",
   description = desc,
   useNav = true,
+  category,
 }) => {
   const [element, inView] = useInView();
   const { modalOpen } = useContext(ContextProvider);
 
   const router = useRouter();
-  const category = router.query.category && router.query.category.split("?")[0]; // for nav category name
 
   useEffect(() => {
     if (!document) return;

@@ -38,7 +38,7 @@ const Nav = ({ inView = true, category }) => {
             <Link href="/browse/tv-shows">
               <div className={styles.link}>TV Shows</div>
             </Link>
-            <Link href="/browse/movie">
+            <Link href="/browse/movies">
               <div className={styles.link}>Movies</div>
             </Link>
             <Link href="/browse/New-And-Popular">
