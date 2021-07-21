@@ -7,6 +7,38 @@
   padding: 2rem;
 }
 
+.test {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+
+  color: #fff;
+  height: 5rem;
+  width: 5rem;
+  background-color: #0006;
+  border: 1px solid #fff;
+  border-radius: 100%;
+}
+
+.test2 {
+  position: absolute;
+  bottom: 9rem;
+  right: 2rem;
+
+  display: flex;
+  justify-content: center;
+
+  color: #fff;
+  height: 5rem;
+  width: 5rem;
+  background-color: #0006;
+  border: 1px solid #fff;
+  border-radius: 100%;
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -81,4 +113,13 @@
 
 .link {
   color: var(--primaryColor100);
+}
+
+.paragraph {
+  font-size: 1.4rem;
+
+  span {
+    font-weight: 600;
+    color: rgb(255, 68, 140);
+  }
 }
