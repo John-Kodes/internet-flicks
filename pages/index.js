@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/dist/client/link";
 // Components
 import Layout from "@/components/Layout";
@@ -11,6 +10,9 @@ export const HomePage = () => {
       <div className={styles.container}>
         <Link href="/browse">
           <a>Visit as Guest</a>
+        </Link>
+        <Link href="/account/login">
+          <a>Sign in to your account</a>
         </Link>
       </div>
     </Layout>

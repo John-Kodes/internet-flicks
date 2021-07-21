@@ -17,6 +17,7 @@
   }
 
   p {
+    font-size: var(--fontSize90);
     transition: color 0.5s;
     &:hover {
       color: #fff;

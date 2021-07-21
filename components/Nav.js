@@ -122,8 +122,9 @@ const Nav = ({ inView = true, category }) => {
                 <ArrowTiny />
               </div>
               <div className={styles.btnsContainer}>
-                <button>Account</button>
-                <button>Sign Out</button>
+                <Link href="/account/login">
+                  <button>Sign in</button>
+                </Link>
                 <button>Back to portfolio</button>
               </div>
             </div>

@@ -3,6 +3,7 @@ import Head from "next/dist/next-server/lib/head";
 // Components
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import NavDecor from "@/components/NavDecor";
 // Context
 import ContextProvider from "context/Context";
 // Obeserver
@@ -38,7 +39,7 @@ const Layout = ({
       </Head>
 
       <div ref={element} style={{ height: "0.1px" }} />
-      {useNav && <Nav inView={inView} category={category} />}
+      {useNav ? <Nav inView={inView} category={category} /> : <NavDecor />}
       {children}
       {useFooter && <Footer />}
     </>
