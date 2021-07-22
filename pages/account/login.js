@@ -1,6 +1,8 @@
 // React and Next
 import { useState, useEffect, useContext } from "react";
 import Link from "next/dist/client/link";
+// Context
+import Context from "@/context/Context";
 // Config
 import { API_KEY, TMDB_API, NEXT_URL } from "@/config/index";
 // Components
@@ -11,30 +13,29 @@ import { FaUser } from "react-icons/fa";
 import styles from "@/styles/LoginPage.module.scss";
 
 const LoginPage = () => {
-  let token = "";
-  // create request token
-  const reqToken = async () => {
-    const res = await fetch(`${TMDB_API}/authentication/token/new${API_KEY}`);
-    const tokenObject = await res.json();
+  const [sessionId, setSessionId] = useState("");
+  const { createGuestSessionId } = useContext(Context);
 
-    token = tokenObject.request_token;
+  // Continue as Guest
+  const Guesthandler = () => {
+    createGuestSessionId();
   };
 
-  reqToken();
+  // login
+  const login = async () => {
+    // getting token
+    const tokenRes = await fetch(
+      `${TMDB_API}/authentication/token/new${API_KEY}`
+    );
+    const tokenObject = await tokenRes.json();
 
-  // Asking user for permission to use their account in your website
-  const askPermission = async () => {
-    if (!window) return;
+    const tempToken = tokenObject.request_token;
+    console.log(tempToken);
 
-    const url = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${NEXT_URL}/account/approved`;
+    ///// Ask permission
 
-    window.open(url, "_blank");
-  };
-
-  // creating session ID (be careful with URLs)
-
-  const createSessionId = async () => {
-    const res = await fetch(
+    // After permission granted
+    const sessionRes = await fetch(
       `${TMDB_API}/authentication/session/new${API_KEY}`,
       {
         method: "POST",
@@ -42,78 +43,39 @@ const LoginPage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          request_token: token,
+          request_token: tempToken,
         }),
       }
     );
 
-    const sessionId = await res.json();
-    console.log(token);
+    const sessionObj = await sessionRes.json();
 
-    console.log(sessionId);
+    if (sessionObj.session_id) {
+      console.log("%c success", "color: lime;", sessionObj.session_id);
+      setSessionId(sessionObj.session_id);
+    } else {
+      console.log(sessionObj);
+    }
   };
 
   return (
     <Layout useNav={false}>
-      <button className={styles.test} onClick={askPermission}>
-        Test
-      </button>
-      <button className={styles.test2} onClick={createSessionId}>
-        Test2
-      </button>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h1 className={styles.title}>
-            <FaUser /> Login
-          </h1>
-          <form className={styles.form}>
-            <div className={styles.inputBox}>
-              <label htmlFor="email" className={styles.label}>
-                EMAIL
-              </label>
-              <input
-                className={styles.field}
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Helene@email.com"
-              />
-            </div>
-            <div className={styles.inputBox}>
-              <label htmlFor="password" className={styles.label}>
-                PASSWORD
-              </label>
-              <input
-                className={styles.field}
-                type="password"
-                name="password"
-                id="password"
-              />
-            </div>
-            <button className={styles.loginBtn} type="submit">
-              LOGIN
-            </button>
-            <div className={styles.register}>
-              Don't have an account?{" "}
-              <a
-                className={styles.link}
-                href="https://www.themoviedb.org/signup"
-                target="_blank"
-              >
-                Register
-              </a>
-            </div>
-            <p className={styles.paragraph}>
-              <span>* </span>To register, you'll need to create an account
-              through the TMDb official website.
-            </p>
-            <p className={styles.paragraph}>
-              Too lazy? Continue as{" "}
-              <Link href="/">
-                <a className={styles.link}>Guest</a>
-              </Link>
-            </p>
-          </form>
+          <h2 className={styles.title}>Just a heads up</h2>
+          <p>
+            To login or create a new account, you have to do it through the
+            official TMDb website which will also grant Internet Flicks
+            permission to use your account. Doing so will allow you to rate
+            movies, create personal lists, etc. within Internet Flicks.
+          </p>
+
+          <button className={styles.btn}>Grant permission</button>
+
+          <p>
+            If you're too lazy to do all that, you can simply continue as{" "}
+            <a onClick={Guesthandler}>Guest</a>.
+          </p>
         </div>
       </div>
     </Layout>
@@ -121,3 +83,50 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+// ////////////////////////////////////////////////////////////////////////
+// let token = "";
+// // create request token
+// const reqToken = async () => {
+//   const res = await fetch(`${TMDB_API}/authentication/token/new${API_KEY}`);
+//   const tokenObject = await res.json();
+
+//   token = tokenObject.request_token;
+// };
+
+// reqToken();
+
+// // Asking user for permission to use their account in your website
+// const askPermission = async () => {
+//   if (!window) return;
+
+//   const url = `https://www.themoviedb.org/authenticate/${token}?redirect_to=${NEXT_URL}/account/approved`;
+
+//   window.open(url, "_blank");
+// };
+
+// // creating session ID (be careful with URLs)
+
+// const createSessionId = async () => {
+//   const res = await fetch(
+//     `${TMDB_API}/authentication/session/new${API_KEY}`,
+//     {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         request_token: token,
+//       }),
+//     }
+//   );
+
+//   const sessionId = await res.json();
+
+//   if (sessionId.session_id) {
+//     console.log("%c success", "color: lime;", sessionId.session_id);
+//     return sessionId.session_id;
+//   } else {
+//     console.log(sessionId);
+//   }
+// };
