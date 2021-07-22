@@ -21,6 +21,25 @@ const LoginPage = () => {
     createGuestSessionId();
   };
 
+  // Grant Permission
+  const askPermission = async () => {
+    if (!window) return;
+    // getting token
+    const tokenRes = await fetch(
+      `${TMDB_API}/authentication/token/new${API_KEY}`
+    );
+    const tokenObject = await tokenRes.json();
+
+    const tempToken = tokenObject.request_token;
+    console.log(tempToken);
+
+    // redirect user to approve token and login
+    window.open(
+      `https://www.themoviedb.org/authenticate/${tempToken}?redirect_to=${NEXT_URL}/account/approved`,
+      "_self"
+    );
+  };
+
   // login
   const login = async () => {
     // getting token
@@ -70,7 +89,9 @@ const LoginPage = () => {
             movies, create personal lists, etc. within Internet Flicks.
           </p>
 
-          <button className={styles.btn}>Grant permission</button>
+          <button className={styles.btn} onClick={askPermission}>
+            Grant permission
+          </button>
 
           <p>
             If you're too lazy to do all that, you can simply continue as{" "}

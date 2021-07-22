@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+
+  background-color: hsl(0, 0%, 15%);
+  border-radius: 4px;
+  padding: 3rem 3rem 3rem;
+
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+
+  p {
+    max-width: 44ch;
+
+    a {
+      position: relative;
+      color: var(--primaryColor100);
+
+      &:hover {
+        &::before {
+          opacity: 1;
+        }
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+
+        background-color: currentColor;
+        height: 1px;
+        width: 100%;
+
+        transition: all 0.25s;
+        opacity: 0;
+      }
+    }
+  }
+}
