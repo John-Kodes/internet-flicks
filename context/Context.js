@@ -16,6 +16,8 @@ export const ContextProvider = ({ children }) => {
   const [token, setToken] = useState("");
   const [sessionId, setSessionId] = useState("");
 
+  const checkUserLoggedIn = () => {};
+
   const createGuestSessionId = async () => {
     const res = await fetch(
       `${TMDB_API}/authentication/guest_session/new${API_KEY}`

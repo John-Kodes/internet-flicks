@@ -13,12 +13,11 @@ import { FaUser } from "react-icons/fa";
 import styles from "@/styles/LoginPage.module.scss";
 
 const LoginPage = () => {
-  const [sessionId, setSessionId] = useState("");
   const { createGuestSessionId } = useContext(Context);
 
-  // Continue as Guest
-  const Guesthandler = () => {
-    createGuestSessionId();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(submit);
   };
 
   // Grant Permission
@@ -53,7 +52,7 @@ const LoginPage = () => {
 
     ///// Ask permission
 
-    // After permission granted
+    // After permission granted,
     const sessionRes = await fetch(
       `${TMDB_API}/authentication/session/new${API_KEY}`,
       {
@@ -81,21 +80,41 @@ const LoginPage = () => {
     <Layout useNav={false}>
       <div className={styles.container}>
         <div className={styles.card}>
-          <h2 className={styles.title}>Just a heads up</h2>
-          <p>
-            To login or create a new account, you have to do it through the
-            official TMDb website which will also grant Internet Flicks
-            permission to use your account. Doing so will allow you to rate
-            movies, create personal lists, etc. within Internet Flicks.
-          </p>
+          <h2 className={styles.title}>
+            <FaUser /> Login
+          </h2>
 
-          <button className={styles.btn} onClick={askPermission}>
-            Grant permission
-          </button>
-
+          <form onSubmit={submitHandler} className={styles.form}>
+            <div className={styles.inputBox}>
+              <label htmlFor="username" className={styles.label}>
+                USERNAME
+              </label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                placeholder="helene_dm"
+                required
+                className={styles.field}
+              />
+            </div>
+            <div className={styles.inputBox}>
+              <label htmlFor="password" className={styles.label}>
+                PASSWORD
+              </label>
+              <input
+                type="text"
+                name="password"
+                id="password"
+                placeholder="password123"
+                required
+                className={styles.field}
+              />
+            </div>
+            <button className={styles.btn}>LOG IN</button>
+          </form>
           <p>
-            If you're too lazy to do all that, you can simply continue as{" "}
-            <a onClick={Guesthandler}>Guest</a>.
+            Continue as <a>Guest</a>
           </p>
         </div>
       </div>
@@ -104,6 +123,15 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+export const getServerSideProps = ({ query }) => {
+  const { approved, request_token: token } = query;
+
+  console.log(approved, token);
+  return {
+    props: { approved, token },
+  };
+};
 
 // ////////////////////////////////////////////////////////////////////////
 // let token = "";
