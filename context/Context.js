@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 // config
-import { API_KEY, TMDB_API } from "@/config/index";
+import { NEXT_URL } from "@/config/index";
 
 const Context = createContext();
 
@@ -14,52 +14,23 @@ export const ContextProvider = ({ children }) => {
   // Authentication
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-  const checkUserLoggedIn = () => {};
-
   const createGuestSessionId = async () => {
-    const res = await fetch(
-      `${TMDB_API}/authentication/guest_session/new${API_KEY}`
-    );
-    const sessionObj = await res.json();
-    setSessionId(sessionObj.guest_session_id);
-    console.log(sessionId);
+    const res = await fetch(`${NEXT_URL}/api/guestLogin`);
+    const data = await res.json();
+
     router.push("/browse");
-  };
-
-  const createUserSessionId = async (token) => {
-    const res = await fetch(
-      `${TMDB_API}/authentication/session/new${API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          request_token: token,
-        }),
-      }
-    );
-
-    const sessionObj = await res.json();
-
-    if (sessionObj.session_id) {
-      console.log("%c success", "color: lime;", sessionObj.session_id);
-      setSessionId(sessionObj.session_id);
-      setUserLoggedIn(true);
-    } else {
-      console.log(sessionObj);
-    }
   };
 
   return (
     <Context.Provider
       value={{
+        // Modal
         modalOpen,
         setModalOpen,
         modalData,
         setModalData,
+        // Login related
         createGuestSessionId,
-        createUserSessionId,
         userLoggedIn,
         setUserLoggedIn,
       }}

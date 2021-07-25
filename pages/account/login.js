@@ -33,13 +33,14 @@ const LoginPage = () => {
 
   // login
   const login = async () => {
+    // Creating a request token
     const tokenRes = await fetch(
       `${TMDB_API}/authentication/token/new${API_KEY}`
     );
     const tokenObject = await tokenRes.json();
-
     const token = tokenObject.request_token;
 
+    // Validating the token with login info
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: "POST",
       headers: {
@@ -62,6 +63,7 @@ const LoginPage = () => {
       setLoginSuccess(true);
       router.push("/browse");
     } else {
+      setUserLoggedIn(false);
       setWarningMessage(accountData.message);
     }
   };
