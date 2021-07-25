@@ -1,6 +1,6 @@
 // React and Next
-import { useState, useEffect, useContext } from "react";
-import Link from "next/dist/client/link";
+import { useState, useContext } from "react";
+import { useRouter } from "next/router";
 // Context
 import Context from "@/context/Context";
 // Config
@@ -13,17 +13,22 @@ import { FaUser } from "react-icons/fa";
 import styles from "@/styles/LoginPage.module.scss";
 
 const LoginPage = () => {
+  const { createGuestSessionId, setUserLoggedIn } = useContext(Context);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const { createGuestSessionId } = useContext(Context);
+
+  const [warningMessage, setWarningMessage] = useState("");
+  const [loginSuccess, setLoginSuccess] = useState(false);
+
+  const router = useRouter();
+
+  const guestHandler = () => {
+    createGuestSessionId();
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
     login();
-  };
-
-  const guestHandler = () => {
-    createGuestSessionId();
   };
 
   // login
@@ -50,16 +55,36 @@ const LoginPage = () => {
     const accountData = await res.json();
 
     if (accountData.success) {
-      console.log("%c success", "color: lime;");
-      console.log(accountData);
+      setWarningMessage("");
+      // For the Context
+      setUserLoggedIn(true);
+
+      setLoginSuccess(true);
+      router.push("/browse");
     } else {
-      console.log(accountData);
+      setWarningMessage(accountData.message);
     }
   };
 
   return (
     <Layout useNav={false}>
       <div className={styles.container}>
+        {loginSuccess && (
+          <div className={styles.successBox}>
+            <p>
+              Login was successful!
+              <br />
+              You will be redirected to the browsing page.
+            </p>
+          </div>
+        )}
+        {warningMessage && (
+          <div className={styles.errorBox}>
+            <p>
+              <span>*</span> {warningMessage}
+            </p>
+          </div>
+        )}
         <div className={styles.card}>
           <h2 className={styles.title}>
             <FaUser /> Login
@@ -85,7 +110,7 @@ const LoginPage = () => {
                 PASSWORD
               </label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 id="password"
                 placeholder="password123"
@@ -97,6 +122,11 @@ const LoginPage = () => {
             <button className={styles.btn}>LOG IN</button>
           </form>
           <p>
+            Don't have an account?{" "}
+            <a href="https://www.themoviedb.org/signup" target="_blank">
+              Register in TMDb
+            </a>{" "}
+            <br />
             Continue as <a onClick={guestHandler}>Guest</a>
           </p>
         </div>

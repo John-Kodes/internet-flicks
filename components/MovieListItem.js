@@ -28,7 +28,6 @@ const MovieListItem = ({ movie, mediaType }) => {
     );
     const mov = await fetchMediaDetails(movie.id, mediaType);
     setModalData(mov);
-    console.log(mov);
   };
 
   return (

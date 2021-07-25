@@ -60,10 +60,11 @@ export default async (req, res) => {
       } else {
         res
           .status(sessionData.status_code)
-          .json({ message: data.status_message, success: false });
+          .json({ message: sessionData.status_message, success: false });
       }
     } else {
-      res.status(data.status_code).json({ message: data.status_message });
+      console.log(data);
+      res.status(401).json({ message: data.status_message, success: false });
     }
   } else {
     res.setHeader("Allow", ["POST"]);

@@ -13,8 +13,6 @@ export const ContextProvider = ({ children }) => {
 
   // Authentication
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [token, setToken] = useState("");
-  const [sessionId, setSessionId] = useState("");
 
   const checkUserLoggedIn = () => {};
 
@@ -60,10 +58,6 @@ export const ContextProvider = ({ children }) => {
         setModalOpen,
         modalData,
         setModalData,
-        token,
-        setToken,
-        sessionId,
-        setSessionId,
         createGuestSessionId,
         createUserSessionId,
         userLoggedIn,
