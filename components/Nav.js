@@ -1,6 +1,8 @@
 // Next and React
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+// Context
+import Context from "@/context/Context";
 // styling
 import styles from "@/styles/Nav.module.scss";
 // Icons
@@ -9,6 +11,7 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 
 const Nav = ({ inView = true, category }) => {
+  const { userData } = useContext(Context);
   // for search component
   const [childFocus, setChildFocus] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -122,9 +125,16 @@ const Nav = ({ inView = true, category }) => {
                 <ArrowTiny />
               </div>
               <div className={styles.btnsContainer}>
-                <Link href="/account/login">
-                  <button>Sign in</button>
-                </Link>
+                {Object.keys(userData).length !== 0 ? (
+                  <>
+                    <button>Account</button>
+                    <button>Sign out</button>
+                  </>
+                ) : (
+                  <Link href="/account/login">
+                    <button>Sign in</button>
+                  </Link>
+                )}
                 <button>Back to portfolio</button>
               </div>
             </div>

@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
   const [modalData, setModalData] = useState({});
 
   // Authentication
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
 
   const createGuestSessionId = async () => {
     const res = await fetch(`${NEXT_URL}/api/guestLogin`);
@@ -20,6 +20,8 @@ export const ContextProvider = ({ children }) => {
 
     router.push("/browse");
   };
+
+  useEffect(() => console.log(userData));
 
   return (
     <Context.Provider
@@ -31,8 +33,8 @@ export const ContextProvider = ({ children }) => {
         setModalData,
         // Login related
         createGuestSessionId,
-        userLoggedIn,
-        setUserLoggedIn,
+        userData,
+        setUserData,
       }}
     >
       {children}

@@ -13,7 +13,7 @@ import { FaUser } from "react-icons/fa";
 import styles from "@/styles/LoginPage.module.scss";
 
 const LoginPage = () => {
-  const { createGuestSessionId, setUserLoggedIn } = useContext(Context);
+  const { createGuestSessionId, setUserData } = useContext(Context);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -56,9 +56,10 @@ const LoginPage = () => {
     const accountData = await res.json();
 
     if (accountData.success) {
+      console.log(accountData);
       setWarningMessage("");
-      // For the Context
-      setUserLoggedIn(true);
+      // Saves account info in state
+      setUserData(accountData);
 
       setLoginSuccess(true);
       router.push("/browse");

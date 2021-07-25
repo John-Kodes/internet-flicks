@@ -1,16 +1,18 @@
 import Link from "next/dist/client/link";
+import { useContext } from "react";
+// Context
+import Context from "@/context/Context";
 // Components
 import Layout from "@/components/Layout";
 // styles
 import styles from "@/styles/Home.module.scss";
 
 export const HomePage = () => {
+  const { createGuestSessionId } = useContext(Context);
   return (
     <Layout useNav={false}>
       <div className={styles.container}>
-        <Link href="/browse">
-          <a>Visit as Guest</a>
-        </Link>
+        <a onClick={createGuestSessionId}>Visit as Guest</a>
         <Link href="/account/login">
           <a>Sign in to your account</a>
         </Link>
@@ -18,9 +20,5 @@ export const HomePage = () => {
     </Layout>
   );
 };
-// What's popular
-// Trending
-// Upcoming
-// Genres
 
 export default HomePage;

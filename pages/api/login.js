@@ -44,6 +44,7 @@ export default async (req, res) => {
       const sessionData = await sessionRes.json();
 
       if (sessionData.success) {
+        // settting session id in cookies
         res.setHeader(
           "Set-Cookie",
           cookie.serialize("sessionId", sessionData.session_id, {
@@ -54,9 +55,15 @@ export default async (req, res) => {
             path: "/",
           })
         );
-        console.log(sessionData);
 
-        res.status(200).json({ message: "session_id created", success: true });
+        // Getting account details
+        const accountRes = await fetch(
+          `${TMDB_API}/account${API_KEY}&session_id=${sessionData.session_id}`
+        );
+        const accountData = await accountRes.json();
+
+        console.log(accountData);
+        res.status(200).json({ ...accountData, success: true });
       } else {
         res
           .status(sessionData.status_code)
