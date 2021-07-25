@@ -11,7 +11,7 @@ export const HomePage = () => {
         <Link href="/browse">
           <a>Visit as Guest</a>
         </Link>
-        <Link href="/account/permission">
+        <Link href="/account/login">
           <a>Sign in to your account</a>
         </Link>
       </div>

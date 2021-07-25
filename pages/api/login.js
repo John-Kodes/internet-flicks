@@ -56,11 +56,11 @@ export default async (req, res) => {
         );
         console.log(sessionData);
 
-        res.status(200).json({ message: "session_id created" });
+        res.status(200).json({ message: "session_id created", success: true });
       } else {
         res
           .status(sessionData.status_code)
-          .json({ message: data.status_message });
+          .json({ message: data.status_message, success: false });
       }
     } else {
       res.status(data.status_code).json({ message: data.status_message });
