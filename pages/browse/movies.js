@@ -33,7 +33,7 @@ const MoviesPage = ({ movies, mediaType }) => {
   }, []);
 
   return (
-    <Layout category={"movies"} useFooter={false}>
+    <Layout category="movies" useFooter={false}>
       <main className={styles.containerMain}>
         <MovieModal />
         <InfiniteScroll

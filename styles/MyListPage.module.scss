@@ -1,0 +1,44 @@
+.container {
+  display: grid;
+  grid-auto-rows: 8vw;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+  row-gap: 4vw;
+
+  min-height: 100vh;
+  width: 100%;
+  margin-top: 4rem;
+  padding: 0 4vw;
+
+  @media only screen and (max-width: 68.75em) {
+    grid-template-columns: repeat(5, 1fr);
+    row-gap: 6vw;
+  }
+  @media only screen and (max-width: 64em) {
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 9vw;
+  }
+  @media only screen and (max-width: 49em) {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 14vw;
+  }
+  @media only screen and (max-width: 31.25em) {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 22vw;
+  }
+}
+
+.title {
+  font-size: var(--fontSize400);
+  font-weight: 400;
+
+  span {
+    color: var(--primaryColor100);
+  }
+}
+
+.test {
+  height: 100%;
+  width: 100%;
+  background-color: orange;
+}

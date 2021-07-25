@@ -14,8 +14,8 @@ import styles from "@/styles/LoginPage.module.scss";
 
 const LoginPage = () => {
   const { createGuestSessionId, setUserData } = useContext(Context);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("jdanielsemine");
+  const [password, setPassword] = useState("K@v L1nn");
 
   const [warningMessage, setWarningMessage] = useState("");
   const [loginSuccess, setLoginSuccess] = useState(false);
@@ -64,7 +64,6 @@ const LoginPage = () => {
       setLoginSuccess(true);
       router.push("/browse");
     } else {
-      setUserLoggedIn(false);
       setWarningMessage(accountData.message);
     }
   };
@@ -99,6 +98,7 @@ const LoginPage = () => {
                 USERNAME
               </label>
               <input
+                value="jdanielsemine"
                 type="text"
                 name="username"
                 id="username"
@@ -113,6 +113,7 @@ const LoginPage = () => {
                 PASSWORD
               </label>
               <input
+                value="K@v L1nn"
                 type="password"
                 name="password"
                 id="password"

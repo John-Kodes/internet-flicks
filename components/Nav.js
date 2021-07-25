@@ -11,7 +11,7 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 
 const Nav = ({ inView = true, category }) => {
-  const { userData } = useContext(Context);
+  const { userData, logout } = useContext(Context);
   // for search component
   const [childFocus, setChildFocus] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -77,9 +77,11 @@ const Nav = ({ inView = true, category }) => {
             <Link href="/browse/New-And-Popular">
               <div className={styles.link}>New & Popular</div>
             </Link>
-            <Link href="/account/my-list">
-              <div className={styles.link}>My List</div>
-            </Link>
+            {userData && (
+              <Link href="/account/my-list">
+                <div className={styles.link}>My List</div>
+              </Link>
+            )}
           </div>
         </div>
         <div className={styles.user}>
@@ -125,17 +127,16 @@ const Nav = ({ inView = true, category }) => {
                 <ArrowTiny />
               </div>
               <div className={styles.btnsContainer}>
-                {Object.keys(userData).length !== 0 ? (
+                <button>Back to portfolio</button>
+                {userData ? (
                   <>
-                    <button>Account</button>
-                    <button>Sign out</button>
+                    <button onClick={logout}>Sign out</button>
                   </>
                 ) : (
                   <Link href="/account/login">
                     <button>Sign in</button>
                   </Link>
                 )}
-                <button>Back to portfolio</button>
               </div>
             </div>
           </div>

@@ -4,6 +4,8 @@ import Layout from "@/components/Layout";
 import Header from "@/components/Header";
 import MovieList from "@/components/MovieList";
 import MovieModal from "@/components/MovieModal";
+// Helper
+import { parseCookies } from "@/helpers/index";
 // styles
 import styles from "@/styles/Browse.module.scss";
 // API
