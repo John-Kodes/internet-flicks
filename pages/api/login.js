@@ -5,7 +5,7 @@ import { TMDB_API, API_KEY } from "@/config/index";
 export default async (req, res) => {
   if (req.method === "POST") {
     // destructuring the username and body from the request received
-    const { username, password, tempToken } = req.body;
+    const { username, password, token } = req.body;
 
     const tmdbRes = await fetch(
       `${TMDB_API}/authentication/token/validate_with_login${API_KEY}`,
@@ -17,25 +17,51 @@ export default async (req, res) => {
         body: JSON.stringify({
           username,
           password,
-          request_token: tempToken,
+          request_token: token,
         }),
       }
     );
 
-    const data = await tmdbRes;
+    const data = await tmdbRes.json();
 
-    // setting the cookie
+    console.log(data);
+
+    // if login accepted, req validated
     if (data.success) {
-      res.setHeader(
-        "Set-Cookie",
-        cookie.serialize("sessionId", data.session_id, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== "development",
-          maxAge: 60 * 60 * 24 * 7,
-          sameSite: "strict",
-          path: "/",
-        })
+      const sessionRes = await fetch(
+        `${TMDB_API}/authentication/session/new${API_KEY}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            request_token: data.request_token,
+          }),
+        }
       );
+
+      const sessionData = await sessionRes.json();
+
+      if (sessionData.success) {
+        res.setHeader(
+          "Set-Cookie",
+          cookie.serialize("sessionId", sessionData.session_id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            maxAge: 60 * 60 * 24 * 7,
+            sameSite: "strict",
+            path: "/",
+          })
+        );
+        console.log(sessionData);
+
+        res.status(200).json({ message: "session_id created" });
+      } else {
+        res
+          .status(sessionData.status_code)
+          .json({ message: data.status_message });
+      }
     } else {
       res.status(data.status_code).json({ message: data.status_message });
     }

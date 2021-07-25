@@ -12,67 +12,43 @@ import { FaUser } from "react-icons/fa";
 // Styles
 import styles from "@/styles/LoginPage.module.scss";
 
-const LoginPage = () => {
+const LoginPage = ({ approved, token }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const { createGuestSessionId } = useContext(Context);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(submit);
+    login();
   };
 
-  // Grant Permission
-  const askPermission = async () => {
-    if (!window) return;
-    // getting token
-    const tokenRes = await fetch(
-      `${TMDB_API}/authentication/token/new${API_KEY}`
-    );
-    const tokenObject = await tokenRes.json();
-
-    const tempToken = tokenObject.request_token;
-    console.log(tempToken);
-
-    // redirect user to approve token and login
-    window.open(
-      `https://www.themoviedb.org/authenticate/${tempToken}?redirect_to=${NEXT_URL}/account/approved`,
-      "_self"
-    );
+  const guestHandler = () => {
+    createGuestSessionId();
   };
 
   // login
   const login = async () => {
-    // getting token
-    const tokenRes = await fetch(
-      `${TMDB_API}/authentication/token/new${API_KEY}`
-    );
-    const tokenObject = await tokenRes.json();
+    const res = await fetch(`${NEXT_URL}/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        username,
+        password,
+        token,
+      }),
+    });
 
-    const tempToken = tokenObject.request_token;
-    console.log(tempToken);
+    const accountData = await res.json();
 
-    ///// Ask permission
+    console.log(accountData);
 
-    // After permission granted,
-    const sessionRes = await fetch(
-      `${TMDB_API}/authentication/session/new${API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          request_token: tempToken,
-        }),
-      }
-    );
-
-    const sessionObj = await sessionRes.json();
-
-    if (sessionObj.session_id) {
-      console.log("%c success", "color: lime;", sessionObj.session_id);
-      setSessionId(sessionObj.session_id);
+    if (accountData.success) {
+      console.log("%c success", "color: lime;");
+      console.log(accountData);
     } else {
-      console.log(sessionObj);
+      console.log(accountData);
     }
   };
 
@@ -96,6 +72,7 @@ const LoginPage = () => {
                 placeholder="helene_dm"
                 required
                 className={styles.field}
+                onChange={(e) => setUsername(e.target.value)}
               />
             </div>
             <div className={styles.inputBox}>
@@ -109,12 +86,13 @@ const LoginPage = () => {
                 placeholder="password123"
                 required
                 className={styles.field}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <button className={styles.btn}>LOG IN</button>
           </form>
           <p>
-            Continue as <a>Guest</a>
+            Continue as <a onClick={guestHandler}>Guest</a>
           </p>
         </div>
       </div>
@@ -124,10 +102,11 @@ const LoginPage = () => {
 
 export default LoginPage;
 
-export const getServerSideProps = ({ query }) => {
+export const getServerSideProps = ({ query, req }) => {
   const { approved, request_token: token } = query;
 
-  console.log(approved, token);
+  console.log(req.headers.cookie);
+
   return {
     props: { approved, token },
   };

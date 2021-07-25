@@ -16,7 +16,7 @@
   max-width: 40rem;
   background-color: hsl(0, 0%, 15%);
   border-radius: 4px;
-  padding: 3rem 3rem 3rem;
+  padding: 3rem;
 
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
 
@@ -58,6 +58,9 @@
 }
 
 .title {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
   position: relative;
   align-self: flex-start;
   margin-bottom: 2vw;

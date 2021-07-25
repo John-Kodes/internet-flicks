@@ -41,7 +41,9 @@ export const BrowsePage = ({
 
 export default BrowsePage;
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async ({ req }) => {
+  console.log(req.headers.cookie);
+
   const popularRes = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);
   const popularMovies = await popularRes.json();
 
