@@ -85,9 +85,16 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     <PlayIcon />
                     Play Trailer
                   </button>
-                  <RoundBtn icon={PlusIcon} />
-                  <RoundBtn icon={ThumbsUp} />
-                  <RoundBtn icon={ThumbsDown} />
+                  {/* clicking on the plus icon will add to list */}
+                  <div className={styles.addToListBtn}>
+                    <RoundBtn icon={PlusIcon} />
+                  </div>
+                  <div className={styles.thumbsUpBtn}>
+                    <RoundBtn icon={ThumbsUp} />
+                  </div>
+                  <div className={styles.thumbsDownBtn}>
+                    <RoundBtn icon={ThumbsDown} />
+                  </div>
                 </div>
               </div>
             </div>

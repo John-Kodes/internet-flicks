@@ -5,8 +5,6 @@ export default async (req, res) => {
   if (req.method === "DELETE") {
     const { sessionId } = cookie.parse(req.headers.cookie);
 
-    console.log(sessionId);
-
     const tmdbRes = await fetch(
       `${TMDB_API}/authentication/session${API_KEY}`,
       {
@@ -21,7 +19,6 @@ export default async (req, res) => {
     );
 
     const deleteData = await tmdbRes.json();
-    console.log(deleteData);
 
     if (deleteData.success) {
       // Destroying cookie

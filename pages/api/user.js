@@ -17,8 +17,6 @@ export default async (req, res) => {
     );
     const accountData = await accountRes.json();
 
-    console.log(accountData);
-
     if (accountData.id) {
       res.status(200).json(accountData);
     } else {

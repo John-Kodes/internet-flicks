@@ -60,24 +60,133 @@
   align-items: flex-start;
   justify-content: flex-end;
 
-  padding: 0 4rem;
-  padding-bottom: 8rem;
+  padding: 0 4vw;
+  padding-bottom: 7vw;
 }
 
 .title {
   position: relative;
   max-width: 14ch;
-  font-size: calc(2vw + 2vh + 2vmin);
+  font-size: 5vw;
   font-weight: 500;
   z-index: 5;
   padding: 0 0 2vw;
 
   text-shadow: rgba(0, 0, 0, 0.8) 0 2px 5px;
+
+  @media only screen and (min-width: 55em) {
+    font-size: 4.5rem;
+  }
 }
 
 .btnContainer {
   display: flex;
   gap: 0.8rem;
+}
+
+@mixin btnHoverWindow {
+  opacity: 0;
+  content: "";
+  position: absolute;
+  top: -3vw;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+
+  font-size: var(--fontSize100);
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+
+  width: 14ch;
+  background-color: #fff;
+  padding: 0.4vw;
+  border-radius: 4px;
+  box-shadow: 0 4px 1rem rgba(#000000, 0.3);
+
+  transition: opacity 0.1s;
+}
+
+@mixin btnHoverWindowArrow {
+  content: "";
+  position: absolute;
+  top: -1.5vw;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+
+  opacity: 0;
+  height: 0.8vw;
+  width: 0.8vw;
+  background-color: white;
+  z-index: 10;
+
+  transition: opacity 0.1s;
+}
+
+.addToListBtn {
+  position: relative;
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    @include btnHoverWindow;
+    content: "Add to my list";
+  }
+
+  &::after {
+    @include btnHoverWindowArrow;
+  }
+}
+.thumbsUpBtn {
+  position: relative;
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    @include btnHoverWindow;
+    content: "I like this";
+    width: 10ch;
+  }
+
+  &::after {
+    @include btnHoverWindowArrow;
+  }
+}
+.thumbsDownBtn {
+  position: relative;
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    @include btnHoverWindow;
+    content: "Not for me";
+    width: 11ch;
+  }
+
+  &::after {
+    @include btnHoverWindowArrow;
+  }
 }
 
 .trailerBtn {

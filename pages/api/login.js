@@ -24,8 +24,6 @@ export default async (req, res) => {
 
     const data = await tmdbRes.json();
 
-    console.log(data);
-
     // if login accepted, req validated
     if (data.success) {
       const sessionRes = await fetch(
@@ -62,7 +60,6 @@ export default async (req, res) => {
         );
         const accountData = await accountRes.json();
 
-        console.log(accountData);
         res.status(200).json({ ...accountData, success: true });
       } else {
         res
