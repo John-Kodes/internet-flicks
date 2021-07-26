@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useRouter } from "next/router";
 
-import { TMDB_IMAGE } from "@/config/index";
+import { TMDB_IMAGE, NEXT_URL } from "@/config/index";
 
 import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
@@ -22,9 +22,31 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     setModalOpen,
     setModalData,
     modalData: movie,
+    userData,
   } = useContext(Context);
 
   const router = useRouter();
+
+  const mediaType =
+    (movie.original_title && "movie") || (movie.original_name && "tv");
+
+  const watchListHandler = async () => {
+    const res = await fetch(`${NEXT_URL}/api/updateWatchList`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: movie.id,
+        mediaType,
+        update: true,
+      }),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+  };
 
   const closeHandler = () => {
     router.push({ pathname: router.asPath.split("?")[0] }, undefined, {
@@ -39,9 +61,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     closeHandler();
   };
 
-  const ArrStr = (genres) => {
-    if (!genres) return;
-    return genres.map((genre) => genre.name).join(", ");
+  const ArrStr = (items) => {
+    if (!items) return;
+    return items.map((item) => item.name).join(", ");
   };
 
   return (
@@ -86,9 +108,15 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     Play Trailer
                   </button>
                   {/* clicking on the plus icon will add to list */}
-                  <div className={styles.addToListBtn}>
-                    <RoundBtn icon={PlusIcon} />
-                  </div>
+                  {userData && (
+                    <div
+                      className={styles.addToListBtn}
+                      onClick={watchListHandler}
+                    >
+                      <RoundBtn icon={PlusIcon} />
+                    </div>
+                  )}
+
                   <div className={styles.thumbsUpBtn}>
                     <RoundBtn icon={ThumbsUp} />
                   </div>
