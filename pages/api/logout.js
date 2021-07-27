@@ -37,10 +37,10 @@ export default async (req, res) => {
         .status(200)
         .json({ message: "session_id successfully deleted", success: true });
     } else {
-      res.status(405).json({ message: "session_id invalid", success: false });
+      res.status(404).json({ message: "session_id invalid", success: false });
     }
   } else {
     res.setHeader("Allow", ["DELETE"]);
-    res.status(405).json({ message: `Method ${req.method} not allowed` });
+    res.status(404).json({ message: `Method ${req.method} not allowed` });
   }
 };

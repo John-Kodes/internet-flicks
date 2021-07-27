@@ -23,10 +23,10 @@ export default async (req, res) => {
 
       res.status(200).json({ message: "session id created!" });
     } else {
-      res.status(401).json({ message: sessionObj.status_message });
+      res.status(404).json({ message: sessionObj.status_message });
     }
   } else {
     res.setHeader("Allow", ["GET"]);
-    res.status(405).json({ message: `Method ${req.method} not allowed` });
+    res.status(404).json({ message: `Method ${req.method} not allowed` });
   }
 };

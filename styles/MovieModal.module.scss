@@ -144,7 +144,7 @@
     @include btnHoverWindowArrow;
   }
 }
-.thumbsUpBtn {
+.ratingBtn {
   position: relative;
 
   &:hover {
@@ -158,37 +158,14 @@
 
   &::before {
     @include btnHoverWindow;
-    content: "I like this";
-    width: 10ch;
+    content: "Leave a rating";
+    width: 14ch;
   }
 
   &::after {
     @include btnHoverWindowArrow;
   }
 }
-.thumbsDownBtn {
-  position: relative;
-
-  &:hover {
-    &::before {
-      opacity: 1;
-    }
-    &::after {
-      opacity: 1;
-    }
-  }
-
-  &::before {
-    @include btnHoverWindow;
-    content: "Not for me";
-    width: 11ch;
-  }
-
-  &::after {
-    @include btnHoverWindowArrow;
-  }
-}
-
 .trailerBtn {
   padding: 0.5vw 1.4vw;
   font-size: 1.2vw;

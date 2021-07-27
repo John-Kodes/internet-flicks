@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import { TMDB_IMAGE, NEXT_URL } from "@/config/index";
@@ -8,8 +8,9 @@ import RoundBtn from "@/components/RoundBtn";
 
 import PlayIcon from "@/images/PlayIcon";
 import PlusIcon from "@/images/PlusIcon.svg";
-import ThumbsDown from "@/images/ThumbsDown.svg";
-import ThumbsUp from "@/images/ThumbsUp.svg";
+import CheckIcon from "@/images/CheckIcon.svg";
+import RatingIconGhost from "@/images/RatingIconGhost.svg";
+import RatingIconFill from "@/images/RatingIconFill.svg";
 
 import Context from "@/context/Context";
 
@@ -25,10 +26,36 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     userData,
   } = useContext(Context);
 
+  const [isInWatchList, setIsInWatchList] = useState(false);
+  const [isRated, setIsRated] = useState(false);
+
   const router = useRouter();
 
   const mediaType =
     (movie.original_title && "movie") || (movie.original_name && "tv");
+
+  const getMediaState = async () => {
+    const res = await fetch(`${NEXT_URL}/api/getMediaState`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: movie.id,
+        mediaType,
+      }),
+    });
+
+    const mediaState = await res.json();
+    console.log(mediaState);
+
+    if (mediaState.id) {
+      setIsInWatchList(mediaState.watchlist);
+      setIsRated(mediaState.rated);
+    } else {
+      console.log(mediaState.message);
+    }
+  };
 
   const watchListHandler = async () => {
     const res = await fetch(`${NEXT_URL}/api/updateWatchList`, {
@@ -44,6 +71,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     });
 
     const data = await res.json();
+
+    getMediaState();
 
     console.log(data);
   };
@@ -65,6 +94,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     if (!items) return;
     return items.map((item) => item.name).join(", ");
   };
+
+  useEffect(() => {
+    if (movie.id) getMediaState();
+  }, [movie.id]);
 
   return (
     <>
@@ -113,15 +146,14 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       className={styles.addToListBtn}
                       onClick={watchListHandler}
                     >
-                      <RoundBtn icon={PlusIcon} />
+                      <RoundBtn icon={isInWatchList ? CheckIcon : PlusIcon} />
                     </div>
                   )}
 
-                  <div className={styles.thumbsUpBtn}>
-                    <RoundBtn icon={ThumbsUp} />
-                  </div>
-                  <div className={styles.thumbsDownBtn}>
-                    <RoundBtn icon={ThumbsDown} />
+                  <div className={styles.ratingBtn} onClick={getMediaState}>
+                    <RoundBtn
+                      icon={isRated ? RatingIconFill : RatingIconGhost}
+                    />
                   </div>
                 </div>
               </div>
