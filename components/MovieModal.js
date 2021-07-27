@@ -66,7 +66,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
       body: JSON.stringify({
         id: movie.id,
         mediaType,
-        update: true,
+        update: !isInWatchList,
       }),
     });
 
