@@ -28,7 +28,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   const [isInWatchList, setIsInWatchList] = useState(false);
   const [isRated, setIsRated] = useState(false);
+
+  // Input
   const [ratingValue, setRatingValue] = useState(1);
+  const [inputFocus, setInputFocus] = useState(false);
 
   const router = useRouter();
 
@@ -79,8 +82,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     console.log(data);
   };
 
-  const ratingHandler = () => {
-    console.log("rated");
+  const ratingHandler = (e) => {
+    e.preventDefault();
+    console.log(ratingValue);
+  };
+
+  const ratingSelectedHandler = () => {
+    document.getElementById("rating").focus();
   };
 
   const closeHandler = () => {
@@ -160,12 +168,21 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     </div>
                   )}
 
-                  <div className={styles.ratingBtn} onClick={ratingHandler}>
+                  <div
+                    className={styles.ratingBtn}
+                    onClick={ratingSelectedHandler}
+                  >
                     <RoundBtn
                       icon={isRated ? RatingIconFill : RatingIconGhost}
                     />
                   </div>
-                  <form className={styles.form}>
+                  <form
+                    className={styles.form}
+                    onSubmit={ratingHandler}
+                    style={{
+                      opacity: !inputFocus && 0,
+                    }}
+                  >
                     <label htmlFor="rating" className={styles.ratingLabel}>
                       {ratingValue}
                     </label>
@@ -176,6 +193,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       min="1"
                       max="10"
                       onChange={(e) => setRatingValue(e.target.value)}
+                      onFocus={() => setInputFocus(true)}
+                      onBlur={() => setInputFocus(false)}
                       className={styles.ratingInput}
                     />
                     <button className={styles.ratingSubmit}>OK</button>

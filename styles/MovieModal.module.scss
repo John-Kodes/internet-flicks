@@ -117,7 +117,7 @@
   opacity: 0;
   height: 0.8vw;
   width: 0.8vw;
-  background-color: white;
+  background-color: #fff;
   z-index: 10;
 
   transition: opacity 0.1s;
@@ -191,12 +191,17 @@
   }
 }
 
+.hideForm {
+  opacity: 0;
+}
+
 .form {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5vw;
 
+  opacity: 1;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.65);
   overflow: hidden;
@@ -220,7 +225,19 @@
 }
 
 .ratingInput {
-  background: orange;
+  height: 0.6vw;
+  -webkit-appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 10vw;
+
+  &::-webkit-slider-thumb {
+    height: 1.7vw;
+    width: 0.5vw;
+    border-radius: 4px;
+    background: var(--primaryColor100);
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
 }
 
 .ratingSubmit {
