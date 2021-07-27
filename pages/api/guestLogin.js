@@ -21,7 +21,7 @@ export default async (req, res) => {
         })
       );
 
-      res.status(200).json({ message: "session id created!" });
+      res.status(200).json({ message: "guest session id created!" });
     } else {
       res.status(404).json({ message: sessionObj.status_message });
     }

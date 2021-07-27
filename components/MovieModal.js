@@ -28,6 +28,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   const [isInWatchList, setIsInWatchList] = useState(false);
   const [isRated, setIsRated] = useState(false);
+  const [ratingValue, setRatingValue] = useState(1);
 
   const router = useRouter();
 
@@ -35,6 +36,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     (movie.original_title && "movie") || (movie.original_name && "tv");
 
   const getMediaState = async () => {
+    if (!userData) return;
     const res = await fetch(`${NEXT_URL}/api/getMediaState`, {
       method: "POST",
       headers: {
@@ -75,6 +77,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     getMediaState();
 
     console.log(data);
+  };
+
+  const ratingHandler = () => {
+    console.log("rated");
   };
 
   const closeHandler = () => {
@@ -143,18 +149,37 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   {/* clicking on the plus icon will add to list */}
                   {userData && (
                     <div
-                      className={styles.addToListBtn}
+                      className={
+                        isInWatchList
+                          ? styles.removeFromListBtn
+                          : styles.addToListBtn
+                      }
                       onClick={watchListHandler}
                     >
                       <RoundBtn icon={isInWatchList ? CheckIcon : PlusIcon} />
                     </div>
                   )}
 
-                  <div className={styles.ratingBtn} onClick={getMediaState}>
+                  <div className={styles.ratingBtn} onClick={ratingHandler}>
                     <RoundBtn
                       icon={isRated ? RatingIconFill : RatingIconGhost}
                     />
                   </div>
+                  <form className={styles.form}>
+                    <label htmlFor="rating" className={styles.ratingLabel}>
+                      {ratingValue}
+                    </label>
+                    <input
+                      type="range"
+                      name="rating"
+                      id="rating"
+                      min="1"
+                      max="10"
+                      onChange={(e) => setRatingValue(e.target.value)}
+                      className={styles.ratingInput}
+                    />
+                    <button className={styles.ratingSubmit}>OK</button>
+                  </form>
                 </div>
               </div>
             </div>

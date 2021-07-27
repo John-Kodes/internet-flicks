@@ -144,6 +144,30 @@
     @include btnHoverWindowArrow;
   }
 }
+
+.removeFromListBtn {
+  position: relative;
+
+  &:hover {
+    &::before {
+      opacity: 1;
+    }
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    @include btnHoverWindow;
+    content: "Remove from my list";
+    width: 18ch;
+  }
+
+  &::after {
+    @include btnHoverWindowArrow;
+  }
+}
+
 .ratingBtn {
   position: relative;
 
@@ -166,6 +190,57 @@
     @include btnHoverWindowArrow;
   }
 }
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  overflow: hidden;
+
+  padding: 0 0 0 1vw;
+  border-radius: 50vw;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 1);
+  }
+}
+
+.ratingLabel {
+  text-align: center;
+  width: 1.5ch;
+  font-size: var(--fontSize300);
+  font-weight: 600;
+}
+
+.ratingInput {
+  background: orange;
+}
+
+.ratingSubmit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #fff;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 3vw;
+  border-radius: 0;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: none;
+  }
+}
+
 .trailerBtn {
   padding: 0.5vw 1.4vw;
   font-size: 1.2vw;
