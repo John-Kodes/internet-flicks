@@ -11,7 +11,7 @@ import { TMDB_API, API_KEY } from "@/config/index";
 import styles from "@/styles/Category.module.scss";
 import { useRouter } from "next/router";
 
-const MoviesPage = ({ movies, mediaType }) => {
+const SearchPage = ({ movies, searchQuery }) => {
   const [pageNum, setPageNum] = useState(3);
   const [movieArr, setMovieArr] = useState(movies);
 
@@ -19,7 +19,7 @@ const MoviesPage = ({ movies, mediaType }) => {
 
   const getMoreMovies = async () => {
     const res = await fetch(
-      `${TMDB_API}/movie/popular${API_KEY}&language=en-US&page=${pageNum}`
+      `${TMDB_API}/search/multi${API_KEY}&language=en-US&query=${searchQuery}&page=${pageNum}&include_adult=false`
     );
     const newMovies = await res.json();
 
@@ -35,7 +35,7 @@ const MoviesPage = ({ movies, mediaType }) => {
   }, []);
 
   return (
-    <Layout category="movies" useFooter={false}>
+    <Layout category={`Results for "${searchQuery}"`} useFooter={false}>
       <main className={styles.containerMain}>
         <MovieModal />
         <InfiniteScroll
@@ -56,20 +56,24 @@ const MoviesPage = ({ movies, mediaType }) => {
   );
 };
 
-export default MoviesPage;
+export default SearchPage;
 
-export const getServerSideProps = async ({ query: { category } }) => {
-  const res = await fetch(`${TMDB_API}/movie/popular${API_KEY}`);
+export const getServerSideProps = async ({ query: { q } }) => {
+  console.log(q);
+  const res = await fetch(
+    `${TMDB_API}/search/multi${API_KEY}&language=en-US&query=${q}&page=1&include_adult=false`
+  );
   const movies = await res.json();
 
   const res2 = await fetch(
-    `${TMDB_API}/movie/popular${API_KEY}&language=en-US&page=2`
+    `${TMDB_API}/search/multi${API_KEY}&language=en-US&query=${q}&page=2&include_adult=false`
   );
   const movies2 = await res2.json();
 
   return {
     props: {
       movies: [...movies.results, ...movies2.results],
+      searchQuery: q,
     },
   };
 };

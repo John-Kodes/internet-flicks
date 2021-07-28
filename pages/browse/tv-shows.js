@@ -11,7 +11,7 @@ import { TMDB_API, API_KEY } from "@/config/index";
 import styles from "@/styles/Category.module.scss";
 import { useRouter } from "next/router";
 
-const TVShowsPage = ({ shows, mediaType }) => {
+const TVShowsPage = ({ shows }) => {
   const [pageNum, setPageNum] = useState(3);
   const [showsArr, setShowsArr] = useState(shows);
 
@@ -29,7 +29,9 @@ const TVShowsPage = ({ shows, mediaType }) => {
 
   useEffect(() => {
     if (router.query.id)
-      return router.push(`/browse/title/${router.query.id}?media=${mediaType}`);
+      return router.push(
+        `/browse/title/${router.query.id}?media=${router.query.media}`
+      );
   }, []);
 
   return (
@@ -46,7 +48,7 @@ const TVShowsPage = ({ shows, mediaType }) => {
           style={{ overflow: "hidden" }}
         >
           {showsArr.map((movie, i) => (
-            <MovieListItem movie={movie} key={i} mediaType={mediaType} />
+            <MovieListItem movie={movie} key={i} />
           ))}
         </InfiniteScroll>
       </main>
@@ -68,7 +70,6 @@ export const getServerSideProps = async () => {
   return {
     props: {
       shows: [...shows.results, ...shows2.results],
-      mediaType: "tv",
     },
   };
 };

@@ -12,15 +12,17 @@ import DefaultBackDropThumbnail from "@/images/DefaultBackdropThumbnail.svg";
 // Helpers
 import { fetchMediaDetails } from "@/helpers/index";
 
-const MovieListItem = ({ movie, mediaType }) => {
+const MovieListItem = ({ movie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
   const router = useRouter();
+
+  const mediaType = !movie.original_title ? "tv" : "movie";
 
   const clickHandler = async () => {
     setModalOpen(true);
 
     router.push(
-      { pathname: router.asPath, query: { id: movie.id } },
+      { pathname: router.asPath, query: { id: movie.id, media: mediaType } },
       undefined,
       {
         shallow: true,
