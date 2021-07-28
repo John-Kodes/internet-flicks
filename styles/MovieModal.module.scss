@@ -201,7 +201,6 @@
   align-items: center;
   gap: 0.5vw;
 
-  opacity: 1;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.65);
   overflow: hidden;
@@ -219,9 +218,10 @@
 
 .ratingLabel {
   text-align: center;
-  width: 1.5ch;
+  width: 2.5ch;
   font-size: var(--fontSize300);
   font-weight: 600;
+  cursor: pointer;
 }
 
 .ratingInput {

@@ -27,7 +27,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   } = useContext(Context);
 
   const [isInWatchList, setIsInWatchList] = useState(false);
-  const [isRated, setIsRated] = useState(false);
+  const [initRating, setInitRating] = useState(0);
 
   // Input
   const [ratingValue, setRatingValue] = useState(1);
@@ -56,7 +56,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
     if (mediaState.id) {
       setIsInWatchList(mediaState.watchlist);
-      setIsRated(mediaState.rated);
+      setInitRating(mediaState.rated.value);
     } else {
       console.log(mediaState.message);
     }
@@ -82,9 +82,25 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     console.log(data);
   };
 
-  const ratingHandler = (e) => {
+  const ratingHandler = async (e) => {
     e.preventDefault();
-    console.log(ratingValue);
+
+    const res = await fetch(`${NEXT_URL}/api/updateRating`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: movie.id,
+        value: ratingValue,
+        mediaType,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data.success) getMediaState();
+    else console.log(data.message);
   };
 
   const ratingSelectedHandler = () => {
@@ -173,25 +189,29 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     onClick={ratingSelectedHandler}
                   >
                     <RoundBtn
-                      icon={isRated ? RatingIconFill : RatingIconGhost}
+                      icon={initRating ? RatingIconFill : RatingIconGhost}
                     />
                   </div>
+                  {initRating && !inputFocus}
                   <form
                     className={styles.form}
                     onSubmit={ratingHandler}
                     style={{
-                      opacity: !inputFocus && 0,
+                      opacity: !inputFocus ? 0 : 1,
                     }}
                   >
                     <label htmlFor="rating" className={styles.ratingLabel}>
-                      {ratingValue}
+                      {ratingValue % 1 === 0 && ratingValue < 10
+                        ? ratingValue + ".0"
+                        : ratingValue}
                     </label>
                     <input
                       type="range"
                       name="rating"
                       id="rating"
-                      min="1"
+                      min="0.5"
                       max="10"
+                      step="0.5"
                       onChange={(e) => setRatingValue(e.target.value)}
                       onFocus={() => setInputFocus(true)}
                       onBlur={() => setInputFocus(false)}
