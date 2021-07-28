@@ -1,0 +1,13 @@
+.container {
+  grid-column: 1/ -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--primaryColor100);
+  border-radius: 4px;
+}
+
+.text {
+  color: black;
+}

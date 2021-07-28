@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // Components
 import Layout from "@/components/Layout";
 import MovieListItem from "@/components/MovieListItem";
 import MovieModal from "@/components/MovieModal";
+import Loader from "@/components/Loader";
+import EndMessage from "@/components/EndMessage";
 // NPM
 import InfiniteScroll from "react-infinite-scroll-component";
 // API
@@ -10,10 +12,18 @@ import { TMDB_API, API_KEY } from "@/config/index";
 // Styles
 import styles from "@/styles/Category.module.scss";
 import { useRouter } from "next/router";
+// Icons
+import { FaExclamationTriangle } from "react-icons/fa";
+import Context from "@/context/Context";
+import { fetchMediaDetails } from "@/helpers/index";
 
-const SearchPage = ({ movies, searchQuery }) => {
+const SearchPage = ({ movies, searchQuery, totalResults }) => {
+  const { setModalOpen, setModalData } = useContext(Context);
+
   const [pageNum, setPageNum] = useState(3);
   const [movieArr, setMovieArr] = useState(movies);
+  // Checks if there are more results
+  const [hasMore, setHasMore] = useState(true);
 
   const router = useRouter();
 
@@ -23,8 +33,30 @@ const SearchPage = ({ movies, searchQuery }) => {
     );
     const newMovies = await res.json();
 
+    console.log(newMovies);
+
     setMovieArr([...movieArr, ...newMovies.results]);
     setPageNum(pageNum + 1);
+  };
+
+  const searchFunction = async (movie) => {
+    const mediaType = !movie.original_title ? "tv" : "movie";
+
+    setModalOpen(true);
+
+    // console.log(router.asPath);
+    // router.push(
+    //   {
+    //     pathname: router.asPath,
+    //     query: { id: movie.id, media: mediaType },
+    //   },
+    //   undefined,
+    //   {
+    //     shallow: true,
+    //   }
+    // );
+    const mov = await fetchMediaDetails(movie.id, mediaType);
+    setModalData(mov);
   };
 
   useEffect(() => {
@@ -34,23 +66,42 @@ const SearchPage = ({ movies, searchQuery }) => {
       );
   }, []);
 
+  useEffect(() => {
+    setHasMore(totalResults > movieArr.length ? true : false);
+  }, [movieArr]);
+
   return (
-    <Layout category={`Results for "${searchQuery}"`} useFooter={false}>
+    <Layout category={`Results for "${searchQuery}"`}>
       <main className={styles.containerMain}>
-        <MovieModal />
-        <InfiniteScroll
-          dataLength={movieArr.length}
-          next={getMoreMovies}
-          hasMore={true}
-          loader={<h4>Loading...</h4>}
-          className={styles.container}
-          // for some reason, it's automatically auto
-          style={{ overflow: "hidden" }}
-        >
-          {movieArr.map((movie, i) => (
-            <MovieListItem movie={movie} key={i} />
-          ))}
-        </InfiniteScroll>
+        {totalResults ? (
+          <>
+            <MovieModal />
+            <InfiniteScroll
+              dataLength={movieArr.length}
+              next={getMoreMovies}
+              hasMore={hasMore}
+              loader={<Loader />}
+              endMessage={<EndMessage totalResults={totalResults} />}
+              className={styles.container}
+              // for some reason, it's automatically auto
+              style={{ overflow: "hidden" }}
+            >
+              {movieArr.map((movie, i) => (
+                <MovieListItem
+                  movie={movie}
+                  key={i}
+                  searchFunction={searchFunction}
+                />
+              ))}
+            </InfiniteScroll>
+          </>
+        ) : (
+          <div className={styles.noResults}>
+            <FaExclamationTriangle />
+            Oh no, no results found
+            <p>Try searching with different keywords</p>
+          </div>
+        )}
       </main>
     </Layout>
   );
@@ -70,10 +121,13 @@ export const getServerSideProps = async ({ query: { q } }) => {
   );
   const movies2 = await res2.json();
 
+  console.log(movies);
+
   return {
     props: {
       movies: [...movies.results, ...movies2.results],
       searchQuery: q,
+      totalResults: movies.total_results,
     },
   };
 };
