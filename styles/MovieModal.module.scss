@@ -201,6 +201,7 @@
   align-items: center;
   gap: 0.5vw;
 
+  opacity: 0;
   background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid rgba(255, 255, 255, 0.65);
   overflow: hidden;
@@ -256,6 +257,24 @@
     background-color: rgba(255, 255, 255, 0.3);
     transform: none;
   }
+}
+
+.userRating {
+  position: absolute;
+  left: 23.5vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: var(--fontSize200);
+  font-weight: 600;
+  color: var(--primaryColor100);
+
+  height: 2.8vw;
+  width: 2.8vw;
+  background-color: #0009;
+  border-radius: 100%;
 }
 
 .trailerBtn {

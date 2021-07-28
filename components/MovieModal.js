@@ -38,7 +38,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const mediaType =
     (movie.original_title && "movie") || (movie.original_name && "tv");
 
-  const getMediaState = async () => {
+  const getMediaState = async (ratingValue) => {
     if (!userData) return;
     const res = await fetch(`${NEXT_URL}/api/getMediaState`, {
       method: "POST",
@@ -52,11 +52,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     });
 
     const mediaState = await res.json();
-    console.log(mediaState);
 
     if (mediaState.id) {
       setIsInWatchList(mediaState.watchlist);
-      setInitRating(mediaState.rated.value);
+      setInitRating(ratingValue || mediaState.rated.value);
     } else {
       console.log(mediaState.message);
     }
@@ -82,8 +81,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     console.log(data);
   };
 
-  const ratingHandler = async (e) => {
+  const updateRating = async (e) => {
     e.preventDefault();
+    console.log("submit");
 
     const res = await fetch(`${NEXT_URL}/api/updateRating`, {
       method: "POST",
@@ -99,11 +99,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
     const data = await res.json();
 
-    if (data.success) getMediaState();
-    else console.log(data.message);
+    if (data.success) {
+      getMediaState(ratingValue);
+    } else console.log(data.message);
   };
 
   const ratingSelectedHandler = () => {
+    setInputFocus(true);
     document.getElementById("rating").focus();
   };
 
@@ -183,7 +185,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       <RoundBtn icon={isInWatchList ? CheckIcon : PlusIcon} />
                     </div>
                   )}
-
                   <div
                     className={styles.ratingBtn}
                     onClick={ratingSelectedHandler}
@@ -192,12 +193,16 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       icon={initRating ? RatingIconFill : RatingIconGhost}
                     />
                   </div>
-                  {initRating && !inputFocus}
+                  {initRating > 0 && !inputFocus && (
+                    <div className={styles.userRating}>{initRating}</div>
+                  )}
                   <form
                     className={styles.form}
-                    onSubmit={ratingHandler}
+                    onSubmit={updateRating}
                     style={{
                       opacity: !inputFocus ? 0 : 1,
+                      maxWidth: !inputFocus ? "0px" : "100vw",
+                      maxHeight: !inputFocus ? "0px" : "100vw",
                     }}
                   >
                     <label htmlFor="rating" className={styles.ratingLabel}>
@@ -217,7 +222,14 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       onBlur={() => setInputFocus(false)}
                       className={styles.ratingInput}
                     />
-                    <button className={styles.ratingSubmit}>OK</button>
+                    <button
+                      className={styles.ratingSubmit}
+                      onClick={(e) => {
+                        updateRating(e);
+                      }}
+                    >
+                      OK
+                    </button>
                   </form>
                 </div>
               </div>
