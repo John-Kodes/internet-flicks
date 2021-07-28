@@ -12,19 +12,19 @@
 
   @media only screen and (max-width: 68.75em) {
     grid-template-columns: repeat(5, 1fr);
-    row-gap: 6vw;
+    grid-auto-rows: 9.5vw;
   }
   @media only screen and (max-width: 64em) {
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 9vw;
+    grid-auto-rows: 12vw;
   }
   @media only screen and (max-width: 49em) {
     grid-template-columns: repeat(3, 1fr);
-    row-gap: 14vw;
+    grid-auto-rows: 15.5vw;
   }
   @media only screen and (max-width: 31.25em) {
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 22vw;
+    grid-auto-rows: 24vw;
   }
 }
 

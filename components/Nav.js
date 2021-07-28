@@ -1,6 +1,7 @@
 // Next and React
-import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/dist/client/image";
 // Context
 import Context from "@/context/Context";
 // styling
@@ -9,6 +10,8 @@ import styles from "@/styles/Nav.module.scss";
 import BellIcon from "@/images/BellIcon.js";
 import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
+import GuestPfp from "@/images/GuestPfp.svg";
+import UserPfp from "@/images/UserPfp.svg";
 
 const Nav = ({ inView = true, category }) => {
   const { userData, logout } = useContext(Context);
@@ -120,7 +123,9 @@ const Nav = ({ inView = true, category }) => {
             </div>
           </div>
           <div className={styles.accBtn}>
-            <div className={styles.pfp} />
+            <div className={styles.pfp}>
+              <Image src={userData ? UserPfp : GuestPfp} layout="fill" />
+            </div>
             <ArrowTiny className={styles.pfpArrow} />
             <div className={styles.accBox}>
               <div className={styles.pointer}>

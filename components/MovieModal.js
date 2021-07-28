@@ -203,6 +203,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       opacity: !inputFocus ? 0 : 1,
                       maxWidth: !inputFocus ? "0px" : "100vw",
                       maxHeight: !inputFocus ? "0px" : "100vw",
+                      transform: !inputFocus
+                        ? "translateX(-2vw)"
+                        : "translateX(0)",
                     }}
                   >
                     <label htmlFor="rating" className={styles.ratingLabel}>

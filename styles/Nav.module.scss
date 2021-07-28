@@ -319,8 +319,9 @@
 }
 
 .pfp {
+  position: relative;
   height: 2vw;
   width: 2vw;
-  background-color: var(--primaryColor100);
   border-radius: 0.3vw;
+  overflow: hidden;
 }
