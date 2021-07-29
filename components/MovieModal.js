@@ -16,6 +16,7 @@ import Context from "@/context/Context";
 
 import styles from "@/styles/MovieModal.module.scss";
 import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
+import { FaExclamationTriangle } from "react-icons/fa";
 
 const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const {
@@ -137,9 +138,27 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   useEffect(() => {
     if (movie.id) getMediaState();
   }, [movie.id]);
-
+  console.log(movie);
   return (
     <>
+      {movie.success === false && (
+        <div
+          className={styles.overlay}
+          onClick={
+            (leavePageHandler &&
+              ((e) => leavePageHandler(e, styles.overlay))) ||
+            overlayHandler
+          }
+        >
+          <div className={styles.errorModal}>
+            <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
+            <FaExclamationTriangle />
+            <h2>Whoops!?</h2>
+            <p>{movie.status_message}</p>
+            <p>Please try selecting another movie or tv show</p>
+          </div>
+        </div>
+      )}
       {modalOpen && movie.id && (
         <div
           className={styles.overlay}

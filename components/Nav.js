@@ -24,9 +24,10 @@ const Nav = ({ inView = true, category }) => {
 
   const router = useRouter();
 
-  const searchHandler = (e) => {
+  const searchHandler = async (e) => {
     e.preventDefault();
-    router.push(`/browse/search?q=${searchValue}`);
+    await router.push(`/browse/search?q=${searchValue}`);
+    router.reload();
   };
 
   useEffect(() => {

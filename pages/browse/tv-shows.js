@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // Components
 import Layout from "@/components/Layout";
+import Loader from "@/components/Loader";
 import MovieListItem from "@/components/MovieListItem";
 import MovieModal from "@/components/MovieModal";
 // NPM
@@ -42,7 +43,7 @@ const TVShowsPage = ({ shows }) => {
           dataLength={showsArr.length}
           next={getMoreShows}
           hasMore={true}
-          loader={<h4>Loading...</h4>}
+          loader={<Loader />}
           className={styles.container}
           // for some reason, it's automatically auto
           style={{ overflow: "hidden" }}
