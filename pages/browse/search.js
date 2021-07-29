@@ -39,26 +39,6 @@ const SearchPage = ({ movies, searchQuery, totalResults }) => {
     setPageNum(pageNum + 1);
   };
 
-  const searchFunction = async (movie) => {
-    const mediaType = !movie.original_title ? "tv" : "movie";
-
-    setModalOpen(true);
-
-    // console.log(router.asPath);
-    // router.push(
-    //   {
-    //     pathname: router.asPath,
-    //     query: { id: movie.id, media: mediaType },
-    //   },
-    //   undefined,
-    //   {
-    //     shallow: true,
-    //   }
-    // );
-    const mov = await fetchMediaDetails(movie.id, mediaType);
-    setModalData(mov);
-  };
-
   useEffect(() => {
     if (router.query.id)
       return router.push(
@@ -87,11 +67,7 @@ const SearchPage = ({ movies, searchQuery, totalResults }) => {
               style={{ overflow: "hidden" }}
             >
               {movieArr.map((movie, i) => (
-                <MovieListItem
-                  movie={movie}
-                  key={i}
-                  searchFunction={searchFunction}
-                />
+                <MovieListItem movie={movie} key={i} />
               ))}
             </InfiniteScroll>
           </>

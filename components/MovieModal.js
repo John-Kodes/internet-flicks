@@ -110,9 +110,16 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   };
 
   const closeHandler = () => {
-    router.push({ pathname: router.asPath.split("?")[0] }, undefined, {
-      shallow: true,
-    });
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { q: router.query.q },
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
     setModalOpen(false);
     setModalData({});
   };

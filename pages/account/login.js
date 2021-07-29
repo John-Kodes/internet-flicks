@@ -102,7 +102,7 @@ const LoginPage = () => {
                 type="text"
                 name="username"
                 id="username"
-                placeholder="helene_dm"
+                placeholder="hélène_dm"
                 required
                 className={styles.field}
                 onChange={(e) => setUsername(e.target.value)}

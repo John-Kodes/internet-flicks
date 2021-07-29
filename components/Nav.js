@@ -1,5 +1,6 @@
 // Next and React
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/dist/client/image";
 // Context
@@ -18,13 +19,14 @@ const Nav = ({ inView = true, category }) => {
   // for search component
   const [childFocus, setChildFocus] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-
   // for navbar anim scroll thing
   const [scrollUp, setScrollUp] = useState(true);
 
-  const submitHandler = (e) => {
+  const router = useRouter();
+
+  const searchHandler = (e) => {
     e.preventDefault();
-    console.log(searchValue);
+    router.push(`/browse/search?q=${searchValue}`);
   };
 
   useEffect(() => {
@@ -92,7 +94,7 @@ const Nav = ({ inView = true, category }) => {
             className={`${styles.searchBox}  ${
               !childFocus && styles.hideSearch
             }`}
-            onSubmit={submitHandler}
+            onSubmit={searchHandler}
           >
             <label htmlFor="search">
               <SearchIcon />
