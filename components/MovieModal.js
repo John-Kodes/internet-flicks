@@ -112,7 +112,11 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     router.push(
       {
         pathname: router.pathname,
-        query: { q: router.query.q },
+        query: {
+          ...(router.pathname.split("/").includes("search") && {
+            q: router.query.q,
+          }),
+        },
       },
       undefined,
       {
