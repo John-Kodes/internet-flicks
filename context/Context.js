@@ -31,7 +31,6 @@ export const ContextProvider = ({ children }) => {
       setUserData(null);
     }
   };
-
   const logout = async () => {
     const res = await fetch(`${NEXT_URL}/api/logout`, {
       method: "DELETE",

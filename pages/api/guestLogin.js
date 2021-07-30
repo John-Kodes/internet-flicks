@@ -10,16 +10,22 @@ export default async (req, res) => {
     const sessionObj = await tmdbRes.json();
 
     if (sessionObj.success) {
-      res.setHeader(
-        "Set-Cookie",
+      res.setHeader("Set-Cookie", [
         cookie.serialize("sessionId", sessionObj.guest_session_id, {
           httpOnly: true,
           secure: process.env.NODE_ENV !== "development",
           maxAge: 60 * 60 * 24 * 7,
           sameSite: "strict",
           path: "/",
-        })
-      );
+        }),
+        cookie.serialize("accountId", "", {
+          httpOnly: true,
+          secure: process.env.NODE_ENV !== "development",
+          expires: new Date(0),
+          sameSite: "strict",
+          path: "/",
+        }),
+      ]);
 
       res.status(200).json({ message: "guest session id created!" });
     } else {

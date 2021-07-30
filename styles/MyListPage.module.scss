@@ -7,8 +7,8 @@
 
   min-height: 100vh;
   width: 100%;
-  margin-top: 4rem;
-  padding: 0 4vw;
+  margin-top: 1vw;
+  padding: 0 4vw 4vw;
 
   @media only screen and (max-width: 68.75em) {
     grid-template-columns: repeat(5, 1fr);
@@ -28,9 +28,15 @@
   }
 }
 
+.listContainer {
+  background-color: black;
+}
+
 .title {
-  font-size: var(--fontSize400);
+  font-size: var(--fontSize300);
   font-weight: 400;
+
+  padding: 0 4vw;
 
   span {
     color: var(--primaryColor100);

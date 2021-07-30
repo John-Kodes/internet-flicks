@@ -42,23 +42,29 @@ export default async (req, res) => {
       const sessionData = await sessionRes.json();
 
       if (sessionData.success) {
-        // settting session id in cookies
-        res.setHeader(
-          "Set-Cookie",
+        // Getting account details
+        const accountRes = await fetch(
+          `${TMDB_API}/account${API_KEY}&session_id=${sessionData.session_id}`
+        );
+        const accountData = await accountRes.json();
+
+        // settting session id and account ID in cookies
+        res.setHeader("Set-Cookie", [
           cookie.serialize("sessionId", sessionData.session_id, {
             httpOnly: true,
             secure: process.env.NODE_ENV !== "development",
             maxAge: 60 * 60 * 24 * 7,
             sameSite: "strict",
             path: "/",
-          })
-        );
-
-        // Getting account details
-        const accountRes = await fetch(
-          `${TMDB_API}/account${API_KEY}&session_id=${sessionData.session_id}`
-        );
-        const accountData = await accountRes.json();
+          }),
+          cookie.serialize("accountId", accountData.id, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            maxAge: 60 * 60 * 24 * 7,
+            sameSite: "strict",
+            path: "/",
+          }),
+        ]);
 
         res.status(200).json({ ...accountData, success: true });
       } else {

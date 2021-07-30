@@ -18,8 +18,6 @@ import Context from "@/context/Context";
 import { fetchMediaDetails } from "@/helpers/index";
 
 const SearchPage = ({ movies, searchQuery, totalResults }) => {
-  const { setModalOpen, setModalData } = useContext(Context);
-
   const [pageNum, setPageNum] = useState(3);
   const [movieArr, setMovieArr] = useState(movies);
   // Checks if there are more results
