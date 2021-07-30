@@ -1,10 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-import { TMDB_IMAGE, NEXT_URL } from "@/config/index";
+import { TMDB_IMAGE, NEXT_URL, TMDB_API, API_KEY } from "@/config/index";
 
 import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
+import CastProfile from "./CastProfile";
 
 import PlayIcon from "@/images/PlayIcon";
 import PlusIcon from "@/images/PlusIcon.svg";
@@ -21,18 +22,23 @@ import { FaExclamationTriangle } from "react-icons/fa";
 const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const {
     modalOpen,
+    modalData,
     setModalOpen,
     setModalData,
     modalData: movie,
     userData,
   } = useContext(Context);
 
+  // List
   const [isInWatchList, setIsInWatchList] = useState(false);
   const [initRating, setInitRating] = useState(0);
 
   // Input
   const [ratingValue, setRatingValue] = useState(1);
   const [inputFocus, setInputFocus] = useState(false);
+
+  // Extra data
+  const [castArr, setCastArr] = useState([]);
 
   const router = useRouter();
 
@@ -137,9 +143,24 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     return items.map((item) => item.name).join(", ");
   };
 
+  const getMediaCredits = async () => {
+    const creditsRes = await fetch(
+      `${TMDB_API}/${mediaType}/${movie.id}/credits${API_KEY}&language=en-US`
+    );
+    const data = await creditsRes.json();
+
+    setCastArr(data.cast);
+  };
+
   useEffect(() => {
     if (movie.id) getMediaState();
   }, [movie.id]);
+
+  useEffect(() => {
+    // When modal loads in and there is modal data, it will fetch credits
+    if (Object.keys(modalData).length !== 0) getMediaCredits();
+  }, [modalData]);
+
   return (
     <>
       {movie.success === false && (
@@ -268,31 +289,44 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                 </div>
               </div>
             </div>
-            <div className={styles.detailsBox}>
-              <div className={styles.detailsMain}>
-                <div className={styles.metaData}>
-                  <div className={styles.audienceScore}>
-                    {movie.vote_average} / 10
+
+            <div className={styles.allDetailsBox}>
+              <div className={styles.detailsBox}>
+                <div className={styles.detailsMain}>
+                  <div className={styles.metaData}>
+                    <div className={styles.audienceScore}>
+                      {movie.vote_average} / 10
+                    </div>
+                    <div className={styles.year}>
+                      {movie.release_date && movie.release_date.slice(0, 4)}
+                    </div>
                   </div>
-                  <div className={styles.year}>
-                    {movie.release_date && movie.release_date.slice(0, 4)}
+                  <p className={styles.description}>
+                    {movie.overview || "Unavailable"}
+                  </p>
+                </div>
+                <div className={styles.detailsSecondary}>
+                  <div className={styles.genres}>
+                    <span>
+                      Genre{movie.genres && movie.genres.length > 1 ? "s" : ""}:{" "}
+                    </span>
+                    {ArrStr(movie.genres) || "Unavailable"}
+                  </div>
+                  <div className={styles.studios}>
+                    <span>Produced by: </span>
+                    {ArrStr(movie.production_companies) || "Unavailable"}
                   </div>
                 </div>
-                <p className={styles.description}>
-                  {movie.overview || "Unavailable"}
-                </p>
               </div>
-              <div className={styles.detailsSecondary}>
-                <div className={styles.genres}>
-                  <span>
-                    Genre{movie.genres && movie.genres.length > 1 ? "s" : ""}:{" "}
-                  </span>
-                  {ArrStr(movie.genres) || "Unavailable"}
+              <div className={styles.castBox}>
+                <h2>MAIN CAST</h2>
+                <div className={styles.castList}>
+                  {castArr.map((actor, i) => {
+                    if (i > 3) return;
+                    return <CastProfile actor={actor} key={actor.id} />;
+                  })}
                 </div>
-                <div className={styles.studios}>
-                  <span>Produced by: </span>
-                  {ArrStr(movie.production_companies) || "Unavailable"}
-                </div>
+                {castArr.length > 4 && <p>and more...</p>}
               </div>
             </div>
           </div>
