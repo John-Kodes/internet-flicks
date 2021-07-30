@@ -5,7 +5,7 @@ export default async (req, res) => {
   if (req.method === "POST") {
     const { id, mediaType } = req.body;
 
-    const { sessionId } = cookie.parse(req.headers.cookie);
+    const { sessionId, isGuest } = cookie.parse(req.headers.cookie);
 
     const tmdbRes = await fetch(
       `${TMDB_API}/${mediaType}/${id}/account_states${API_KEY}&session_id=${sessionId}`
@@ -13,6 +13,7 @@ export default async (req, res) => {
     const data = await tmdbRes.json();
 
     console.log(data);
+    console.log(sessionId);
 
     if (data.id) {
       res.status(200).json(data);

@@ -58,7 +58,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
       setIsInWatchList(mediaState.watchlist);
       setInitRating(ratingValue || mediaState.rated.value);
     } else {
-      console.log(mediaState.message);
+      console.error(mediaState.message);
     }
   };
 
@@ -78,8 +78,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     const data = await res.json();
 
     getMediaState();
-
-    console.log(data);
   };
 
   const updateRating = async (e) => {
@@ -138,7 +136,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   useEffect(() => {
     if (movie.id) getMediaState();
   }, [movie.id]);
-  console.log(movie);
   return (
     <>
       {movie.success === false && (
@@ -200,66 +197,70 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   </button>
                   {/* clicking on the plus icon will add to list */}
                   {userData && (
-                    <div
-                      className={
-                        isInWatchList
-                          ? styles.removeFromListBtn
-                          : styles.addToListBtn
-                      }
-                      onClick={watchListHandler}
-                    >
-                      <RoundBtn icon={isInWatchList ? CheckIcon : PlusIcon} />
-                    </div>
+                    <>
+                      <div
+                        className={
+                          isInWatchList
+                            ? styles.removeFromListBtn
+                            : styles.addToListBtn
+                        }
+                        onClick={watchListHandler}
+                      >
+                        <RoundBtn icon={isInWatchList ? CheckIcon : PlusIcon} />
+                      </div>
+
+                      <div
+                        className={styles.ratingBtn}
+                        onClick={ratingSelectedHandler}
+                      >
+                        {initRating > 0 && !inputFocus && (
+                          <div className={styles.userRating}>{initRating}</div>
+                        )}
+                        <RoundBtn
+                          icon={initRating ? RatingIconFill : RatingIconGhost}
+                        />
+                      </div>
+
+                      <form
+                        className={styles.form}
+                        onSubmit={updateRating}
+                        style={{
+                          opacity: !inputFocus ? 0 : 1,
+                          maxWidth: !inputFocus ? "0px" : "100vw",
+                          maxHeight: !inputFocus ? "0px" : "100vw",
+                          transform: !inputFocus
+                            ? "translateX(-2vw)"
+                            : "translateX(0)",
+                        }}
+                      >
+                        <label htmlFor="rating" className={styles.ratingLabel}>
+                          {ratingValue % 1 === 0 && ratingValue < 10
+                            ? ratingValue + ".0"
+                            : ratingValue}
+                        </label>
+                        <input
+                          type="range"
+                          name="rating"
+                          id="rating"
+                          min="0.5"
+                          max="10"
+                          step="0.5"
+                          onChange={(e) => setRatingValue(e.target.value)}
+                          onFocus={() => setInputFocus(true)}
+                          onBlur={() => setInputFocus(false)}
+                          className={styles.ratingInput}
+                        />
+                        <button
+                          className={styles.ratingSubmit}
+                          onClick={(e) => {
+                            updateRating(e);
+                          }}
+                        >
+                          OK
+                        </button>
+                      </form>
+                    </>
                   )}
-                  <div
-                    className={styles.ratingBtn}
-                    onClick={ratingSelectedHandler}
-                  >
-                    <RoundBtn
-                      icon={initRating ? RatingIconFill : RatingIconGhost}
-                    />
-                  </div>
-                  {initRating > 0 && !inputFocus && (
-                    <div className={styles.userRating}>{initRating}</div>
-                  )}
-                  <form
-                    className={styles.form}
-                    onSubmit={updateRating}
-                    style={{
-                      opacity: !inputFocus ? 0 : 1,
-                      maxWidth: !inputFocus ? "0px" : "100vw",
-                      maxHeight: !inputFocus ? "0px" : "100vw",
-                      transform: !inputFocus
-                        ? "translateX(-2vw)"
-                        : "translateX(0)",
-                    }}
-                  >
-                    <label htmlFor="rating" className={styles.ratingLabel}>
-                      {ratingValue % 1 === 0 && ratingValue < 10
-                        ? ratingValue + ".0"
-                        : ratingValue}
-                    </label>
-                    <input
-                      type="range"
-                      name="rating"
-                      id="rating"
-                      min="0.5"
-                      max="10"
-                      step="0.5"
-                      onChange={(e) => setRatingValue(e.target.value)}
-                      onFocus={() => setInputFocus(true)}
-                      onBlur={() => setInputFocus(false)}
-                      className={styles.ratingInput}
-                    />
-                    <button
-                      className={styles.ratingSubmit}
-                      onClick={(e) => {
-                        updateRating(e);
-                      }}
-                    >
-                      OK
-                    </button>
-                  </form>
                 </div>
               </div>
             </div>

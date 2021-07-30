@@ -43,16 +43,22 @@ export default async (req, res) => {
 
       if (sessionData.success) {
         // settting session id in cookies
-        res.setHeader(
-          "Set-Cookie",
+        res.setHeader("Set-Cookie", [
           cookie.serialize("sessionId", sessionData.session_id, {
             httpOnly: true,
             secure: process.env.NODE_ENV !== "development",
             maxAge: 60 * 60 * 24 * 7,
             sameSite: "strict",
             path: "/",
-          })
-        );
+          }),
+          cookie.serialize("isGuest", "", {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== "development",
+            expires: new Date(0),
+            sameSite: "strict",
+            path: "/",
+          }),
+        ]);
 
         // Getting account details
         const accountRes = await fetch(
