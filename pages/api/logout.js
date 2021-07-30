@@ -22,22 +22,16 @@ export default async (req, res) => {
 
     if (deleteData.success) {
       // Destroying cookie
-      res.setHeader("Set-Cookie", [
+      res.setHeader(
+        "Set-Cookie",
         cookie.serialize("sessionId", "", {
           httpOnly: true,
           secure: process.env.NODE_ENV !== "development",
           expires: new Date(0),
           sameSite: "strict",
           path: "/",
-        }),
-        cookie.serialize("isGuest", "", {
-          httpOnly: true,
-          secure: process.env.NODE_ENV !== "development",
-          expires: new Date(0),
-          sameSite: "strict",
-          path: "/",
-        }),
-      ]);
+        })
+      );
 
       res
         .status(200)

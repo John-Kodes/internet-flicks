@@ -4,10 +4,10 @@ import { TMDB_API, API_KEY } from "@/config/index";
 export default async (req, res) => {
   if (req.method === "POST") {
     const { id, mediaType, value } = req.body;
-    const { sessionId, isGuest } = cookie.parse(req.headers.cookie);
+    const { sessionId } = cookie.parse(req.headers.cookie);
 
     const tmdbRes = await fetch(
-      `${TMDB_API}/${mediaType}/${id}/rating${API_KEY}&${isGuest}session_id=${sessionId}`,
+      `${TMDB_API}/${mediaType}/${id}/rating${API_KEY}&session_id=${sessionId}`,
       {
         method: "POST",
         headers: {
