@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 // API
 import { TMDB_IMAGE } from "@/config/index";
 // Context
-import Context from "@/context/Context";
+import Context, { ContextProvider } from "@/context/Context";
 // Styles
 import styles from "@/styles/MovieListItem.module.scss";
 // Images
@@ -17,8 +17,13 @@ const MovieListItem = ({ movie }) => {
   const router = useRouter();
 
   const clickHandler = async () => {
-    const mediaType = !movie.original_title ? "tv" : "movie";
+    const mediaType = movie.original_title
+      ? "movie"
+      : movie.original_name
+      ? "tv"
+      : "person";
 
+    console.log(mediaType);
     setModalOpen(true);
 
     router.push(
@@ -32,6 +37,9 @@ const MovieListItem = ({ movie }) => {
       }
     );
     const mov = await fetchMediaDetails(movie.id, mediaType);
+
+    console.log(mov);
+
     setModalData(mov);
   };
 

@@ -84,7 +84,6 @@ const SearchPage = ({ movies, searchQuery, totalResults }) => {
 export default SearchPage;
 
 export const getServerSideProps = async ({ query: { q } }) => {
-  console.log(q);
   const res = await fetch(
     `${TMDB_API}/search/multi${API_KEY}&language=en-US&query=${q}&page=1&include_adult=false`
   );
@@ -94,8 +93,6 @@ export const getServerSideProps = async ({ query: { q } }) => {
     `${TMDB_API}/search/multi${API_KEY}&language=en-US&query=${q}&page=2&include_adult=false`
   );
   const movies2 = await res2.json();
-
-  console.log(movies);
 
   return {
     props: {

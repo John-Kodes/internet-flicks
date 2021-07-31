@@ -17,10 +17,9 @@
   left: 50%;
   transform: translateX(-50%);
 
-  min-height: 100rem;
+  min-height: 10rem;
   width: 100%;
   max-width: 85rem;
-  padding-bottom: 4rem;
 
   background-color: var(--pageBg100);
   border-radius: 7px;
@@ -361,9 +360,13 @@
 
 .castList {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 
-  border: 2px solid green;
+.noCast {
+  font-size: var(--fontSize200);
 }
 
 .errorModal {
@@ -401,4 +404,40 @@
     font-size: var(--fontSize300);
     width: 25ch;
   }
+}
+
+// PERSON CSS_________________________________________________________________________
+
+.personContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.personPfp {
+  position: relative;
+  flex: 0 0 50%;
+  padding-top: 75%;
+}
+
+.personInfoBox {
+}
+
+.nameContainer {
+}
+
+.personName {
+}
+
+.department {
+  span {
+  }
+}
+
+.birthday {
+}
+
+.birthPlace {
+}
+
+.biography {
 }
