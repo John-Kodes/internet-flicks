@@ -408,6 +408,23 @@
 
 // PERSON CSS_________________________________________________________________________
 
+.personModal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  max-width: 85rem;
+  height: 63.75rem;
+
+  background-color: var(--pageBg100);
+  border-radius: 7px;
+  box-shadow: 0 0.5rem 2rem rgba(#000, 0.9);
+
+  z-index: 110;
+  overflow: hidden;
+}
 .personContainer {
   display: flex;
   align-items: flex-start;
@@ -420,24 +437,62 @@
 }
 
 .personInfoBox {
+  display: flex;
+  flex-direction: column;
+  height: 63.75rem;
+  width: 100%;
 }
 
-.nameContainer {
-}
+.basicInfoBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 4rem;
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: -0.25rem;
+    left: 0;
 
-.personName {
-}
-
-.department {
-  span {
+    height: 0.5rem;
+    width: 66%;
+    border-top-right-radius: 100vw;
+    border-bottom-right-radius: 100vw;
+    background-color: var(--primaryColor100);
   }
 }
 
-.birthday {
+.personName {
+  font-size: var(--fontSize400);
+  margin-bottom: 0.5rem;
 }
 
-.birthPlace {
+.department {
+  font-weight: 500;
+  color: var(--primaryColor100);
 }
 
 .biography {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  background-color: #333;
+  padding: 2rem 4rem;
+  overflow-y: scroll;
+  height: 100%;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+
+    &-thumb {
+      border-radius: 100vw;
+      border: 1px solid white;
+    }
+  }
 }

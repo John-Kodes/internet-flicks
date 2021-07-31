@@ -196,10 +196,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
             overlayHandler
           }
         >
-          <div className={styles.modal}>
-            <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
-            {/* shows Movie or person info  */}
-            {mediaType !== "person" ? (
+          {/* shows Movie or person info  */}
+          {mediaType !== "person" ? (
+            <div className={styles.modal}>
+              <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <>
                 <div
                   className={styles.hero}
@@ -358,31 +358,38 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   <div className={styles.recommendBox}>recommend</div>
                 </div>
               </>
-            ) : (
-              // no info: name, known_department, popularity... and that's p much it ¯\_(ツ)_/¯
-              <>
-                <div className={styles.personContainer}>
-                  <div className={styles.personPfp}>
-                    <Image
-                      src={`${TMDB_IMAGE}/w500${movie.profile_path}`}
-                      layout="fill"
-                    />
+            </div>
+          ) : (
+            // no info: name, known_department, popularity... and that's p much it ¯\_(ツ)_/¯
+            <div className={styles.personModal}>
+              <div className={styles.personContainer}>
+                <div className={styles.personPfp}>
+                  <Image
+                    src={`${TMDB_IMAGE}/original${movie.profile_path}`}
+                    layout="fill"
+                  />
+                </div>
+                <div className={styles.personInfoBox}>
+                  <div className={styles.basicInfoBox}>
+                    <h2 className={styles.personName}>{movie.name}</h2>
+                    <p className={styles.department}>
+                      {movie.known_for_department || "Undisclosed"}
+                    </p>
+                    <p className={styles.birthday}>
+                      {movie.birthday.replaceAll("-", " / ")}
+                    </p>
+                    <p className={styles.birthPlace}>
+                      {movie.place_of_birth || "Born on Earth... Probably"}
+                    </p>
                   </div>
-                  <div className={styles.personInfoBox}>
-                    <div className={styles.nameContainer}>
-                      <h2 className={styles.personName}>{movie.name}</h2>
-                      <p className={styles.department}>
-                        department: <span>{movie.known_for_department}</span>
-                      </p>
-                    </div>
-                    <p className={styles.birthday}>{movie.birthday}</p>
-                    <p className={styles.birthPlace}>{movie.place_of_birth}</p>
-                    <p className={styles.biography}>{movie.biography}</p>
+                  <div className={styles.biography}>
+                    <h2>Biography</h2>
+                    <p>{movie.biography || "Does not have a biography"}</p>
                   </div>
                 </div>
-              </>
-            )}
-          </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>
