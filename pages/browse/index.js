@@ -1,4 +1,7 @@
+import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+// Context
+import Context from "@/context/Context";
 // Components
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
@@ -8,7 +11,6 @@ import MovieModal from "@/components/MovieModal";
 import styles from "@/styles/Browse.module.scss";
 // API
 import { TMDB_API, API_KEY } from "@/config/index";
-import { useEffect } from "react";
 
 export const BrowsePage = ({
   featuredMovie,
@@ -19,11 +21,19 @@ export const BrowsePage = ({
   genres,
 }) => {
   const router = useRouter();
+  const { setModalData, setModalOpen } = useContext(Context);
 
   useEffect(() => {
     if (router.query.id)
       router.push(`/browse/title/${router.query.id}?media=movie`);
   }, []);
+
+  useEffect(() => {
+    if (!router.query.id) {
+      setModalOpen();
+      setModalData();
+    }
+  }, [router.query.id]);
 
   return (
     <Layout>

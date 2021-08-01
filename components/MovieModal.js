@@ -7,6 +7,7 @@ import { TMDB_IMAGE, NEXT_URL, TMDB_API, API_KEY } from "@/config/index";
 import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
 import CastProfile from "@/components/CastProfile";
+import RecomCard from "@/components/RecomCard";
 
 import { FaExclamationTriangle } from "react-icons/fa";
 import PlayIcon from "@/images/PlayIcon";
@@ -41,12 +42,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   // Extra data
   const [castArr, setCastArr] = useState([]);
+  const [recomArr, setRecomArr] = useState([]);
 
   const router = useRouter();
 
   const mediaType =
-    (movie.original_title && "movie") ||
-    (movie.original_name && "tv") ||
+    (movie?.original_title && "movie") ||
+    (movie?.original_name && "tv") ||
     "person";
 
   const getMediaState = async (ratingValue) => {
@@ -57,7 +59,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: movie.id,
+        id: movie?.id,
         mediaType,
       }),
     });
@@ -79,7 +81,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: movie.id,
+        id: movie?.id,
         mediaType,
         update: !isInWatchList,
       }),
@@ -100,7 +102,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: movie.id,
+        id: movie?.id,
         value: ratingValue,
         mediaType,
       }),
@@ -149,27 +151,36 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   const getMediaCredits = async () => {
     const creditsRes = await fetch(
-      `${TMDB_API}/${mediaType}/${movie.id}/credits${API_KEY}&language=en-US`
+      `${TMDB_API}/${mediaType}/${movie?.id}/credits${API_KEY}&language=en-US`
     );
     const data = await creditsRes.json();
 
     setCastArr(data.cast);
   };
 
-  const getMediaRecommendations = async () => {};
+  const getMediaRecommendations = async () => {
+    const res = await fetch(
+      `${TMDB_API}/${mediaType}/${movie?.id}/recommendations${API_KEY}&language=en-US&page=1`
+    );
+    const data = await res.json();
+
+    setRecomArr(data.results);
+  };
 
   useEffect(() => {
     // When modal loads in and there is modal data, it will fetch media state of movie or tv show
-    if (movie.id && mediaType !== "person") getMediaState();
+    if (movie?.id && mediaType !== "person") getMediaState();
     // When media type is not a person, it will fetch credits for a movie
-    if (Object.keys(modalData).length !== 0 && mediaType !== "person")
+    if (modalData && mediaType !== "person") {
       getMediaCredits();
+      getMediaRecommendations();
+    }
   }, [modalData]);
 
   return (
     <>
-      {movie.success === false ||
-        (movie.media_type === "person" && (
+      {movie?.success === false ||
+        (movie?.media_type === "person" && (
           <div
             className={styles.overlay}
             onClick={
@@ -182,12 +193,12 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <FaExclamationTriangle />
               <h2>Whoops!?</h2>
-              <p>{movie.status_message}</p>
+              <p>{movie?.status_message}</p>
               <p>Please try selecting another movie or tv show</p>
             </div>
           </div>
         ))}
-      {modalOpen && movie.id && (
+      {modalOpen && movie?.id && (
         <div
           className={styles.overlay}
           onClick={
@@ -206,9 +217,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   // sets background image to movieImage. If unavailable, default image is used
                   style={{
                     backgroundImage:
-                      (movie.backdrop_path &&
+                      (movie?.backdrop_path &&
                         `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), 
-                url(${TMDB_IMAGE}/original/${movie.backdrop_path})`) ||
+                url(${TMDB_IMAGE}/original/${movie?.backdrop_path})`) ||
                       `url(${DefaultBackdropMain.src})`,
                   }}
                 >
@@ -216,13 +227,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     <h1
                       className={styles.title}
                       style={
-                        movie.original_title?.length > 33 ||
-                        movie.original_name?.length > 33
+                        movie?.original_title?.length > 33 ||
+                        movie?.original_name?.length > 33
                           ? { fontSize: "3rem", maxWidth: "30ch" }
                           : {}
                       }
                     >
-                      {movie.original_title || movie.original_name}
+                      {movie?.original_title || movie?.original_name}
                     </h1>
                     <div className={styles.btnContainer}>
                       <button className={styles.trailerBtn}>
@@ -313,29 +324,29 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     <div className={styles.detailsMain}>
                       <div className={styles.metaData}>
                         <div className={styles.audienceScore}>
-                          {movie.vote_average} / 10
+                          {movie?.vote_average} / 10
                         </div>
                         <div className={styles.year}>
-                          {movie.release_date && movie.release_date.slice(0, 4)}
+                          {movie?.release_date &&
+                            movie?.release_date.slice(0, 4)}
                         </div>
                       </div>
                       <p className={styles.description}>
-                        {movie.overview || "Description is unavailable"}
+                        {movie?.overview || "Description is unavailable"}
                       </p>
                     </div>
                     <div className={styles.detailsSecondary}>
                       <div className={styles.genres}>
                         <span>
                           Genre
-                          {movie.genres && movie.genres.length > 1
-                            ? "s"
-                            : ""}:{" "}
+                          {movie?.genres && movie?.genres.length > 1 ? "s" : ""}
+                          :{" "}
                         </span>
-                        {ArrStr(movie.genres) || "Unavailable"}
+                        {ArrStr(movie?.genres) || "Unavailable"}
                       </div>
                       <div className={styles.studios}>
                         <span>Produced by: </span>
-                        {ArrStr(movie.production_companies) || "Unavailable"}
+                        {ArrStr(movie?.production_companies) || "Unavailable"}
                       </div>
                     </div>
                   </div>
@@ -355,7 +366,15 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     </div>
                     {castArr.length > 4 && <p>and more...</p>}
                   </div>
-                  <div className={styles.recommendBox}>recommend</div>
+                  <div className={styles.recommendBox}>
+                    <h2>More Like This</h2>
+                    <div className={styles.recommendList}>
+                      <RecomCard mediaData={recomArr[0]} />
+                      <RecomCard mediaData={recomArr[1]} />
+                      <RecomCard mediaData={recomArr[2]} />
+                      <RecomCard mediaData={recomArr[3]} />
+                    </div>
+                  </div>
                 </div>
               </>
             </div>
@@ -366,8 +385,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                 <div className={styles.personPfp}>
                   <Image
                     src={
-                      (movie.profile_path &&
-                        `${TMDB_IMAGE}/original${movie.profile_path}`) ||
+                      (movie?.profile_path &&
+                        `${TMDB_IMAGE}/original${movie?.profile_path}`) ||
                       DefaultPersonPhotoMain
                     }
                     layout="fill"
@@ -375,29 +394,29 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                 </div>
                 <div className={styles.personInfoBox}>
                   <div className={styles.basicInfoBox}>
-                    <h2 className={styles.personName}>{movie.name}</h2>
+                    <h2 className={styles.personName}>{movie?.name}</h2>
                     <p className={styles.department}>
-                      {movie.known_for_department || "Undisclosed"}
+                      {movie?.known_for_department || "Undisclosed"}
                     </p>
                     <p className={styles.birthday}>
-                      {movie.birthday?.replaceAll("-", " / ") ||
+                      {movie?.birthday?.replaceAll("-", " / ") ||
                         "Birthdate is undisclosed"}
 
-                      {movie.deathday && (
+                      {movie?.deathday && (
                         <>
                           &nbsp;&nbsp; &mdash; &nbsp;&nbsp;
-                          {movie.deathday.replaceAll("-", " / ")}
+                          {movie?.deathday.replaceAll("-", " / ")}
                         </>
                       )}
                     </p>
                     <p className={styles.birthPlace}>
-                      {movie.place_of_birth || "Born on Earth... Probably"}
+                      {movie?.place_of_birth || "Born on Earth... Probably"}
                     </p>
                   </div>
                   <div className={styles.biography}>
                     <h2>Biography</h2>
                     <p>
-                      {movie.biography ||
+                      {movie?.biography ||
                         "Currently does not have a biography written"}
                     </p>
                   </div>
