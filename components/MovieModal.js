@@ -6,20 +6,20 @@ import { TMDB_IMAGE, NEXT_URL, TMDB_API, API_KEY } from "@/config/index";
 
 import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
-import CastProfile from "./CastProfile";
+import CastProfile from "@/components/CastProfile";
 
+import { FaExclamationTriangle } from "react-icons/fa";
 import PlayIcon from "@/images/PlayIcon";
 import PlusIcon from "@/images/PlusIcon.svg";
 import CheckIcon from "@/images/CheckIcon.svg";
 import RatingIconGhost from "@/images/RatingIconGhost.svg";
 import RatingIconFill from "@/images/RatingIconFill.svg";
+import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
+import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
 
 import Context from "@/context/Context";
 
 import styles from "@/styles/MovieModal.module.scss";
-import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
-import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
-import { FaExclamationTriangle } from "react-icons/fa";
 
 const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const {
@@ -320,7 +320,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                         </div>
                       </div>
                       <p className={styles.description}>
-                        {movie.overview || "Unavailable"}
+                        {movie.overview || "Description is unavailable"}
                       </p>
                     </div>
                     <div className={styles.detailsSecondary}>
