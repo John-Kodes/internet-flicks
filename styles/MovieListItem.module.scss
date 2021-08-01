@@ -39,33 +39,13 @@
   transform: scale(1.1);
 }
 
-//////////// old
-
-.card {
-  overflow: visible;
-  opacity: 0;
-  visibility: hidden;
-  z-index: 10;
-
+.backgroundImage {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  background-color: orange;
-  height: 15rem;
-
-  transition: all 0.2s;
-}
-
-// show card when being hovers
-.image:hover ~ .card,
-.card:hover {
-  opacity: 1;
-  visibility: visible;
-}
-
-// when not hovered, we are adding a delay before it hides again for convenience
-.image:not(:hover) ~ .card {
-  transition-delay: 0.2s;
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) brightness(50%) saturate(150%);
+  border-radius: 4px;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
 }

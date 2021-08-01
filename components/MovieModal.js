@@ -18,6 +18,7 @@ import Context from "@/context/Context";
 
 import styles from "@/styles/MovieModal.module.scss";
 import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
+import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
 import { FaExclamationTriangle } from "react-icons/fa";
 
 const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
@@ -47,8 +48,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     (movie.original_title && "movie") ||
     (movie.original_name && "tv") ||
     "person";
-
-  console.log(movie);
 
   const getMediaState = async (ratingValue) => {
     if (!userData) return;
@@ -157,13 +156,14 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     setCastArr(data.cast);
   };
 
-  useEffect(() => {
-    if (movie.id && mediaType !== "person") getMediaState();
-  }, [movie.id]);
+  const getMediaRecommendations = async () => {};
 
   useEffect(() => {
-    // When modal loads in and there is modal data, it will fetch credits
-    if (Object.keys(modalData).length !== 0) getMediaCredits();
+    // When modal loads in and there is modal data, it will fetch media state of movie or tv show
+    if (movie.id && mediaType !== "person") getMediaState();
+    // When media type is not a person, it will fetch credits for a movie
+    if (Object.keys(modalData).length !== 0 && mediaType !== "person")
+      getMediaCredits();
   }, [modalData]);
 
   return (
@@ -365,7 +365,11 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               <div className={styles.personContainer}>
                 <div className={styles.personPfp}>
                   <Image
-                    src={`${TMDB_IMAGE}/original${movie.profile_path}`}
+                    src={
+                      (movie.profile_path &&
+                        `${TMDB_IMAGE}/original${movie.profile_path}`) ||
+                      DefaultPersonPhotoMain
+                    }
                     layout="fill"
                   />
                 </div>
@@ -376,7 +380,15 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       {movie.known_for_department || "Undisclosed"}
                     </p>
                     <p className={styles.birthday}>
-                      {movie.birthday.replaceAll("-", " / ")}
+                      {movie.birthday?.replaceAll("-", " / ") ||
+                        "Birthdate is undisclosed"}
+
+                      {movie.deathday && (
+                        <>
+                          &nbsp;&nbsp; &mdash; &nbsp;&nbsp;
+                          {movie.deathday.replaceAll("-", " / ")}
+                        </>
+                      )}
                     </p>
                     <p className={styles.birthPlace}>
                       {movie.place_of_birth || "Born on Earth... Probably"}
@@ -384,7 +396,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   </div>
                   <div className={styles.biography}>
                     <h2>Biography</h2>
-                    <p>{movie.biography || "Does not have a biography"}</p>
+                    <p>
+                      {movie.biography ||
+                        "Currently does not have a biography written"}
+                    </p>
                   </div>
                 </div>
               </div>

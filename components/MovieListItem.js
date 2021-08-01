@@ -16,6 +16,8 @@ const MovieListItem = ({ movie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
   const router = useRouter();
 
+  const imageSrc = movie.backdrop_path || movie.profile_path || undefined;
+
   const clickHandler = async () => {
     const mediaType = movie.original_title
       ? "movie"
@@ -23,7 +25,6 @@ const MovieListItem = ({ movie }) => {
       ? "tv"
       : "person";
 
-    console.log(mediaType);
     setModalOpen(true);
 
     router.push(
@@ -38,8 +39,6 @@ const MovieListItem = ({ movie }) => {
     );
     const mov = await fetchMediaDetails(movie.id, mediaType);
 
-    console.log(mov);
-
     setModalData(mov);
   };
 
@@ -48,14 +47,22 @@ const MovieListItem = ({ movie }) => {
       <div className={styles.image}>
         <Image
           src={
-            (movie.backdrop_path &&
-              `${TMDB_IMAGE}/w300/${movie.backdrop_path}`) ||
+            (imageSrc && `${TMDB_IMAGE}/w300/${imageSrc}`) ||
             DefaultBackDropThumbnail
           }
+          objectFit={movie.profile_path && "contain"}
           layout="fill"
           alt={movie.original_title}
-          className={!movie.backdrop_path ? styles.imgFix : undefined}
+          className={!imageSrc ? styles.imgFix : undefined}
         />
+        {movie.profile_path && (
+          <div
+            className={styles.backgroundImage}
+            style={{
+              backgroundImage: `url(${TMDB_IMAGE}/w300/${imageSrc})`,
+            }}
+          />
+        )}
       </div>
     </div>
   );

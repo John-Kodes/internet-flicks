@@ -14,13 +14,15 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1rem;
+  padding: 0.8rem 1rem;
 }
 
 .actorName {
-  font-weight: 400;
+  color: var(--primaryColor100);
+  font-weight: 500;
 }
 
 .characterName {
-  color: #ccc;
+  color: #eee;
+  font-weight: 400;
 }
