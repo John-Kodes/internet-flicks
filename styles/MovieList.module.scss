@@ -20,94 +20,50 @@
   gap: 4px;
 
   transition: transform 0.8s;
+
+  &:focus-within .item,
+  &:hover .item {
+    transform: translateX(-15%);
+  }
+
+  .item:focus ~ .item,
+  .item:hover ~ .item {
+    transform: translateX(15%);
+  }
+
+  & .item:focus,
+  & .item:hover {
+    transform: scale(1.3);
+    z-index: 3;
+  }
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0px;
+  transition: transform 0.5s;
 }
 
 .slider {
   display: flex;
   gap: 4px;
-  height: 8vw;
+  height: 9.5vw;
+
   @media only screen and (max-width: 68.75em) {
-    height: 9.5vw;
+    height: 11vw;
     width: calc((100vw - 10vw - 8px) / 5);
   }
   @media only screen and (max-width: 64em) {
-    height: 12vw;
+    height: 14vw;
     width: calc((100vw - 10vw - 8px) / 4);
   }
   @media only screen and (max-width: 49em) {
-    height: 15.5vw;
+    height: 18vw;
     width: calc((100vw - 10vw - 8px) / 3);
   }
   @media only screen and (max-width: 31.25em) {
-    height: 24vw;
+    height: 28vw;
     width: calc((100vw - 10vw - 8px) / 2);
   }
 }
-
-//////// OLD
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   gap: 1vw;
-
-//   padding: 0 4vw;
-//   // overflow-x: hidden;
-//   border: 1px solid greenyellow;
-
-//   @media only screen and (max-width: 68.75em) {
-//     flex: 0 0 14vw;
-//   }
-//   @media only screen and (max-width: 64em) {
-//     flex: 0 0 18vw;
-//   }
-//   @media only screen and (max-width: 49em) {
-//     flex: 0 0 22vw;
-//   }
-//   @media only screen and (max-width: 31.25em) {
-//     flex: 0 0 32vw;
-//   }
-// }
-
-// .listContainer {
-//   position: relative;
-//   display: flex;
-// }
-
-// .sliderMask {
-//   position: absolute;
-//   top: 0;
-//   transform: translateX(0%);
-
-//   display: flex;
-//   gap: 4px;
-
-//   transition: transform 0.8s;
-// }
-
-// .movieCard {
-//   cursor: pointer;
-
-//   height: 10vw;
-//   width: 10rem;
-//   border-radius: 4px;
-//   overflow: hidden;
-
-//   transition: transform 0.2s 0.2s;
-
-//   @media only screen and (max-width: 68.75em) {
-//     width: calc((100vw - 10vw - 8px) / 5);
-//   }
-//   @media only screen and (max-width: 64em) {
-//     width: calc((100vw - 10vw - 8px) / 4);
-//   }
-//   @media only screen and (max-width: 49em) {
-//     width: calc((100vw - 10vw - 8px) / 3);
-//   }
-//   @media only screen and (max-width: 31.25em) {
-//     width: calc((100vw - 10vw - 8px) / 2);
-//   }
-
-//   img {
-//     width: 100%;
-//   }
-// }

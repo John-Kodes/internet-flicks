@@ -80,9 +80,6 @@ const Nav = ({ inView = true, category }) => {
             <Link href="/browse/movies">
               <div className={styles.link}>Movies</div>
             </Link>
-            <Link href="/browse/New-And-Popular">
-              <div className={styles.link}>New & Popular</div>
-            </Link>
             {userData && (
               <Link href="/account/my-list">
                 <div className={styles.link}>My List</div>

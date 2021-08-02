@@ -6,8 +6,10 @@ import { defaultMovie } from "@/helpers/index";
 import styles from "@/styles/MovieList.module.scss";
 
 const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
-  const movieNames = movies.map((movie, i) => (
-    <MovieListItem key={i} movie={movie} />
+  const movieItems = movies.map((movie, i) => (
+    <div className={styles.item}>
+      <MovieListItem key={i} movie={movie} />
+    </div>
   ));
 
   return (
@@ -15,7 +17,7 @@ const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
       <h2>{category}</h2>
       <div className={styles.sliderContainer}>
         <div className={styles.slider}>
-          <div className={styles.sliderMask}>{[...movieNames]}</div>
+          <div className={styles.sliderMask}>{[...movieItems]}</div>
         </div>
       </div>
     </div>
