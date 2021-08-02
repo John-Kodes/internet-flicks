@@ -38,8 +38,9 @@ const RecomCard = ({ mediaData }) => {
           </p>
         </div>
         <p className={styles.description}>
-          {mediaData?.overview.split(" ").length > 25 &&
-            mediaData?.overview.split(" ").slice(0, 25).join(" ") + "..."}
+          {mediaData?.overview.split(" ").length > 25
+            ? mediaData?.overview.split(" ").slice(0, 25).join(" ") + "..."
+            : mediaData?.overview}
         </p>
       </div>
       <button className={styles.readMoreBtn}>Read more</button>

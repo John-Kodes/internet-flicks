@@ -13,6 +13,7 @@ import { FaExclamationTriangle } from "react-icons/fa";
 import PlayIcon from "@/images/PlayIcon";
 import PlusIcon from "@/images/PlusIcon.svg";
 import CheckIcon from "@/images/CheckIcon.svg";
+import ArrowIcon from "@/images/ArrowIcon.svg";
 import RatingIconGhost from "@/images/RatingIconGhost.svg";
 import RatingIconFill from "@/images/RatingIconFill.svg";
 import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
@@ -35,6 +36,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   // List
   const [isInWatchList, setIsInWatchList] = useState(false);
   const [initRating, setInitRating] = useState(0);
+  const [expand, setExpand] = useState(false);
 
   // Input
   const [ratingValue, setRatingValue] = useState(1);
@@ -176,6 +178,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
       getMediaRecommendations();
     }
   }, [modalData]);
+
+  useEffect(() => setExpand(false), []);
 
   return (
     <>
@@ -368,11 +372,22 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   </div>
                   <div className={styles.recommendBox}>
                     <h2>More Like This</h2>
-                    <div className={styles.recommendList}>
-                      <RecomCard mediaData={recomArr[0]} />
-                      <RecomCard mediaData={recomArr[1]} />
-                      <RecomCard mediaData={recomArr[2]} />
-                      <RecomCard mediaData={recomArr[3]} />
+                    <div className={styles.resizeBtnContainer}>
+                      <div
+                        className={styles.resizeBtn}
+                        onClick={() => setExpand(!expand)}
+                      >
+                        <RoundBtn icon={ArrowIcon} />
+                      </div>
+                    </div>
+                    <div
+                      className={`${styles.recommendList} ${
+                        expand && styles.showList
+                      }`}
+                    >
+                      {recomArr?.map((media) => (
+                        <RecomCard mediaData={media} />
+                      ))}
                     </div>
                   </div>
                 </div>
