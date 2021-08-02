@@ -9,6 +9,7 @@ import Context, { ContextProvider } from "@/context/Context";
 import styles from "@/styles/MovieListItem.module.scss";
 // Images
 import DefaultBackDropThumbnail from "@/images/DefaultBackdropThumbnail.svg";
+import DefaultProfileThumbnail from "@/images/DefaultProfileThumbnail.svg";
 // Helpers
 import { fetchMediaDetails } from "@/helpers/index";
 
@@ -16,7 +17,8 @@ const MovieListItem = ({ movie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
   const router = useRouter();
 
-  const imageSrc = movie.backdrop_path || movie.profile_path || undefined;
+  const imageSrc =
+    movie.backdrop_path || movie.profile_path || movie.profile_path;
 
   const clickHandler = async () => {
     const mediaType = movie.original_title
@@ -47,6 +49,9 @@ const MovieListItem = ({ movie }) => {
       <div className={styles.image}>
         <Image
           src={
+            (movie.known_for_department &&
+              !imageSrc &&
+              DefaultProfileThumbnail) ||
             (imageSrc && `${TMDB_IMAGE}/w300/${imageSrc}`) ||
             DefaultBackDropThumbnail
           }
