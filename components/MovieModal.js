@@ -170,6 +170,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   };
 
   useEffect(() => {
+    // MovieModal recomList should always start minimized
+    if (modalData) setExpand(false);
     // When modal loads in and there is modal data, it will fetch media state of movie or tv show
     if (movie?.id && mediaType !== "person") getMediaState();
     // When media type is not a person, it will fetch credits for a movie
@@ -178,8 +180,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
       getMediaRecommendations();
     }
   }, [modalData]);
-
-  useEffect(() => setExpand(false), []);
 
   return (
     <>
@@ -370,26 +370,28 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     </div>
                     {castArr.length > 4 && <p>and more...</p>}
                   </div>
-                  <div className={styles.recommendBox}>
-                    <h2>More Like This</h2>
-                    <div className={styles.resizeBtnContainer}>
+                  {recomArr?.length > 0 && (
+                    <div className={styles.recommendBox}>
+                      <h2>More Like This</h2>
+                      <div className={styles.resizeBtnContainer}>
+                        <div
+                          className={styles.resizeBtn}
+                          onClick={() => setExpand(!expand)}
+                        >
+                          <RoundBtn icon={ArrowIcon} />
+                        </div>
+                      </div>
                       <div
-                        className={styles.resizeBtn}
-                        onClick={() => setExpand(!expand)}
+                        className={`${styles.recommendList} ${
+                          expand && styles.showList
+                        }`}
                       >
-                        <RoundBtn icon={ArrowIcon} />
+                        {recomArr?.map((media) => (
+                          <RecomCard mediaData={media} />
+                        ))}
                       </div>
                     </div>
-                    <div
-                      className={`${styles.recommendList} ${
-                        expand && styles.showList
-                      }`}
-                    >
-                      {recomArr?.map((media) => (
-                        <RecomCard mediaData={media} />
-                      ))}
-                    </div>
-                  </div>
+                  )}
                 </div>
               </>
             </div>
