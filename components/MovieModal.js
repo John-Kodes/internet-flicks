@@ -237,7 +237,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                           : {}
                       }
                     >
-                      {movie?.original_title || movie?.original_name}
+                      {movie?.title || movie?.name}
                     </h1>
                     <div className={styles.btnContainer}>
                       <button className={styles.trailerBtn}>

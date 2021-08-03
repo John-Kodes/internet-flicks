@@ -7,7 +7,9 @@
   width: calc((100vw - 10vw - 8px) / 6);
   height: 8vw;
 
+  overflow: hidden;
   cursor: pointer;
+  border-radius: 4px;
 
   @media only screen and (max-width: 68.75em) {
     height: 9.5vw;
@@ -25,6 +27,32 @@
     height: 24vw;
     width: calc((100vw - 10vw - 8px) / 2);
   }
+}
+
+.infoBox {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+
+  display: flex;
+  flex-direction: column-reverse;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+
+  transform: translateY(100%);
+
+  transition: all 0.5s;
+}
+
+.title {
+  padding: 0.5vw;
+  padding-top: 1vw;
+  font-size: var(--fontSize200);
+  font-weight: 600;
+  text-shadow: 0 0 0.5rem hsla(0, 0%, 0%, 0.667);
+  background-image: linear-gradient(to top, #0008, #0000);
 }
 
 .image {

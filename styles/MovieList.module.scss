@@ -15,7 +15,7 @@
 
 @mixin btnScroll {
   position: absolute;
-  top: 3vw;
+  top: 2.9vw;
 
   display: flex;
   justify-content: center;
@@ -37,13 +37,14 @@
 
   @media only screen and (max-width: 68.75em) {
     height: 9.5vw;
+    width: 6rem;
   }
   @media only screen and (max-width: 64em) {
     height: 12vw;
   }
 
   @media only screen and (max-width: 60em) {
-    top: 4.8vw;
+    top: 4.6vw;
   }
 
   @media only screen and (max-width: 49em) {

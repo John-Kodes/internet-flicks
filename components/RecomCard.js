@@ -9,9 +9,6 @@ import styles from "@/styles/RecomCard.module.scss";
 import { TMDB_IMAGE } from "../config";
 
 const RecomCard = ({ mediaData }) => {
-  // On click, change movie modal to that thing? if you cant go back then transfer to the media whole page
-  // backdrop, title/name, release data, add to watchlist, overview
-  console.log(mediaData);
   return (
     <div className={styles.container}>
       <div className={styles.image}>

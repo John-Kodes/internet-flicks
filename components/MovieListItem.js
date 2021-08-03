@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // API
@@ -15,6 +15,9 @@ import { fetchMediaDetails } from "@/helpers/index";
 
 const MovieListItem = ({ movie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
+
+  const [isHover, setIsHover] = useState(false);
+
   const router = useRouter();
 
   const imageSrc =
@@ -44,8 +47,23 @@ const MovieListItem = ({ movie }) => {
     setModalData(mov);
   };
 
+  console.log(movie);
+
   return (
-    <div className={styles.container} onClick={clickHandler}>
+    <div
+      className={styles.container}
+      onClick={clickHandler}
+      onMouseEnter={() => setIsHover(true)}
+      onMouseLeave={() => setIsHover(false)}
+    >
+      <div
+        className={styles.infoBox}
+        style={{ transform: isHover && "translateY(0)" }}
+      >
+        <div className={styles.movieName}>
+          <div className={styles.title}>{movie?.title || movie?.name}</div>
+        </div>
+      </div>
       <div className={styles.image}>
         <Image
           src={

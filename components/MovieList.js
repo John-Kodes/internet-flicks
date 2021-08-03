@@ -11,9 +11,9 @@ import styles from "@/styles/MovieList.module.scss";
 
 const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
   const [isHover, setIsHover] = useState(false);
-  const [slideNum, setSlideNum] = useState(0);
 
   const [vw, setVw] = useState(0); // >1100 = 6, <1100 = 5, <1024 = 4, <784 = 3, <500 = 2
+  const [slideNum, setSlideNum] = useState(0);
   const [sliderCap, setSliderCap] = useState(6); // slider capacity
 
   const movieItems = movies.map((movie, i) => (
@@ -64,7 +64,7 @@ const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
 
       <button
         className={styles.btnScrollLeft}
-        style={{ transform: isHover && "translateX(-100%)" }}
+        style={{ transform: (isHover || slideNum < 1) && "translateX(-100%)" }}
         onClick={() => btnScrollHandler("left")}
       >
         <div className={styles.svg}>
@@ -73,7 +73,11 @@ const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
       </button>
       <button
         className={styles.btnScrollRight}
-        style={{ transform: isHover && "translateX(100%)" }}
+        style={{
+          transform:
+            (isHover || slideNum >= movies.length - sliderCap) &&
+            "translateX(100%)",
+        }}
         onClick={() => btnScrollHandler("right")}
       >
         <div className={styles.svg}>
