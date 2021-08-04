@@ -170,8 +170,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   };
 
   useEffect(() => {
-    // MovieModal recomList should always start minimized
-    if (modalData) setExpand(false);
     // When modal loads in and there is modal data, it will fetch media state of movie or tv show
     if (movie?.id && mediaType !== "person") getMediaState();
     // When media type is not a person, it will fetch credits for a movie
@@ -179,6 +177,12 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
       getMediaCredits();
       getMediaRecommendations();
     }
+
+    return function cleanUp() {
+      setInitRating(0);
+      setIsInWatchList(false);
+      setExpand(false);
+    };
   }, [modalData]);
 
   return (

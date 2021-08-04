@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 // Context
 import Context from "@/context/Context";
 // Components
@@ -21,8 +20,6 @@ const MyListPage = ({ watchlist, totalResults }) => {
   const [pageNum, setPageNum] = useState(3);
   const [watchlistArr, setWatchlistArr] = useState(watchlist);
   const [hasMore, setHasMore] = useState(true);
-
-  const router = useRouter();
 
   const getMoreMedia = async () => {
     const moviesRes = await fetch(

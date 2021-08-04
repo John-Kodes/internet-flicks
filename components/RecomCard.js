@@ -62,19 +62,20 @@ const RecomCard = ({ mediaData }) => {
   };
 
   useEffect(() => {
-    // When media type is not a person, it will fetch credits for a movie
-    if (modalData && mediaType !== "person") {
-      getMediaState();
-    }
-  }, [modalData]);
+    // fetch media state
+    if (mediaData?.id && mediaType !== "person") getMediaState();
+  }, [mediaData]);
 
   return (
-    <div className={styles.container} onClick={() => console.log(mediaData)}>
+    <div
+      className={styles.container}
+      onClick={() => console.log(isInWatchList)}
+    >
       <div className={styles.image}>
         <Image
           src={
             (mediaData?.backdrop_path &&
-              `${TMDB_IMAGE}/original${mediaData?.backdrop_path}`) ||
+              `${TMDB_IMAGE}/w300${mediaData?.backdrop_path}`) ||
             DefaultBackdropThumbnail
           }
           layout="fill"
