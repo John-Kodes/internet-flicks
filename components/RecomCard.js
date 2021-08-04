@@ -1,6 +1,8 @@
 import { useContext, useState, useEffect } from "react";
 import Image from "next/dist/client/image";
 import { TMDB_IMAGE, NEXT_URL, TMDB_API } from "@/config/index";
+// Helpers
+import { fetchMediaDetails } from "@/helpers/index";
 // Components
 import RoundBtn from "@/components/RoundBtn";
 // Context
@@ -11,11 +13,14 @@ import PlusIcon from "@/images/PlusIcon.svg";
 import CheckIcon from "@/images/CheckIcon.svg";
 // Styles
 import styles from "@/styles/RecomCard.module.scss";
+import { useRouter } from "next/router";
 
 const RecomCard = ({ mediaData }) => {
-  const { userData, modalData } = useContext(Context);
+  const { userData, setModalData } = useContext(Context);
 
   const [isInWatchList, setIsInWatchList] = useState(false);
+
+  const router = useRouter();
 
   const mediaType =
     (mediaData?.original_title && "movie") ||
@@ -61,6 +66,27 @@ const RecomCard = ({ mediaData }) => {
     }
   };
 
+  const readMoreHandler = async () => {
+    document?.getElementById("modal").scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, id: mediaData.id, media: mediaType },
+      },
+      undefined,
+      {
+        shallow: true,
+      }
+    );
+    const mov = await fetchMediaDetails(mediaData.id, mediaType);
+
+    setModalData(mov);
+  };
+
   useEffect(() => {
     // fetch media state
     if (mediaData?.id && mediaType !== "person") getMediaState();
@@ -100,7 +126,9 @@ const RecomCard = ({ mediaData }) => {
             : mediaData?.overview}
         </p>
       </div>
-      <button className={styles.readMoreBtn}>Read more</button>
+      <button className={styles.readMoreBtn} onClick={readMoreHandler}>
+        Read more
+      </button>
     </div>
   );
 };

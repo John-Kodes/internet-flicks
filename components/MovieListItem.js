@@ -27,7 +27,6 @@ const MovieListItem = ({ movie }) => {
     movie.profile_path;
 
   const clickHandler = async () => {
-    console.log(movie);
     const mediaType = movie.original_title
       ? "movie"
       : movie.original_name

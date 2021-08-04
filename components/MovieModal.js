@@ -214,6 +214,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               ((e) => leavePageHandler(e, styles.overlay))) ||
             overlayHandler
           }
+          id="modal"
         >
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
