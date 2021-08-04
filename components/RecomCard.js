@@ -67,10 +67,7 @@ const RecomCard = ({ mediaData }) => {
   }, [mediaData]);
 
   return (
-    <div
-      className={styles.container}
-      onClick={() => console.log(isInWatchList)}
-    >
+    <div className={styles.container}>
       <div className={styles.image}>
         <Image
           src={

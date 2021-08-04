@@ -56,9 +56,20 @@ const MyListPage = ({ watchlist, totalResults }) => {
         // for some reason, it's automatically auto
         style={{ overflow: "hidden" }}
       >
-        {watchlistArr.map((movie, i) => (
-          <MovieListItem movie={movie} key={i} />
-        ))}
+        {watchlistArr.length > 0 ? (
+          watchlistArr.map((movie, i) => (
+            <MovieListItem movie={movie} key={i} />
+          ))
+        ) : (
+          <div className={styles.emptyListContainer}>
+            <div className={styles.message}>
+              You don't have any movies or TV shows saved in your watchlist!{" "}
+              <br />
+              <br />
+              <span>¯\_(ツ)_/¯</span>
+            </div>
+          </div>
+        )}
       </InfiniteScroll>
     </Layout>
   );

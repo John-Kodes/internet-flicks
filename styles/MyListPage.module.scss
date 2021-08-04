@@ -1,4 +1,5 @@
 .container {
+  position: relative;
   display: grid;
   grid-auto-rows: 8vw;
   grid-template-columns: repeat(6, 1fr);
@@ -28,10 +29,6 @@
   }
 }
 
-.listContainer {
-  background-color: black;
-}
-
 .title {
   font-size: var(--fontSize300);
   font-weight: 400;
@@ -47,4 +44,33 @@
   height: 100%;
   width: 100%;
   background-color: orange;
+}
+
+.emptyListContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.message {
+  font-size: var(--fontSize300);
+  text-align: center;
+  width: 30ch;
+
+  background-color: var(--pageBg200);
+  border-radius: 7px;
+  padding: 2vw 2vw;
+  box-shadow: 0 1vw 2vw hsla(0, 0%, 0%, 0.15);
+  margin-top: 10vw;
+
+  span {
+    font-size: var(--fontSize400);
+    color: var(--primaryColor100);
+  }
 }
