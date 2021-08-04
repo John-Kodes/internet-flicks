@@ -12,9 +12,6 @@ export default async (req, res) => {
     );
     const data = await tmdbRes.json();
 
-    console.log(data);
-    console.log(sessionId);
-
     if (data.id) {
       res.status(200).json(data);
     } else {

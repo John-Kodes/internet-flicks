@@ -19,7 +19,6 @@ export default async (req, res) => {
       }
     );
     const data = await tmdbRes.json();
-    console.log(data);
 
     if (data.success) {
       res.status(200).json({ message: data.status_message, success: true });

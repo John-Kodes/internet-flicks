@@ -386,8 +386,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                           expand && styles.showList
                         }`}
                       >
-                        {recomArr?.map((media) => (
-                          <RecomCard mediaData={media} />
+                        {recomArr?.map((media, i) => (
+                          <RecomCard mediaData={media} key={i} />
                         ))}
                       </div>
                     </div>

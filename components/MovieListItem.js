@@ -47,8 +47,6 @@ const MovieListItem = ({ movie }) => {
     setModalData(mov);
   };
 
-  console.log(movie);
-
   return (
     <div
       className={styles.container}
