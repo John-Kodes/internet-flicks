@@ -285,9 +285,60 @@
 }
 
 .trailerBtn {
-  padding: 0.5vw 1.4vw;
-  font-size: 1.2vw;
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: var(--fontSize200);
+  color: #000;
+
   background-color: #fff;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+  padding: 0.5vw 1.4vw;
+  cursor: pointer;
+  border-radius: 4px;
+
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    filter: brightness(80%);
+  }
+}
+
+.noTrailer {
+  display: flex;
+  align-items: center;
+  gap: 0.6vw;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: var(--fontSize200);
+  color: #fff;
+
+  background-color: hsla(0, 0%, 0%, 0.4);
+  border: 1px solid #fff;
+  box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.1);
+  padding: 0.5vw 1.4vw;
+  cursor: pointer;
+  border-radius: 4px;
+
+  transition: all 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    filter: brightness(80%);
+  }
 }
 
 .allDetailsBox {
@@ -362,7 +413,7 @@
     left: 50%;
     transform: translateX(-50%);
 
-    height: 1px;
+    height: 2px;
     width: 50%;
     background-color: #333;
   }

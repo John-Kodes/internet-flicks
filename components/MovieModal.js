@@ -46,12 +46,27 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   const [castArr, setCastArr] = useState([]);
   const [recomArr, setRecomArr] = useState([]);
 
+  // youtube trailer key
+  const [ytKey, setYtKey] = useState("");
+
   const router = useRouter();
 
   const mediaType =
     (movie?.original_title && "movie") ||
     (movie?.original_name && "tv") ||
     "person";
+
+  const getTrailerLink = async () => {
+    const res = await fetch(
+      `${TMDB_API}/${mediaType}/${movie.id}/videos${API_KEY}`
+    );
+
+    const data = await res.json();
+
+    const key = data.results.filter((vid) => vid.type === "Trailer")[0]?.key;
+
+    setYtKey(key);
+  };
 
   const getMediaState = async (ratingValue) => {
     if (!userData) return;
@@ -171,7 +186,10 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   useEffect(() => {
     // When modal loads in and there is modal data, it will fetch media state of movie or tv show
-    if (movie?.id && mediaType !== "person") getMediaState();
+    if (movie?.id && mediaType !== "person") {
+      getMediaState();
+      getTrailerLink();
+    }
     // When media type is not a person, it will fetch credits for a movie
     if (modalData && mediaType !== "person") {
       getMediaCredits();
@@ -245,10 +263,18 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       {movie?.title || movie?.name}
                     </h1>
                     <div className={styles.btnContainer}>
-                      <button className={styles.trailerBtn}>
-                        <PlayIcon />
-                        Play Trailer
-                      </button>
+                      {ytKey ? (
+                        <a
+                          className={styles.trailerBtn}
+                          target="_blank"
+                          href={`https://www.youtube.com/watch?v=${ytKey}`}
+                        >
+                          <PlayIcon />
+                          Play Trailer
+                        </a>
+                      ) : (
+                        <div className={styles.noTrailer}>No trailer</div>
+                      )}
                       {/* clicking on the plus icon will add to list */}
                       {userData && (
                         <>

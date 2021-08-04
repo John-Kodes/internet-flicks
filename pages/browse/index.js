@@ -85,7 +85,6 @@ export const getServerSideProps = async ({ req }) => {
       topRatedMovies: topRatedMovies.results,
       nowPlayingMovies: nowPlayingMovies.results,
       featuredMovie,
-      YtKey,
       genres: genres.genres,
     },
   };
