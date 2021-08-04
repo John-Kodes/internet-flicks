@@ -21,9 +21,13 @@ const MovieListItem = ({ movie }) => {
   const router = useRouter();
 
   const imageSrc =
-    movie.backdrop_path || movie.profile_path || movie.profile_path;
+    movie.backdrop_path ||
+    movie.poster_path ||
+    movie.profile_path ||
+    movie.profile_path;
 
   const clickHandler = async () => {
+    console.log(movie);
     const mediaType = movie.original_title
       ? "movie"
       : movie.original_name
@@ -71,7 +75,9 @@ const MovieListItem = ({ movie }) => {
             (imageSrc && `${TMDB_IMAGE}/w300/${imageSrc}`) ||
             DefaultBackDropThumbnail
           }
-          objectFit={movie.profile_path && "contain"}
+          objectFit={
+            (movie.profile_path && "contain") || (movie.poster_path && "cover")
+          }
           layout="fill"
           alt={movie.original_title}
           className={!imageSrc ? styles.imgFix : undefined}

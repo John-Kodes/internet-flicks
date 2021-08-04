@@ -2,7 +2,7 @@ import { useContext } from "react";
 // Components
 import Context from "@/context/Context";
 // API
-import { TMDB_IMAGE } from "@/config/index";
+import { API_KEY, TMDB_API, TMDB_IMAGE } from "@/config/index";
 // Helpers
 import { defaultMovie } from "@/helpers/index";
 // Styles
@@ -15,6 +15,17 @@ import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
 
 const Header = ({ movie = defaultMovie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
+
+  console.log(movie);
+
+  const ytKey = movie.videos.results.filter(
+    (vid) => vid.type === "Trailer" && vid.official
+  )[0].key;
+
+  const mediaType =
+    (movie?.original_title && "movie") ||
+    (movie?.original_name && "tv") ||
+    "person";
 
   const showInfoHandler = () => {
     setModalOpen(true);
@@ -39,7 +50,7 @@ const Header = ({ movie = defaultMovie }) => {
         backgroundSize: "cover",
       }}
     >
-      <h2 className={styles.movieTitle}>{movie.original_title}</h2>
+      <h2 className={styles.movieTitle}>{movie.title}</h2>
       <div className={styles.descriptionContainer}>
         <p
           className={`${styles.description} ${
@@ -50,10 +61,14 @@ const Header = ({ movie = defaultMovie }) => {
         </p>
       </div>
       <div className={styles.btnContainer}>
-        <button className={styles.btnFill}>
+        <a
+          target="_blank"
+          href={`https://www.youtube.com/watch?v=${ytKey}`}
+          className={styles.btnFill}
+        >
           <PlayIcon />
           Play Trailer
-        </button>
+        </a>
         <button className={styles.btnGhost} onClick={showInfoHandler}>
           <InfoIcon />
           More Info
