@@ -16,14 +16,9 @@ import DefaultBackdropMain from "@/images/DefaultBackdropMain.svg";
 const Header = ({ movie = defaultMovie }) => {
   const { setModalOpen, setModalData } = useContext(Context);
 
-  const ytKey = movie.videos.results.filter(
+  const ytKey = movie?.videos?.results.filter(
     (vid) => vid.type === "Trailer" && vid.official
   )[0].key;
-
-  const mediaType =
-    (movie?.original_title && "movie") ||
-    (movie?.original_name && "tv") ||
-    "person";
 
   const showInfoHandler = () => {
     setModalOpen(true);

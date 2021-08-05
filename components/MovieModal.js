@@ -239,194 +239,196 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         >
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
-            <div className={`${styles.modal} ${isLoaded && styles.visible}`}>
+            <div
+              className={`${styles.modal} ${isLoaded && styles.visible}`}
+              onClick={() => console.log(movie)}
+            >
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
-              <>
-                <div className={styles.hero}>
-                  <div className={styles.heroImage}>
-                    <Image
-                      src={`${TMDB_IMAGE}/w1280/${movie?.backdrop_path}`}
-                      layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                  <div className={styles.heroContent}>
-                    <h1
-                      className={styles.title}
-                      style={
-                        movie?.original_title?.length > 33 ||
-                        movie?.original_name?.length > 33
-                          ? { fontSize: "3rem", maxWidth: "30ch" }
-                          : {}
-                      }
-                    >
-                      {movie?.title || movie?.name}
-                    </h1>
-                    <div className={styles.btnContainer}>
-                      {ytKey ? (
-                        <a
-                          className={styles.trailerBtn}
-                          target="_blank"
-                          href={`https://www.youtube.com/watch?v=${ytKey}`}
+              <div className={styles.hero}>
+                <div className={styles.heroImage}>
+                  <Image
+                    src={`${TMDB_IMAGE}/w1280/${
+                      movie?.backdrop_path || movie?.poster_path
+                    }`}
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                  />
+                </div>
+                <div className={styles.heroContent}>
+                  <h1
+                    className={styles.title}
+                    style={
+                      movie?.original_title?.length > 33 ||
+                      movie?.original_name?.length > 33
+                        ? { fontSize: "3rem", maxWidth: "30ch" }
+                        : {}
+                    }
+                  >
+                    {movie?.title || movie?.name}
+                  </h1>
+                  <div className={styles.btnContainer}>
+                    {ytKey ? (
+                      <a
+                        className={styles.trailerBtn}
+                        target="_blank"
+                        href={`https://www.youtube.com/watch?v=${ytKey}`}
+                      >
+                        <PlayIcon />
+                        Play Trailer
+                      </a>
+                    ) : (
+                      <div className={styles.noTrailer}>No trailer</div>
+                    )}
+                    {/* clicking on the plus icon will add to list */}
+                    {userData && (
+                      <>
+                        <div
+                          className={
+                            isInWatchList
+                              ? styles.removeFromListBtn
+                              : styles.addToListBtn
+                          }
+                          onClick={watchListHandler}
                         >
-                          <PlayIcon />
-                          Play Trailer
-                        </a>
-                      ) : (
-                        <div className={styles.noTrailer}>No trailer</div>
-                      )}
-                      {/* clicking on the plus icon will add to list */}
-                      {userData && (
-                        <>
-                          <div
-                            className={
-                              isInWatchList
-                                ? styles.removeFromListBtn
-                                : styles.addToListBtn
-                            }
-                            onClick={watchListHandler}
-                          >
-                            <RoundBtn
-                              icon={isInWatchList ? CheckIcon : PlusIcon}
-                            />
-                          </div>
+                          <RoundBtn
+                            icon={isInWatchList ? CheckIcon : PlusIcon}
+                          />
+                        </div>
 
-                          <div
-                            className={styles.ratingBtn}
-                            onClick={ratingSelectedHandler}
-                          >
-                            {initRating > 0 && !inputFocus && (
-                              <div className={styles.userRating}>
-                                {initRating}
-                              </div>
-                            )}
-                            <RoundBtn
-                              icon={
-                                initRating ? RatingIconFill : RatingIconGhost
-                              }
-                            />
-                          </div>
+                        <div
+                          className={styles.ratingBtn}
+                          onClick={ratingSelectedHandler}
+                        >
+                          {initRating > 0 && !inputFocus && (
+                            <div className={styles.userRating}>
+                              {initRating}
+                            </div>
+                          )}
+                          <RoundBtn
+                            icon={initRating ? RatingIconFill : RatingIconGhost}
+                          />
+                        </div>
 
-                          <form
-                            className={styles.form}
-                            onSubmit={updateRating}
-                            style={{
-                              opacity: !inputFocus ? 0 : 1,
-                              maxWidth: !inputFocus ? "0px" : "100vw",
-                              maxHeight: !inputFocus ? "0px" : "100vw",
-                              transform: !inputFocus
-                                ? "translateX(-2vw)"
-                                : "translateX(0)",
+                        <form
+                          className={styles.form}
+                          onSubmit={updateRating}
+                          style={{
+                            opacity: !inputFocus ? 0 : 1,
+                            maxWidth: !inputFocus ? "0px" : "100vw",
+                            maxHeight: !inputFocus ? "0px" : "100vw",
+                            transform: !inputFocus
+                              ? "translateX(-2vw)"
+                              : "translateX(0)",
+                          }}
+                        >
+                          <label
+                            htmlFor="rating"
+                            className={styles.ratingLabel}
+                          >
+                            {ratingValue % 1 === 0 && ratingValue < 10
+                              ? ratingValue + ".0"
+                              : ratingValue}
+                          </label>
+                          <input
+                            type="range"
+                            name="rating"
+                            id="rating"
+                            min="0.5"
+                            max="10"
+                            step="0.5"
+                            onChange={(e) => setRatingValue(e.target.value)}
+                            onFocus={() => setInputFocus(true)}
+                            onBlur={() => setInputFocus(false)}
+                            className={styles.ratingInput}
+                          />
+                          <button
+                            className={styles.ratingSubmit}
+                            onClick={(e) => {
+                              updateRating(e);
                             }}
                           >
-                            <label
-                              htmlFor="rating"
-                              className={styles.ratingLabel}
-                            >
-                              {ratingValue % 1 === 0 && ratingValue < 10
-                                ? ratingValue + ".0"
-                                : ratingValue}
-                            </label>
-                            <input
-                              type="range"
-                              name="rating"
-                              id="rating"
-                              min="0.5"
-                              max="10"
-                              step="0.5"
-                              onChange={(e) => setRatingValue(e.target.value)}
-                              onFocus={() => setInputFocus(true)}
-                              onBlur={() => setInputFocus(false)}
-                              className={styles.ratingInput}
-                            />
-                            <button
-                              className={styles.ratingSubmit}
-                              onClick={(e) => {
-                                updateRating(e);
-                              }}
-                            >
-                              OK
-                            </button>
-                          </form>
-                        </>
-                      )}
-                    </div>
+                            OK
+                          </button>
+                        </form>
+                      </>
+                    )}
                   </div>
                 </div>
+              </div>
 
-                <div className={styles.allDetailsBox}>
-                  <div className={styles.detailsBox}>
-                    <div className={styles.detailsMain}>
-                      <div className={styles.metaData}>
-                        <div className={styles.audienceScore}>
-                          {movie?.vote_average} / 10
-                        </div>
-                        <div className={styles.year}>
-                          {movie?.release_date &&
-                            movie?.release_date.slice(0, 4)}
-                        </div>
+              <div className={styles.allDetailsBox}>
+                <div className={styles.detailsBox}>
+                  <div className={styles.detailsMain}>
+                    <div className={styles.metaData}>
+                      <div className={styles.audienceScore}>
+                        {movie?.vote_average} / 10
                       </div>
-                      <p className={styles.description}>
-                        {movie?.overview || "Description is unavailable"}
-                      </p>
+                      <div className={styles.year}>
+                        {movie?.release_date && movie?.release_date.slice(0, 4)}
+                      </div>
                     </div>
-                    <div className={styles.detailsSecondary}>
-                      <div className={styles.genres}>
-                        <span>
-                          Genre
-                          {movie?.genres && movie?.genres.length > 1 ? "s" : ""}
-                          :{" "}
-                        </span>
-                        {ArrStr(movie?.genres) || "Unavailable"}
-                      </div>
-                      <div className={styles.studios}>
-                        <span>Produced by: </span>
-                        {ArrStr(movie?.production_companies) || "Unavailable"}
-                      </div>
+                    <p className={styles.description}>
+                      {movie?.overview || "Description is unavailable"}
+                    </p>
+                  </div>
+                  <div className={styles.detailsSecondary}>
+                    <div className={styles.genres}>
+                      <span>
+                        Genre
+                        {movie?.genres && movie?.genres.length > 1
+                          ? "s"
+                          : ""}:{" "}
+                      </span>
+                      {ArrStr(movie?.genres) || "Unavailable"}
+                    </div>
+                    <div className={styles.studios}>
+                      <span>Produced by: </span>
+                      {ArrStr(movie?.production_companies) || "Unavailable"}
                     </div>
                   </div>
-                  <div className={styles.castBox}>
-                    <h2>MAIN CAST</h2>
-                    <div className={styles.castList}>
-                      {castArr.length !== 0 ? (
-                        castArr.map((actor, i) => {
-                          if (i > 3) return;
-                          return <CastProfile actor={actor} key={actor.id} />;
-                        })
-                      ) : (
-                        <p className={styles.noCast}>
-                          Cast members were not included.
-                        </p>
-                      )}
-                    </div>
-                    {castArr.length > 4 && <p>and more...</p>}
-                  </div>
-                  {recomArr?.length > 0 && (
-                    <div className={styles.recommendBox}>
-                      <h2>More Like This</h2>
-                      <div className={styles.resizeBtnContainer}>
-                        <div
-                          className={`${styles.resizeBtn} ${
-                            expand && styles.expand
-                          }`}
-                          onClick={() => setExpand(!expand)}
-                        >
-                          <RoundBtn icon={ArrowIcon} />
-                        </div>
-                      </div>
-                      <div
-                        className={`${styles.recommendList} ${
-                          expand && styles.showList
-                        }`}
-                      >
-                        {recomArr?.map((media, i) => (
-                          <RecomCard mediaData={media} key={i} />
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
-              </>
+                <div className={styles.castBox}>
+                  <h2>MAIN CAST</h2>
+                  <div className={styles.castList}>
+                    {castArr.length !== 0 ? (
+                      castArr.map((actor, i) => {
+                        if (i > 3) return;
+                        return <CastProfile actor={actor} key={actor.id} />;
+                      })
+                    ) : (
+                      <p className={styles.noCast}>
+                        Cast members were not included.
+                      </p>
+                    )}
+                  </div>
+                  {castArr.length > 4 && <p>and more...</p>}
+                </div>
+                {recomArr?.length > 0 && (
+                  <div className={styles.recommendBox}>
+                    <h2>More Like This</h2>
+                    <div className={styles.resizeBtnContainer}>
+                      <div
+                        className={`${styles.resizeBtn} ${
+                          expand && styles.expand
+                        }`}
+                        onClick={() => setExpand(!expand)}
+                      >
+                        <RoundBtn icon={ArrowIcon} />
+                      </div>
+                    </div>
+                    <div
+                      className={`${styles.recommendList} ${
+                        expand && styles.showList
+                      }`}
+                    >
+                      {recomArr?.map((media, i) => (
+                        <RecomCard mediaData={media} key={i} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             // no info: name, known_department, popularity... and that's p much it ¯\_(ツ)_/¯

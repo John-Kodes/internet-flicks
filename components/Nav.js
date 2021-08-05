@@ -13,6 +13,7 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 import GuestPfp from "@/images/GuestPfp.svg";
 import UserPfp from "@/images/UserPfp.svg";
+import { TMDB_IMAGE } from "../config";
 
 const Nav = ({ inView = true, category }) => {
   const { userData, logout } = useContext(Context);
@@ -24,10 +25,13 @@ const Nav = ({ inView = true, category }) => {
 
   const router = useRouter();
 
+  const avatar = userData?.avatar.tmdb?.avatar_path;
+
   const searchHandler = async (e) => {
     e.preventDefault();
     await router.push(`/browse/search?q=${searchValue}`);
-    router.reload();
+
+    if (router.pathname === "/browse/search") router.reload();
   };
 
   useEffect(() => {
@@ -124,7 +128,14 @@ const Nav = ({ inView = true, category }) => {
           </div>
           <div className={styles.accBtn}>
             <div className={styles.pfp}>
-              <Image src={userData ? UserPfp : GuestPfp} layout="fill" />
+              <Image
+                src={
+                  userData
+                    ? `${TMDB_IMAGE}/original/${avatar}` || UserPfp
+                    : GuestPfp
+                }
+                layout="fill"
+              />
             </div>
             <ArrowTiny className={styles.pfpArrow} />
             <div className={styles.accBox}>
