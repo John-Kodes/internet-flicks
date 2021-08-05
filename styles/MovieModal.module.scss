@@ -39,6 +39,10 @@
   padding-bottom: 56.25%;
   background-size: cover;
 
+  opacity: 1;
+
+  transition: all 0.5s;
+
   &::before {
     content: "";
     position: absolute;
@@ -55,10 +59,34 @@
   }
 }
 
+.heroImage {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 0;
+    z-index: 1;
+
+    height: 100%;
+    width: 110%;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(20, 20, 20, 0) 85%,
+      rgba(20, 20, 20, 1)
+    );
+  }
+}
+
 .heroContent {
   position: absolute;
   height: 100%;
   width: 100%;
+  z-index: 5;
 
   display: flex;
   flex-direction: column;
@@ -345,7 +373,7 @@
   display: flex;
   flex-direction: column;
   gap: 8rem;
-  padding: 0 4rem;
+  padding: 2rem 4rem;
 }
 
 .detailsBox {
@@ -499,6 +527,16 @@
 }
 
 .resizeBtn {
+  img {
+    transform: rotate(0deg);
+    transition: transform 0.2s;
+  }
+}
+
+.expand {
+  img {
+    transform: rotate(180deg);
+  }
 }
 
 .noCast {

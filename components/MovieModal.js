@@ -49,6 +49,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
   // youtube trailer key
   const [ytKey, setYtKey] = useState("");
 
+  // Image load in animation
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const router = useRouter();
 
   const mediaType =
@@ -236,20 +239,17 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         >
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
-            <div className={styles.modal}>
+            <div className={`${styles.modal} ${isLoaded && styles.visible}`}>
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <>
-                <div
-                  className={styles.hero}
-                  // sets background image to movieImage. If unavailable, default image is used
-                  style={{
-                    backgroundImage:
-                      (movie?.backdrop_path &&
-                        `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), 
-                url(${TMDB_IMAGE}/original/${movie?.backdrop_path})`) ||
-                      `url(${DefaultBackdropMain.src})`,
-                  }}
-                >
+                <div className={styles.hero}>
+                  <div className={styles.heroImage}>
+                    <Image
+                      src={`${TMDB_IMAGE}/w1280/${movie?.backdrop_path}`}
+                      layout="fill"
+                      objectFit="contain"
+                    />
+                  </div>
                   <div className={styles.heroContent}>
                     <h1
                       className={styles.title}
@@ -406,7 +406,9 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       <h2>More Like This</h2>
                       <div className={styles.resizeBtnContainer}>
                         <div
-                          className={styles.resizeBtn}
+                          className={`${styles.resizeBtn} ${
+                            expand && styles.expand
+                          }`}
                           onClick={() => setExpand(!expand)}
                         >
                           <RoundBtn icon={ArrowIcon} />
