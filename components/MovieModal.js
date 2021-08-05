@@ -4,6 +4,7 @@ import Image from "next/dist/client/image";
 
 import { TMDB_IMAGE, NEXT_URL, TMDB_API, API_KEY } from "@/config/index";
 
+import BackBtn from "@/components/BackBtn";
 import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
 import CastProfile from "@/components/CastProfile";
@@ -240,6 +241,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
             <div className={`${styles.modal} ${isLoaded && styles.visible}`}>
+              <BackBtn />
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <div className={styles.hero}>
                 <div className={styles.heroImage}>
