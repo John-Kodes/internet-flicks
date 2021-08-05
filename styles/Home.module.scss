@@ -58,8 +58,8 @@
     left: -4vw;
     transform: translate(-50%, -50%);
 
-    height: 10rem;
-    width: 10rem;
+    height: 1vw;
+    width: 1vw;
     border-radius: 100%;
     z-index: -1;
 
@@ -71,8 +71,8 @@
     transform: translateY(-1vw);
 
     &::before {
-      height: 55vw;
-      width: 55vw;
+      height: 90vw;
+      width: 90vw;
     }
   }
 }

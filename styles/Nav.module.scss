@@ -279,7 +279,8 @@
     align-items: flex-start;
     gap: 1rem;
 
-    button {
+    button,
+    a {
       position: relative;
 
       font-weight: 400;

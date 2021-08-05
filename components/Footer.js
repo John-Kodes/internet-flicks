@@ -1,15 +1,12 @@
 import styles from "@/styles/Footer.module.scss";
+import { PORTFOLIO_URL } from "@/config/index";
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       <p>
         Visit my portfolio{" "}
-        <a
-          href="https://johndaniel.netlify.app/"
-          target="_blank"
-          className={styles.link}
-        >
+        <a href={PORTFOLIO_URL} target="_blank" className={styles.link}>
           website
         </a>
       </p>

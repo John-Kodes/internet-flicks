@@ -239,10 +239,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         >
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
-            <div
-              className={`${styles.modal} ${isLoaded && styles.visible}`}
-              onClick={() => console.log(movie)}
-            >
+            <div className={`${styles.modal} ${isLoaded && styles.visible}`}>
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <div className={styles.hero}>
                 <div className={styles.heroImage}>

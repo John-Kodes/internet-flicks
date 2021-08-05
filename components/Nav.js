@@ -13,7 +13,7 @@ import ArrowTiny from "@/images/ArrowTiny.js";
 import SearchIcon from "@/images/SearchIcon.js";
 import GuestPfp from "@/images/GuestPfp.svg";
 import UserPfp from "@/images/UserPfp.svg";
-import { TMDB_IMAGE } from "../config";
+import { PORTFOLIO_URL, TMDB_IMAGE } from "@/config/index";
 
 const Nav = ({ inView = true, category }) => {
   const { userData, logout } = useContext(Context);
@@ -143,7 +143,9 @@ const Nav = ({ inView = true, category }) => {
                 <ArrowTiny />
               </div>
               <div className={styles.btnsContainer}>
-                <button>Back to portfolio</button>
+                <a href={PORTFOLIO_URL} target="_blank">
+                  Checkout my portfolio
+                </a>
                 {userData ? (
                   <>
                     <button onClick={logout}>Sign out</button>
