@@ -31,6 +31,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     setModalOpen,
     setModalData,
     modalData: movie,
+    setModalHistory,
+    modalHistory,
     userData,
   } = useContext(Context);
 
@@ -49,9 +51,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   // youtube trailer key
   const [ytKey, setYtKey] = useState("");
-
-  // Image load in animation
-  const [isLoaded, setIsLoaded] = useState(false);
 
   const router = useRouter();
 
@@ -158,6 +157,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     );
     setModalOpen(false);
     setModalData({});
+    setModalHistory([]);
   };
 
   const overlayHandler = (e) => {
@@ -240,8 +240,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
         >
           {/* shows Movie or person info  */}
           {mediaType !== "person" ? (
-            <div className={`${styles.modal} ${isLoaded && styles.visible}`}>
-              <BackBtn />
+            <div className={styles.modal}>
+              {modalHistory.length > 1 && <BackBtn />}
               <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
               <div className={styles.hero}>
                 <div className={styles.heroImage}>
@@ -430,8 +430,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               </div>
             </div>
           ) : (
-            // no info: name, known_department, popularity... and that's p much it ¯\_(ツ)_/¯
             <div className={styles.personModal}>
+              {modalHistory.length > 1 && <BackBtn />}
               <div className={styles.personContainer}>
                 <div className={styles.personPfp}>
                   <Image

@@ -98,7 +98,6 @@ const LoginPage = () => {
                 USERNAME
               </label>
               <input
-                value="jdanielsemine"
                 type="text"
                 name="username"
                 id="username"
@@ -113,7 +112,6 @@ const LoginPage = () => {
                 PASSWORD
               </label>
               <input
-                value="K@v L1nn"
                 type="password"
                 name="password"
                 id="password"

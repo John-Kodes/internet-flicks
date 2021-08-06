@@ -14,7 +14,12 @@ import DefaultProfileThumbnail from "@/images/DefaultProfileThumbnail.svg";
 import { fetchMediaDetails } from "@/helpers/index";
 
 const MovieListItem = ({ movie }) => {
-  const { setModalOpen, setModalData } = useContext(Context);
+  const {
+    setModalOpen,
+    setModalData,
+    setModalHistory,
+    modalHistory,
+  } = useContext(Context);
 
   const [isHover, setIsHover] = useState(false);
 
@@ -48,6 +53,7 @@ const MovieListItem = ({ movie }) => {
     const mov = await fetchMediaDetails(movie.id, mediaType);
 
     setModalData(mov);
+    setModalHistory([mov, ...modalHistory]);
   };
 
   return (

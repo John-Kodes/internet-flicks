@@ -11,6 +11,8 @@ export const ContextProvider = ({ children }) => {
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState({});
+  // Modal history
+  const [modalHistory, setModalHistory] = useState([]);
   // Authentication state
   const [userData, setUserData] = useState(null);
 
@@ -49,6 +51,8 @@ export const ContextProvider = ({ children }) => {
     checkUserLoggedIn();
   }, []);
 
+  useEffect(() => console.log(modalHistory), [modalHistory]);
+
   return (
     <Context.Provider
       value={{
@@ -57,6 +61,8 @@ export const ContextProvider = ({ children }) => {
         setModalOpen,
         modalData,
         setModalData,
+        modalHistory,
+        setModalHistory,
         // Login related
         createGuestSessionId,
         userData,

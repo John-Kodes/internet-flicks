@@ -16,7 +16,9 @@ import styles from "@/styles/RecomCard.module.scss";
 import { useRouter } from "next/router";
 
 const RecomCard = ({ mediaData }) => {
-  const { userData, setModalData } = useContext(Context);
+  const { userData, setModalData, setModalHistory, modalHistory } = useContext(
+    Context
+  );
 
   const [isInWatchList, setIsInWatchList] = useState(false);
 
@@ -85,6 +87,7 @@ const RecomCard = ({ mediaData }) => {
     const mov = await fetchMediaDetails(mediaData.id, mediaType);
 
     setModalData(mov);
+    setModalHistory([mov, ...modalHistory]);
   };
 
   useEffect(() => {

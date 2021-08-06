@@ -13,7 +13,7 @@ import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
 import styles from "@/styles/CastProfile.module.scss";
 
 const CastProfile = ({ actor }) => {
-  const { setModalData } = useContext(Context);
+  const { setModalData, setModalHistory, modalHistory } = useContext(Context);
 
   const router = useRouter();
 
@@ -33,6 +33,7 @@ const CastProfile = ({ actor }) => {
     const mov = await fetchMediaDetails(actor.id, mediaType);
 
     setModalData(mov);
+    setModalHistory([mov, ...modalHistory]);
   };
 
   return (
