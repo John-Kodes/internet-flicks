@@ -246,9 +246,13 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               <div className={styles.hero}>
                 <div className={styles.heroImage}>
                   <Image
-                    src={`${TMDB_IMAGE}/w1280/${
+                    src={
                       movie?.backdrop_path || movie?.poster_path
-                    }`}
+                        ? `${TMDB_IMAGE}/w1280/${
+                            movie?.backdrop_path || movie?.poster_path
+                          }`
+                        : DefaultBackdropMain
+                    }
                     layout="fill"
                     objectFit="cover"
                     priority

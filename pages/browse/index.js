@@ -18,7 +18,6 @@ export const BrowsePage = ({
   upcomingMovies,
   topRatedMovies,
   nowPlayingMovies,
-  genres,
 }) => {
   const router = useRouter();
   const { setModalData, setModalOpen } = useContext(Context);
@@ -73,11 +72,6 @@ export const getServerSideProps = async ({ req }) => {
   );
   const featuredMovie = await featuredRes.json();
 
-  const genresRes = await fetch(
-    `${TMDB_API}/genre/movie/list${API_KEY}&language=en-US`
-  );
-  const genres = await genresRes.json();
-
   return {
     props: {
       popularMovies: popularMovies.results,
@@ -85,7 +79,6 @@ export const getServerSideProps = async ({ req }) => {
       topRatedMovies: topRatedMovies.results,
       nowPlayingMovies: nowPlayingMovies.results,
       featuredMovie,
-      genres: genres.genres,
     },
   };
 };
