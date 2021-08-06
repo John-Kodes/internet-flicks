@@ -76,68 +76,70 @@ const LoginPage = () => {
         <div className={styles.imageContainer}>
           <Image src={bgImg} layout="fill" objectFit="cover" />
         </div>
-        {loginSuccess && (
-          <div className={styles.successBox}>
-            <p>
-              Login was successful!
-              <br />
-              You will be redirected to the browsing page.
-            </p>
-          </div>
-        )}
-        {warningMessage && (
-          <div className={styles.errorBox}>
-            <p>
-              <span>*</span> {warningMessage}
-            </p>
-          </div>
-        )}
-        <div className={styles.card}>
-          <h2 className={styles.title}>
-            <FaUser /> Login
-          </h2>
+        <div className={styles.uiContainer}>
+          {!loginSuccess && (
+            <div className={styles.successBox}>
+              <p>
+                Login was successful!
+                <br />
+                You will be redirected to the browsing page.
+              </p>
+            </div>
+          )}
+          {warningMessage && (
+            <div className={styles.errorBox}>
+              <p>
+                <span>*</span> {warningMessage}
+              </p>
+            </div>
+          )}
+          <div className={styles.card}>
+            <h2 className={styles.title}>
+              <FaUser /> Login
+            </h2>
 
-          <form onSubmit={submitHandler} className={styles.form}>
-            <div className={styles.inputBox}>
-              <label htmlFor="username" className={styles.label}>
-                USERNAME
-              </label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                placeholder="hélène_dm"
-                required
-                className={styles.field}
-                onChange={(e) => setUsername(e.target.value)}
-              />
-            </div>
-            <div className={styles.inputBox}>
-              <label htmlFor="password" className={styles.label}>
-                PASSWORD
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder="password123"
-                required
-                className={styles.field}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-            <a className={styles.btn}>
-              <p>LOGIN</p>
-            </a>
-          </form>
-          <p>
-            Don't have an account?{" "}
-            <a href="https://www.themoviedb.org/signup" target="_blank">
-              Register in TMDb
-            </a>{" "}
-            <br />
-            Continue as <a onClick={guestHandler}>Guest</a>
-          </p>
+            <form onSubmit={submitHandler} className={styles.form}>
+              <div className={styles.inputBox}>
+                <label htmlFor="username" className={styles.label}>
+                  USERNAME
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  id="username"
+                  placeholder="hélène_dm"
+                  required
+                  className={styles.field}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className={styles.inputBox}>
+                <label htmlFor="password" className={styles.label}>
+                  PASSWORD
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="password123"
+                  required
+                  className={styles.field}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <a className={styles.btn}>
+                <p>LOGIN</p>
+              </a>
+            </form>
+            <p>
+              Don't have an account?{" "}
+              <a href="https://www.themoviedb.org/signup" target="_blank">
+                Register in TMDb
+              </a>{" "}
+              <br />
+              Continue as <a onClick={guestHandler}>Guest</a>
+            </p>
+          </div>
         </div>
       </div>
     </Layout>
