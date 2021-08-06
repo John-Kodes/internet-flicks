@@ -129,8 +129,10 @@
     transform: translateY(-1vw);
 
     &::before {
-      height: 100vw;
-      width: 100vw;
+      height: 90vw;
+      width: 90vw;
+
+      transform: translate(-25%, -50%);
     }
   }
 }

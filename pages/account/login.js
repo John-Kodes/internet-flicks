@@ -1,13 +1,15 @@
 // React and Next
 import { useState, useContext } from "react";
 import { useRouter } from "next/router";
+import Image from "next/dist/client/image";
 // Context
 import Context from "@/context/Context";
 // Config
 import { API_KEY, TMDB_API, NEXT_URL } from "@/config/index";
 // Components
 import Layout from "@/components/Layout";
-// NPM
+// Images
+import bgImg from "@/images/bgImg.jpg";
 import { FaUser } from "react-icons/fa";
 // Styles
 import styles from "@/styles/LoginPage.module.scss";
@@ -71,6 +73,9 @@ const LoginPage = () => {
   return (
     <Layout useNav={false}>
       <div className={styles.container}>
+        <div className={styles.imageContainer}>
+          <Image src={bgImg} layout="fill" objectFit="cover" />
+        </div>
         {loginSuccess && (
           <div className={styles.successBox}>
             <p>
@@ -121,7 +126,9 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className={styles.btn}>LOG IN</button>
+            <a className={styles.btn}>
+              <p>LOGIN</p>
+            </a>
           </form>
           <p>
             Don't have an account?{" "}
