@@ -5,10 +5,6 @@
 
   height: 100vh;
   width: 100%;
-
-  > * {
-    height: 100%;
-  }
 }
 
 .imageContainer {
@@ -21,6 +17,8 @@
   align-items: center;
   justify-content: center;
   gap: 3vw;
+
+  height: 100%;
 
   img {
     filter: brightness(150%) saturate(150%);
@@ -36,16 +34,17 @@
     height: 100%;
     width: 100%;
 
-    background-image: radial-gradient(
-        ellipse at top left,
-        hsla(216, 71%, 48%, 0.5),
-        transparent
-      ),
-      radial-gradient(ellipse at bottom right, rgba(#00ecb9, 0.5), transparent);
+    background-image: radial-gradient(#000b, #000);
   }
 }
 
 .btnContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+
   flex: 0 0 30vw; // or 40rem for smaller screens
 
   display: flex;
@@ -67,6 +66,8 @@
 }
 
 .loginMessage {
+  font-weight: 500;
+  font-size: var(--fontSize200);
   transition: all 0.5s;
 }
 
