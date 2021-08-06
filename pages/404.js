@@ -14,7 +14,7 @@ const NotFoundPage = () => {
       <p>
         This page could not be found. <br />
       </p>
-      <Link href="/browse">
+      <Link href="/">
         <button className={styles.homeBtn}>Go back home</button>
       </Link>
     </div>
