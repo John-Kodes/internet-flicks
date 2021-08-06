@@ -77,7 +77,7 @@ const LoginPage = () => {
           <Image src={bgImg} layout="fill" objectFit="cover" />
         </div>
         <div className={styles.uiContainer}>
-          {!loginSuccess && (
+          {loginSuccess && (
             <div className={styles.successBox}>
               <p>
                 Login was successful!
@@ -127,9 +127,9 @@ const LoginPage = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <a className={styles.btn}>
+              <button className={styles.btn}>
                 <p>LOGIN</p>
-              </a>
+              </button>
             </form>
             <p>
               Don't have an account?{" "}
