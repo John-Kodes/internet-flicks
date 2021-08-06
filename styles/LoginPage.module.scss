@@ -66,7 +66,7 @@
 
   width: 100%;
 
-  background-color: hsla(0, 0%, 0%, 0.3);
+  background-color: hsla(0, 0%, 0%, 0.5);
   border: 2px solid #fff;
   border-radius: 7px;
   padding: 3rem;
@@ -148,7 +148,7 @@
   justify-content: center;
 
   font-size: var(--fontSize200);
-  color: #fff;
+  color: var(--primaryColor100);
 
   width: 80%;
   margin-top: 1vw;

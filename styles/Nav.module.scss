@@ -38,6 +38,66 @@
 .info {
   display: flex;
   gap: 2rem;
+
+  @media only screen and (max-width: 54em) {
+    display: none;
+  }
+}
+
+.infoCompact {
+  display: none;
+  gap: 2rem;
+
+  @media only screen and (max-width: 54em) {
+    display: flex;
+  }
+}
+
+.browseBtn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+  cursor: pointer;
+
+  font-size: var(--fontSize90);
+
+  > svg {
+    min-height: 0.8vw;
+    max-height: 0.8vw;
+    min-width: 0.8vw;
+    max-width: 0.8vw;
+    transition: all 0.25s;
+  }
+}
+
+.browseBox {
+  position: absolute;
+  top: 5vw;
+  left: 50%;
+  transform: translateX(-50%);
+
+  cursor: default;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2vw;
+
+  color: #777;
+  width: 15vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  padding: 1.5rem 1rem;
+
+  border: 1px solid #252525;
+  border-top: 2px solid #fff;
+
+  opacity: 1;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: #000;
+  }
 }
 
 .linkContainer {
@@ -325,8 +385,8 @@
 
 .pfp {
   position: relative;
-  height: 2vw;
-  width: 2vw;
+  height: 3vw;
+  width: 3vw;
   border-radius: 0.3vw;
   overflow: hidden;
 }

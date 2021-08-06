@@ -91,6 +91,31 @@ const Nav = ({ inView = true, category }) => {
             )}
           </div>
         </div>
+        <div className={styles.infoCompact}>
+          <Link href="/">
+            <div className={styles.logo}>Internet Flicks</div>
+          </Link>
+          <div className={styles.browseBtn}>
+            Browse
+            <ArrowTiny />
+            <div className={styles.browseBox}>
+              <Link href="/browse">
+                <div className={styles.link}>Home</div>
+              </Link>
+              <Link href="/browse/tv-shows">
+                <div className={styles.link}>TV Shows</div>
+              </Link>
+              <Link href="/browse/movies">
+                <div className={styles.link}>Movies</div>
+              </Link>
+              {userData && (
+                <Link href="/account/my-list">
+                  <div className={styles.link}>My List</div>
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
         <div className={styles.user}>
           <form
             className={`${styles.searchBox}  ${
@@ -135,9 +160,10 @@ const Nav = ({ inView = true, category }) => {
                     : GuestPfp
                 }
                 layout="fill"
+                objectFit="cover"
               />
             </div>
-            <ArrowTiny className={styles.pfpArrow} />
+            <ArrowTiny />
             <div className={styles.accBox}>
               <div className={styles.pointer}>
                 <ArrowTiny />
