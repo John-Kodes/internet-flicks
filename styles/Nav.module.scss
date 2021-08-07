@@ -97,12 +97,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2vw;
+  gap: 5vw;
 
   color: #777;
   width: max-content;
   background-color: rgba(0, 0, 0, 0.85);
-  padding: 3vw 6vw;
+  padding: 4vw 6vw;
 
   border: 1px solid #252525;
   border-top: 2px solid #fff;
@@ -115,6 +115,7 @@
   }
 
   & > .link {
+    font-size: var(--fontSize200);
     position: relative;
 
     &::before {
@@ -152,6 +153,16 @@
       max-height: 1.2vw;
       min-width: 1.2vw;
       max-width: 1.2vw;
+    }
+  }
+  @media only screen and (max-width: 31.25em) {
+    bottom: calc(100%);
+
+    > svg {
+      min-height: 2.6vw;
+      max-height: 2.6vw;
+      min-width: 2.6vw;
+      max-width: 2.6vw;
     }
   }
 }
@@ -260,6 +271,10 @@
   &:focus {
     width: 15vw;
   }
+
+  @media only screen and (max-width: 31.25em) {
+    max-width: 8vw;
+  }
 }
 
 .notifsIcon {
@@ -300,6 +315,8 @@
   justify-content: center;
   align-items: center;
 
+  text-align: center;
+
   background-color: rgba(0, 0, 0, 0.85);
   height: 12vw;
   width: 30vw;
@@ -315,8 +332,8 @@
     background-color: #000;
   }
 
-  @media only screen and (max-width: 52.5em) {
-    border-top: 1px solid #fff;
+  @media only screen and (max-width: 31.25em) {
+    padding: 10vw;
   }
 
   .pointer {
@@ -337,6 +354,16 @@
         max-height: 1.2vw;
         min-width: 1.2vw;
         max-width: 1.2vw;
+      }
+    }
+    @media only screen and (max-width: 31.25em) {
+      bottom: calc(100% - 1px);
+
+      > svg {
+        min-height: 2.6vw;
+        max-height: 2.6vw;
+        min-width: 2.6vw;
+        max-width: 2.6vw;
       }
     }
   }
@@ -394,9 +421,9 @@
   color: #777;
   width: max-content;
   background-color: rgba(0, 0, 0, 0.85);
-  padding: 1.5rem 1rem;
+  padding: 2vw;
 
-  border: 1px solid #252525;
+  border: px solid #252525;
   border-top: 2px solid #fff;
 
   opacity: 1;
@@ -410,10 +437,14 @@
     border-top: 1px solid #fff;
   }
 
+  @media only screen and (max-width: 31.25em) {
+    padding: 6vw;
+  }
+
   .pointer {
     position: absolute;
     right: 2%;
-    bottom: calc(100%);
+    bottom: calc(100% - 1px);
 
     transform: rotate(180deg) scale(1.5);
 
@@ -428,6 +459,16 @@
         max-height: 1.2vw;
         min-width: 1.2vw;
         max-width: 1.2vw;
+      }
+    }
+    @media only screen and (max-width: 31.25em) {
+      bottom: calc(100% - 2px);
+
+      > svg {
+        min-height: 2.6vw;
+        max-height: 2.6vw;
+        min-width: 2.6vw;
+        max-width: 2.6vw;
       }
     }
   }
@@ -446,6 +487,10 @@
       font-size: var(--fontSize100);
       outline: none;
       color: #fff;
+
+      @media only screen and (max-width: 31.25em) {
+        font-size: var(--fontSize200);
+      }
 
       &:hover {
         transform: none;
