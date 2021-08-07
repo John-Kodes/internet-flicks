@@ -35,16 +35,22 @@
     }
   }
 
+  // adjusting btn position
+  @media only screen and (max-width: 60em) {
+    top: 4.6vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    top: 7.1vw;
+  }
+
+  // updating dimensions
   @media only screen and (max-width: 68.75em) {
     height: 9.5vw;
     width: 6rem;
   }
   @media only screen and (max-width: 64em) {
     height: 12vw;
-  }
-
-  @media only screen and (max-width: 60em) {
-    top: 4.6vw;
   }
 
   @media only screen and (max-width: 49em) {

@@ -37,8 +37,7 @@ const Header = ({ movie = defaultMovie }) => {
       style={{
         backgroundImage:
           (movie.backdrop_path &&
-            `linear-gradient(to bottom, rgba(20, 20, 20, 0) 70%,rgba(20, 20, 20, 1) ), 
-      url(${TMDB_IMAGE}/original/${movie.backdrop_path})`) ||
+            `url(${TMDB_IMAGE}/original/${movie.backdrop_path})`) ||
           `url(${DefaultBackdropMain.src})`,
         backgroundSize: "cover",
       }}

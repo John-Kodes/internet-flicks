@@ -12,6 +12,22 @@
   padding: 0 4vw;
 
   background-color: rgb(71, 71, 71);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+
+    height: 100%;
+    width: 100%;
+
+    background-image: linear-gradient(
+      to bottom,
+      rgba(20, 20, 20, 0) 70%,
+      rgba(20, 20, 20, 1) 100%
+    );
+  }
 }
 
 .movieTitle {
