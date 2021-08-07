@@ -8,6 +8,14 @@
   background-color: var(--pageBg100);
 
   transition: background-color 0.5s, top 0.2s;
+
+  @media only screen and (max-width: 52.5em) {
+    top: -8vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    top: -10vw;
+  }
 }
 
 .navContainer {
@@ -37,6 +45,14 @@
   padding: 2vw 4vw 1.5vw;
   text-transform: uppercase;
   background-color: var(--pageBg100);
+
+  @media only screen and (max-width: 52.5em) {
+    padding: 3vw 5.5vw 2vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    padding: 3.5vw 6.5vw 2vw;
+  }
 
   h2 {
     font-weight: 400;
