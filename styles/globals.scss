@@ -7,6 +7,7 @@
   --fontSize200: 1.1vw;
   --fontSize300: 1.6vw;
   --fontSize400: 2.4vw;
+  --fontSize500: 4vw; // header movie title
 
   @media only screen and (max-width: 60em) {
     --fontSize90: 1.3vw;
@@ -14,6 +15,7 @@
     --fontSize200: 1.9vw;
     --fontSize300: 3vw;
     --fontSize400: 4vw;
+    --fontSize500: 5vw;
   }
 
   @media only screen and (max-width: 31.25em) {
@@ -22,6 +24,7 @@
     --fontSize200: 3vw;
     --fontSize300: 5vw;
     // --fontSize400: 4vw;
+    --fontSize500: 6.5vw;
   }
 }
 

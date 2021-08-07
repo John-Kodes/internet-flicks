@@ -16,11 +16,11 @@
 
 .movieTitle {
   position: relative;
-  font-size: calc(2vw + 2vh + 2vmin);
+  font-size: var(--fontSize500);
   z-index: 1;
   max-width: 14ch;
   padding: 0 0 2vw;
-  text-shadow: rgba(0, 0, 0, 0.6) 0 2px 4px;
+  text-shadow: rgba(0, 0, 0, 0.7) 0 2px 10px;
 
   transform: translateY(2vw);
 }
@@ -30,6 +30,10 @@
   padding: 1vw;
   padding-bottom: 0;
   border-radius: 4px;
+
+  @media only screen and (max-width: 31.25em) {
+    display: none;
+  }
 }
 
 .description {
@@ -48,12 +52,30 @@
 
   > * {
     padding: 0.7vw 1.4vw;
+
+    @media only screen and (max-width: 60em) {
+      padding: 1vw 2vw;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      padding: 1.5vw 2.5vw;
+    }
   }
 
   svg {
     display: block;
     height: 1.4vw;
     width: 1.4vw;
+
+    @media only screen and (max-width: 60em) {
+      height: 2vw;
+      width: 2vw;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      height: 2.6vw;
+      width: 2.6vw;
+    }
   }
 }
 
@@ -86,7 +108,7 @@
 }
 
 .btnGhost {
-  background-color: rgba(92, 92, 92, 0.7);
+  background-color: hsla(0, 0%, 30%, 0.7);
   color: #fff;
 }
 
