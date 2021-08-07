@@ -99,6 +99,9 @@ const Nav = ({ inView = true, category }) => {
             Browse
             <ArrowTiny />
             <div className={styles.browseBox}>
+              <div className={styles.browsePointer}>
+                <ArrowTiny />
+              </div>
               <Link href="/browse">
                 <div className={styles.link}>Home</div>
               </Link>

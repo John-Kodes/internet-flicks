@@ -23,6 +23,14 @@
     rgba(0, 0, 0, 0.7) 10%,
     rgba(0, 0, 0, 0)
   );
+
+  @media only screen and (max-width: 52.5em) {
+    height: 8vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    height: 10vw;
+  }
 }
 
 .category {
@@ -39,7 +47,7 @@
   display: flex;
   gap: 2rem;
 
-  @media only screen and (max-width: 54em) {
+  @media only screen and (max-width: 52.5em) {
     display: none;
   }
 }
@@ -48,7 +56,7 @@
   display: none;
   gap: 2rem;
 
-  @media only screen and (max-width: 54em) {
+  @media only screen and (max-width: 52.5em) {
     display: flex;
   }
 }
@@ -60,20 +68,27 @@
   gap: 1vw;
   cursor: pointer;
 
-  font-size: var(--fontSize90);
+  font-size: var(--fontSize100);
 
   > svg {
-    min-height: 0.8vw;
-    max-height: 0.8vw;
-    min-width: 0.8vw;
-    max-width: 0.8vw;
+    min-height: 1.2vw;
+    max-height: 1.2vw;
+    min-width: 1.2vw;
+    max-width: 1.2vw;
     transition: all 0.25s;
+
+    @media only screen and (max-width: 31.25em) {
+      min-height: 2vw;
+      max-height: 2vw;
+      min-width: 2vw;
+      max-width: 2vw;
+    }
   }
 }
 
 .browseBox {
   position: absolute;
-  top: 5vw;
+  top: 110%;
   left: 50%;
   transform: translateX(-50%);
 
@@ -85,9 +100,9 @@
   gap: 2vw;
 
   color: #777;
-  width: 15vw;
+  width: max-content;
   background-color: rgba(0, 0, 0, 0.85);
-  padding: 1.5rem 1rem;
+  padding: 3vw 6vw;
 
   border: 1px solid #252525;
   border-top: 2px solid #fff;
@@ -98,6 +113,47 @@
   &:hover {
     background-color: #000;
   }
+
+  & > .link {
+    position: relative;
+
+    &::before {
+      content: "";
+
+      position: absolute;
+      bottom: -2px;
+      width: 0%;
+      height: 1px;
+
+      background-color: #fff;
+      transition: width 0.2s;
+    }
+
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+
+.browsePointer {
+  position: absolute;
+  bottom: calc(100% - 2px);
+
+  transform: rotate(180deg) scale(1.5);
+
+  > svg {
+    min-height: 0.8vw;
+    max-height: 0.8vw;
+    min-width: 0.8vw;
+    max-width: 0.8vw;
+
+    @media only screen and (max-width: 52.5em) {
+      min-height: 1.2vw;
+      max-height: 1.2vw;
+      min-width: 1.2vw;
+      max-width: 1.2vw;
+    }
+  }
 }
 
 .linkContainer {
@@ -107,7 +163,7 @@
 }
 
 .link {
-  font-size: var(--fontSize90);
+  font-size: var(--fontSize100);
   color: #fff;
   cursor: pointer;
 
@@ -125,12 +181,28 @@
   color: var(--primaryColor100);
   cursor: pointer;
   margin-right: 2vw;
+
+  @media only screen and (max-width: 52.5em) {
+    font-size: 3.6vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    font-size: 4vw;
+  }
 }
 
 .user {
   display: flex;
   align-items: center;
   gap: 1.6vw;
+
+  @media only screen and (max-width: 52.5em) {
+    gap: 2.5vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    gap: 3.5vw;
+  }
 
   svg {
     display: block;
@@ -149,17 +221,24 @@
 
   transition: all 0.5s 0s;
 
-  > svg {
-    min-height: 1.4vw;
-    max-height: 1.4vw;
-    min-width: 1.4vw;
-    max-width: 1.4vw;
+  svg {
+    min-height: 1.6vw;
+    max-height: 1.6vw;
+    min-width: 1.6vw;
+    max-width: 1.6vw;
 
     @media only screen and (max-width: 52.5em) {
       min-height: 2.6vw;
       max-height: 2.6vw;
       min-width: 2.6vw;
       max-width: 2.6vw;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      min-height: 5vw;
+      max-height: 5vw;
+      min-width: 5vw;
+      max-width: 5vw;
     }
   }
 }
@@ -202,13 +281,19 @@
       min-width: 2.9vw;
       max-width: 2.9vw;
     }
+    @media only screen and (max-width: 31.25em) {
+      min-height: 5vw;
+      max-height: 5vw;
+      min-width: 5vw;
+      max-width: 5vw;
+    }
   }
 }
 
 .notifsBox {
   position: absolute;
   right: 0;
-  top: 5vw;
+  top: 110%;
   cursor: default;
 
   display: flex;
@@ -275,6 +360,20 @@
     min-width: 0.8vw;
     max-width: 0.8vw;
     transition: all 0.25s;
+
+    @media only screen and (max-width: 52.5em) {
+      min-height: 1.2vw;
+      max-height: 1.2vw;
+      min-width: 1.2vw;
+      max-width: 1.2vw;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      min-height: 2vw;
+      max-height: 2vw;
+      min-width: 2vw;
+      max-width: 2vw;
+    }
   }
 
   &:hover > svg {
@@ -285,7 +384,7 @@
 .accBox {
   position: absolute;
   right: 1.5vw;
-  top: 5vw;
+  top: 110%;
   cursor: default;
   box-sizing: content-box;
 
@@ -293,7 +392,7 @@
   align-items: center;
 
   color: #777;
-  width: 15vw;
+  width: max-content;
   background-color: rgba(0, 0, 0, 0.85);
   padding: 1.5rem 1rem;
 
@@ -344,7 +443,7 @@
       position: relative;
 
       font-weight: 400;
-      font-size: 0.95vw;
+      font-size: var(--fontSize100);
       outline: none;
       color: #fff;
 
@@ -356,7 +455,7 @@
         content: "";
         position: absolute;
         left: 0;
-        bottom: -1px;
+        bottom: -2px;
         background-color: #fff;
         height: 1px;
         width: 0;
@@ -369,6 +468,12 @@
       }
     }
   }
+}
+
+.browseBtn:not(:hover) > .browseBox {
+  visibility: hidden;
+  opacity: 0;
+  transition-delay: 0.1s;
 }
 
 .notifsIcon:not(:hover) > .notifsBox {
@@ -389,4 +494,18 @@
   width: 3vw;
   border-radius: 0.3vw;
   overflow: hidden;
+
+  @media only screen and (max-width: 52.5em) {
+    min-height: 4vw;
+    max-height: 4vw;
+    min-width: 4vw;
+    max-width: 4vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    min-height: 6vw;
+    max-height: 6vw;
+    min-width: 6vw;
+    max-width: 6vw;
+  }
 }

@@ -18,6 +18,14 @@
   );
 
   transition: background-color 0.5s, top 0.2s;
+
+  @media only screen and (max-width: 52.5em) {
+    height: 8vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    height: 12vw;
+  }
 }
 
 .logo {
@@ -26,4 +34,12 @@
   font-size: 1.8vw;
   color: var(--primaryColor100);
   cursor: pointer;
+
+  @media only screen and (max-width: 52.5em) {
+    font-size: 3.6vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    font-size: 6vw;
+  }
 }

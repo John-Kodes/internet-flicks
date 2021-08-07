@@ -9,7 +9,7 @@
   --fontSize400: 2.4vw;
 
   @media only screen and (max-width: 60em) {
-    --fontSize90: 1.2vw;
+    --fontSize90: 1.3vw;
     --fontSize100: 1.5vw;
     --fontSize200: 1.9vw;
     --fontSize300: 3vw;
@@ -17,10 +17,10 @@
   }
 
   @media only screen and (max-width: 31.25em) {
-    // --fontSize90: 1.2vw;
-    --fontSize100: 2.2vw;
+    --fontSize90: 2vw;
+    --fontSize100: 2.5vw;
     --fontSize200: 3vw;
-    // --fontSize300: 3vw;
+    --fontSize300: 5vw;
     // --fontSize400: 4vw;
   }
 }

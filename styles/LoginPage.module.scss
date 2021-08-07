@@ -240,8 +240,22 @@
   border-radius: 4px;
   padding: 0.8rem 1rem;
 
+  transition: border 0.5s;
+
   &::placeholder {
     color: #bbb;
+  }
+
+  &:invalid {
+    border: 2px solid hsl(345, 100%, 50%);
+  }
+
+  &:valid {
+    border: 2px solid var(--primaryColor100);
+  }
+
+  &:not(:focus) {
+    border: 2px solid #fff;
   }
 }
 

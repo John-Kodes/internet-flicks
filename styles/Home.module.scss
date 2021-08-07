@@ -6,7 +6,7 @@
   height: 100vh;
   width: 100%;
 
-  padding: 20vw;
+  padding: 15vw;
 }
 
 .imageContainer {
@@ -47,19 +47,13 @@
 
   > * {
     width: 100%;
-    padding: 1vw 2vw;
   }
 
-  @media only screen and (max-width: 60em) {
+  @media only screen and (max-width: 31.25em) {
     width: 100%;
-    max-width: 40rem;
+    max-width: 50rem;
 
     gap: 6vw;
-
-    > * {
-      width: 100%;
-      padding: 2vw 0;
-    }
   }
 }
 
@@ -67,7 +61,7 @@
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
-  gap: 0.5vw;
+  gap: 2vw;
 
   width: 100%;
 }
@@ -90,10 +84,16 @@
 
   color: black;
   border-radius: 4px;
+  padding: 1vw 2vw;
+  width: 100%;
 
   transform: translateY(0);
   transition: all 0.5s;
   overflow: hidden;
+
+  @media only screen and (max-width: 31.25em) {
+    padding: 3vw 4vw;
+  }
 
   // background
   &::after {
@@ -129,8 +129,8 @@
     transform: translateY(-1vw);
 
     &::before {
-      height: 90vw;
-      width: 90vw;
+      height: 100vw;
+      width: 100vw;
 
       transform: translate(-25%, -50%);
     }
@@ -144,9 +144,14 @@
 
   border: 3px solid #fff0;
   border-radius: 4px;
+  padding: 1vw 2vw;
 
   transform: translateY(0);
   transition: all 0.5s;
+
+  @media only screen and (max-width: 31.25em) {
+    padding: 3vw 4vw;
+  }
 
   &:hover {
     transform: translateY(-1vw);

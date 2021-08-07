@@ -37,7 +37,7 @@ export const HomePage = ({ isLoggedIn }) => {
             </div>
           ) : (
             <Link href="/account/login">
-              <a className={styles.btnFill}>Sign in to your account</a>
+              <a className={styles.btnFill}>Sign in!</a>
             </Link>
           )}
           <a onClick={createGuestSessionId} className={styles.btnGhost}>
