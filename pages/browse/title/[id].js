@@ -18,7 +18,12 @@ export const MovieDetailsPage = ({
   topRatedMovies,
   modalMovie,
 }) => {
-  const { setModalOpen, setModalData } = useContext(Context);
+  const {
+    setModalOpen,
+    setModalData,
+    setModalHistory,
+    modalHistory,
+  } = useContext(Context);
 
   const router = useRouter();
 
@@ -38,6 +43,7 @@ export const MovieDetailsPage = ({
   useEffect(() => {
     setModalOpen(true);
     setModalData(modalMovie);
+    setModalHistory([modalMovie]);
   }, []);
 
   return (
