@@ -30,6 +30,21 @@
   top: 2rem;
 
   z-index: 10;
+
+  & > * {
+    width: 4rem;
+    height: 4rem;
+
+    @media only screen and (max-width: 54.25em) {
+      width: 5vw;
+      height: 5vw;
+    }
+
+    @media only screen and (max-width: 31.25em) {
+      width: 10vw;
+      height: 10vw;
+    }
+  }
 }
 
 .headerDetails {
@@ -37,31 +52,59 @@
   flex-direction: column;
   gap: 0.5rem;
 
-  width: 15rem;
+  width: calc(100% - 5rem);
 }
 
 .title {
-}
-
-.releaseDate {
-  font-weight: 500;
-  color: #ccc;
+  font-size: 2.4rem;
+  @media only screen and (max-width: 54.25em) {
+    font-size: var(--fontSize300);
+  }
 }
 
 .description {
+  font-size: 1.6rem;
+
+  @media only screen and (max-width: 54.25em) {
+    font-size: var(--fontSize200);
+  }
+}
+
+.releaseDate {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #ccc;
+
+  @media only screen and (max-width: 54.25em) {
+    font-size: var(--fontSize200);
+  }
 }
 
 .readMoreBtn {
   justify-content: center;
-  width: 10vw;
-  font-size: 1.6rem;
+  width: max-content;
+  font-size: 1.8rem;
 
   background-color: #fff;
-  padding: 0.75vw 1vw;
+  padding: 1rem 2.5rem;
   border-radius: 12px 12px 0 0;
   margin-top: auto;
 
   z-index: 10;
+
+  @media only screen and (max-width: 54.25em) {
+    padding: 1vw 2.5vw;
+
+    font-size: calc(var(--fontSize200) + 1vw);
+  }
+
+  @media only screen and (max-width: 49em) {
+    padding: 1.2vw 3vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    padding: 2vw 4vw;
+  }
 
   &:hover {
     transform: translatey(0);

@@ -26,4 +26,14 @@
   width: 2.5rem;
 
   opacity: 0.8;
+
+  @media only screen and (max-width: 54.25em) {
+    width: 3vw;
+    height: 3vw;
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    width: 6vw;
+    height: 6vw;
+  }
 }

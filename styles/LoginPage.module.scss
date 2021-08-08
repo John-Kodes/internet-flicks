@@ -20,10 +20,9 @@
 
   height: 100%;
   width: 100%;
-  filter: blur(4px);
 
   img {
-    filter: brightness(150%) saturate(150%);
+    filter: blur(4px) brightness(150%) saturate(150%);
   }
 
   &::before {

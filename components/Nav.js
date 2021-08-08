@@ -63,7 +63,8 @@ const Nav = ({ inView = true, category }) => {
     <nav
       className={styles.nav}
       style={{
-        backgroundColor: inView ? "transparent" : "var(--pageBg100)",
+        backgroundColor:
+          inView && !category ? "transparent" : "var(--pageBg100)",
         top: (!category && "0") || (scrollUp && "0"),
         position: category && "sticky",
         // for scroll anim

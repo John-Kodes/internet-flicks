@@ -10,6 +10,10 @@
 
   background-color: rgba(#000000, 0.65);
   overflow-y: scroll;
+
+  @media only screen and (max-width: 54.25em) {
+    padding: 0vw;
+  }
 }
 
 .modal {
@@ -448,8 +452,9 @@
 
   h2 {
     text-align: center;
-    font-size: var(--fontSize400);
     font-weight: 500;
+
+    font-size: 3.6rem;
   }
   p {
     text-align: center;
@@ -510,6 +515,14 @@
 
   height: 70rem;
   overflow: hidden;
+
+  @media only screen and (max-width: 49em) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .showList {
