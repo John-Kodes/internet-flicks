@@ -15,6 +15,8 @@ export const ContextProvider = ({ children }) => {
   const [modalHistory, setModalHistory] = useState([]);
   // Authentication state
   const [userData, setUserData] = useState(null);
+  // vw related
+  const [sliderCap, setSliderCap] = useState(6);
 
   const createGuestSessionId = async () => {
     const res = await fetch(`${NEXT_URL}/api/guestLogin`);
@@ -33,6 +35,7 @@ export const ContextProvider = ({ children }) => {
       setUserData(null);
     }
   };
+
   const logout = async () => {
     const res = await fetch(`${NEXT_URL}/api/logout`, {
       method: "DELETE",
@@ -48,10 +51,25 @@ export const ContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    // persisting login
     checkUserLoggedIn();
   }, []);
 
-  useEffect(() => console.log(modalHistory), [modalHistory]);
+  // updating viewport
+  useEffect(() => {
+    // getting and setting the vw
+    const vw = Math.max(
+      document?.documentElement.clientWidth || 0,
+      window.innerWidth || 0
+    );
+
+    if (vw === 0) return;
+    if (vw < 500) return setSliderCap(2);
+    if (vw < 784) return setSliderCap(3);
+    if (vw < 1024) return setSliderCap(4);
+    if (vw < 1100) return setSliderCap(5);
+    if (vw > 1100) return setSliderCap(6);
+  });
 
   return (
     <Context.Provider
@@ -63,6 +81,9 @@ export const ContextProvider = ({ children }) => {
         setModalData,
         modalHistory,
         setModalHistory,
+        // vw related
+        sliderCap,
+        setSliderCap,
         // Login related
         createGuestSessionId,
         userData,

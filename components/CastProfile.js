@@ -13,7 +13,9 @@ import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
 import styles from "@/styles/CastProfile.module.scss";
 
 const CastProfile = ({ actor }) => {
-  const { setModalData, setModalHistory, modalHistory } = useContext(Context);
+  const { setModalData, setModalHistory, modalHistory, sliderCap } = useContext(
+    Context
+  );
 
   const router = useRouter();
 
@@ -42,10 +44,13 @@ const CastProfile = ({ actor }) => {
         <Image
           src={
             actor.profile_path
-              ? `${TMDB_IMAGE}/w185/${actor.profile_path}`
+              ? `${TMDB_IMAGE}/${sliderCap < 3 ? "original" : "w185"}/${
+                  actor.profile_path
+                }`
               : DefaultPersonPhotoMain
           }
           layout="fill"
+          objectFit="contain"
         />
       </div>
       <div className={styles.nameContainer}>

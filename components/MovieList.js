@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/dist/client/image";
+// Context
+import Context from "@/context/Context";
 // Components
 import MovieListItem from "@/components/MovieListItem";
 // Helpers
@@ -10,11 +12,10 @@ import ArrowThinIcon from "@/images/ArrowThinIcon.svg";
 import styles from "@/styles/MovieList.module.scss";
 
 const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
+  const { sliderCap } = useContext(Context);
   const [isHover, setIsHover] = useState(false);
 
-  const [vw, setVw] = useState(0); // >1100 = 6, <1100 = 5, <1024 = 4, <784 = 3, <500 = 2
   const [slideNum, setSlideNum] = useState(0);
-  const [sliderCap, setSliderCap] = useState(6); // slider capacity
 
   const movieItems = movies.map((movie, i) => (
     <div className={styles.item} key={i}>
@@ -38,25 +39,7 @@ const MovieList = ({ category = "Category", movies = [defaultMovie] }) => {
     if (slideNum < max && direction === "right")
       setSlideNum(slideNum + sliderCap);
     if (slideNum > 0 && direction === "left") setSlideNum(slideNum - sliderCap);
-    console.log(slideNum);
   };
-
-  useEffect(() => {
-    setVw(
-      Math.max(
-        document?.documentElement.clientWidth || 0,
-        window.innerWidth || 0
-      )
-    );
-    if (vw === 0) return;
-    if (vw < 500) return setSliderCap(2);
-    if (vw < 784) return setSliderCap(3);
-    if (vw < 1024) return setSliderCap(4);
-    if (vw < 1100) return setSliderCap(5);
-    if (vw > 1100) return setSliderCap(6);
-  });
-
-  useEffect(() => console.log(sliderCap), [sliderCap]);
 
   return (
     <div className={styles.container}>
