@@ -6,19 +6,11 @@
   max-width: 16rem;
 
   cursor: pointer;
-
-  @media only screen and (max-width: 28em) {
-    max-width: 32rem;
-  }
 }
 
 .profilePic {
   position: relative;
   min-height: 24rem;
-
-  @media only screen and (max-width: 28em) {
-    min-height: 47.3rem;
-  }
 }
 
 .nameContainer {

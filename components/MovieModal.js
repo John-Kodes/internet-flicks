@@ -34,6 +34,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
     setModalHistory,
     modalHistory,
     userData,
+    sliderCap,
   } = useContext(Context);
 
   // List
@@ -248,7 +249,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   <Image
                     src={
                       movie?.backdrop_path || movie?.poster_path
-                        ? `${TMDB_IMAGE}/w1280/${
+                        ? `${TMDB_IMAGE}/${sliderCap < 3 ? "w780" : "w1280"}/${
                             movie?.backdrop_path || movie?.poster_path
                           }`
                         : DefaultBackdropMain

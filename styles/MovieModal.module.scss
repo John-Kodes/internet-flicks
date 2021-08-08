@@ -116,11 +116,6 @@
   }
 }
 
-.btnContainer {
-  display: flex;
-  gap: 0.8rem;
-}
-
 @mixin btnHoverWindow {
   opacity: 0;
   content: "";
@@ -158,6 +153,11 @@
   z-index: 10;
 
   transition: opacity 0.1s;
+}
+
+.btnContainer {
+  display: flex;
+  gap: 0.8rem;
 }
 
 .addToListBtn {
@@ -334,6 +334,30 @@
 
   transition: all 0.2s;
 
+  @media only screen and (max-width: 54.25em) {
+    gap: 1.2vw;
+
+    padding: 1vw 2.5vw;
+
+    svg {
+      min-height: 3vw;
+      max-height: 3vw;
+      min-width: 3vw;
+      max-width: 3vw;
+    }
+  }
+
+  @media only screen and (max-width: 31.25em) {
+    padding: 1.5vw 3vw;
+
+    svg {
+      min-height: 4vw;
+      max-height: 4vw;
+      min-width: 4vw;
+      max-width: 4vw;
+    }
+  }
+
   &:hover {
     transform: translateY(-2px);
   }
@@ -383,7 +407,11 @@
 .detailsBox {
   position: relative;
   display: flex;
-  gap: 4rem;
+  gap: 4vw;
+
+  @media only screen and (min-width: 55em) {
+    gap: 4rem;
+  }
 
   &::before {
     content: "";
