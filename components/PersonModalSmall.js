@@ -4,12 +4,16 @@ import { TMDB_IMAGE } from "@/config/index";
 // Components
 import BackBtn from "@/components/BackBtn";
 import CloseBtn from "@/components/CloseBtn";
+// images
+import DefaultPersonPhotoMain from "@/images/DefaultPersonPhotoMain.svg";
 // Styles
 import styles from "@/styles/PersonModalSmall.module.scss";
-const PersonModalSmall = ({ data }) => {
+const PersonModalSmall = ({ data, backBtnBool, closeHandler }) => {
   // pfp, name, bio
   return (
     <div className={styles.container}>
+      <CloseBtn closeHandler={closeHandler} />
+      {backBtnBool && <BackBtn />}
       <div className={styles.header}>
         <div className={styles.pfpContainer}>
           <Image

@@ -437,7 +437,11 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
             </div>
           ) : (
             <>
-              <PersonModalSmall data={movie} />
+              <PersonModalSmall
+                data={movie}
+                backBtnBool={modalHistory.length > 1}
+                closeHandler={leavePageHandlerBtn || closeHandler}
+              />
               <div className={styles.personModal}>
                 <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
                 {modalHistory.length > 1 && <BackBtn />}
