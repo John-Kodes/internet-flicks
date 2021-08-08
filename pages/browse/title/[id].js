@@ -50,6 +50,7 @@ export const MovieDetailsPage = ({
     <Layout
       title={modalMovie.original_title || modalMovie.original_name}
       description={modalMovie.overview}
+      useFooter={false}
     >
       <MovieModal
         leavePageHandler={leavePageHandler}

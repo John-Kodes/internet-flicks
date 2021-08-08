@@ -1,0 +1,112 @@
+.container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: calc(100vw - 10rem);
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--pageBg100);
+  border-radius: 7px;
+  box-shadow: 0 0.5rem 2rem rgba(#000, 0.9);
+
+  z-index: 110;
+  overflow: hidden;
+
+  @media only screen and (min-width: 54.25em) {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+.header {
+  display: flex;
+}
+
+.pfpContainer {
+  position: relative;
+  padding-right: 26.5%;
+  padding-top: 39.4%;
+
+  background-color: var(--pageBg300);
+
+  @media only screen and (max-width: 31.25em) {
+    padding-top: 50%;
+    padding-right: 33.4%;
+  }
+}
+
+.mainInfoBox {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2rem;
+  padding: 4vw;
+
+  p {
+    @media only screen and(min-width: 55em) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: "";
+    bottom: -0.1rem;
+    right: 0;
+
+    height: 0.2rem;
+    width: 70%;
+    border-top-right-radius: 100vw;
+    border-bottom-right-radius: 100vw;
+    background-color: var(--primaryColor100);
+  }
+}
+
+.personName {
+  font-size: var(--fontSize400);
+  margin-bottom: 0.5rem;
+
+  @media only screen and(min-width: 55em) {
+    font-size: 3.6rem;
+  }
+}
+
+.department {
+  font-weight: 500;
+  color: var(--primaryColor100);
+
+  @media only screen and(min-width: 55em) {
+    font-size: 1.6rem;
+  }
+}
+
+.biography {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  background-color: #333;
+  padding: 2rem 4rem;
+
+  height: 100%;
+
+  h2 {
+    font-weight: 500;
+  }
+
+  @media only screen and(min-width: 55em) {
+    h2 {
+      font-size: 2.8rem;
+    }
+    p {
+      font-size: 1.6rem;
+    }
+  }
+}

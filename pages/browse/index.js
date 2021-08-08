@@ -20,11 +20,17 @@ export const BrowsePage = ({
   nowPlayingMovies,
 }) => {
   const router = useRouter();
-  const { setModalData, setModalOpen } = useContext(Context);
+  const { setModalData, setModalOpen, modalData } = useContext(Context);
+
+  const mediaType = modalData?.original_title
+    ? "movie"
+    : modalData?.original_name
+    ? "tv"
+    : "person";
 
   useEffect(() => {
     if (router.query.id)
-      router.push(`/browse/title/${router.query.id}?media=movie`);
+      router.push(`/browse/title/${router.query.id}?media=${mediaType}`);
   }, []);
 
   useEffect(() => {

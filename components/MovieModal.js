@@ -9,6 +9,7 @@ import CloseBtn from "@/components/CloseBtn";
 import RoundBtn from "@/components/RoundBtn";
 import CastProfile from "@/components/CastProfile";
 import RecomCard from "@/components/RecomCard";
+import PersonModalSmall from "@/components/PersonModalSmall";
 
 import { FaExclamationTriangle } from "react-icons/fa";
 import PlayIcon from "@/images/PlayIcon";
@@ -435,50 +436,56 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
               </div>
             </div>
           ) : (
-            <div className={styles.personModal}>
-              {modalHistory.length > 1 && <BackBtn />}
-              <div className={styles.personContainer}>
-                <div className={styles.personPfp}>
-                  <Image
-                    src={
-                      (movie?.profile_path &&
-                        `${TMDB_IMAGE}/original${movie?.profile_path}`) ||
-                      DefaultPersonPhotoMain
-                    }
-                    layout="fill"
-                  />
-                </div>
-                <div className={styles.personInfoBox}>
-                  <div className={styles.basicInfoBox}>
-                    <h2 className={styles.personName}>{movie?.name}</h2>
-                    <p className={styles.department}>
-                      {movie?.known_for_department || "Undisclosed"}
-                    </p>
-                    <p className={styles.birthday}>
-                      {movie?.birthday?.replaceAll("-", " / ") ||
-                        "Birthdate is undisclosed"}
+            <>
+              <PersonModalSmall data={movie} />
+              <div className={styles.personModal}>
+                <CloseBtn closeHandler={leavePageHandlerBtn || closeHandler} />
+                {modalHistory.length > 1 && <BackBtn />}
 
-                      {movie?.deathday && (
-                        <>
-                          &nbsp;&nbsp; &mdash; &nbsp;&nbsp;
-                          {movie?.deathday.replaceAll("-", " / ")}
-                        </>
-                      )}
-                    </p>
-                    <p className={styles.birthPlace}>
-                      {movie?.place_of_birth || "Born on Earth... Probably"}
-                    </p>
+                <div className={styles.personContainer}>
+                  <div className={styles.personPfp}>
+                    <Image
+                      src={
+                        (movie?.profile_path &&
+                          `${TMDB_IMAGE}/original${movie?.profile_path}`) ||
+                        DefaultPersonPhotoMain
+                      }
+                      layout="fill"
+                      objectFit="contain"
+                    />
                   </div>
-                  <div className={styles.biography}>
-                    <h2>Biography</h2>
-                    <p>
-                      {movie?.biography ||
-                        "Currently does not have a biography written"}
-                    </p>
+                  <div className={styles.personInfoBox}>
+                    <div className={styles.basicInfoBox}>
+                      <h2 className={styles.personName}>{movie?.name}</h2>
+                      <p className={styles.department}>
+                        {movie?.known_for_department || "Undisclosed"}
+                      </p>
+                      <p className={styles.birthday}>
+                        {movie?.birthday?.replaceAll("-", " / ") ||
+                          "Birthdate is undisclosed"}
+
+                        {movie?.deathday && (
+                          <>
+                            &nbsp;&nbsp; &mdash; &nbsp;&nbsp;
+                            {movie?.deathday.replaceAll("-", " / ")}
+                          </>
+                        )}
+                      </p>
+                      <p className={styles.birthPlace}>
+                        {movie?.place_of_birth || "Born on Earth... Probably"}
+                      </p>
+                    </div>
+                    <div className={styles.biography}>
+                      <h2>Biography</h2>
+                      <p>
+                        {movie?.biography ||
+                          "Currently does not have a biography written"}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       )}

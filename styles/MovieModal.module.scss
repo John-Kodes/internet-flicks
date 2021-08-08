@@ -631,7 +631,7 @@
 
   width: 100%;
   max-width: 85rem;
-  height: 63.75rem;
+  height: max-content;
 
   background-color: var(--pageBg100);
   border-radius: 7px;
@@ -639,16 +639,21 @@
 
   z-index: 110;
   overflow: hidden;
+
+  @media only screen and (max-width: 54.25em) {
+    display: none;
+    visibility: hidden;
+  }
 }
+
 .personContainer {
   display: flex;
-  align-items: flex-start;
 }
 
 .personPfp {
   position: relative;
   flex: 0 0 50%;
-  padding-top: 75%;
+  padding-bottom: 75%;
 }
 
 .personInfoBox {
@@ -664,6 +669,13 @@
   flex-direction: column;
   gap: 0.2rem;
   padding: 4rem;
+
+  p {
+    @media only screen and(min-width: 55em) {
+      font-size: 1.6rem;
+    }
+  }
+
   &::before {
     position: absolute;
     content: "";
@@ -681,11 +693,19 @@
 .personName {
   font-size: var(--fontSize400);
   margin-bottom: 0.5rem;
+
+  @media only screen and(min-width: 55em) {
+    font-size: 3.6rem;
+  }
 }
 
 .department {
   font-weight: 500;
   color: var(--primaryColor100);
+
+  @media only screen and(min-width: 55em) {
+    font-size: 1.6rem;
+  }
 }
 
 .biography {
@@ -696,10 +716,20 @@
   background-color: #333;
   padding: 2rem 4rem;
   overflow-y: scroll;
+
   height: 100%;
 
   h2 {
     font-weight: 500;
+  }
+
+  @media only screen and(min-width: 55em) {
+    h2 {
+      font-size: 2.8rem;
+    }
+    p {
+      font-size: 1.6rem;
+    }
   }
 
   &::-webkit-scrollbar {
