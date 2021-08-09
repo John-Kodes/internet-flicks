@@ -16,8 +16,6 @@ const BackBtn = () => {
     if (modalHistory.length > 1) {
       setModalData(modalHistory[1]);
 
-      console.log(modalHistory.slice(1));
-
       setModalHistory([...modalHistory.slice(1)]);
     }
   };

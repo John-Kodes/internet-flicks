@@ -8,11 +8,13 @@ const PageLoader = () => {
 
   const [loading, setLoading] = useState(false);
 
-  console.log(router.pathname);
-
   useEffect(() => {
-    const handleStart = (url) =>
-      url.split("?")[0] !== router.pathname && setLoading(true);
+    // splitting so that it will only change if the route changes, not if the queries is updated
+    const handleStart = (url) => {
+      if (url.includes("title")) {
+        url.slice(0, 13) + "/[id]" !== router.pathname && setLoading(true);
+      } else url.split("?")[0] !== router.pathname && setLoading(true);
+    };
     const handleComplete = (url) =>
       url === router.pathname && setLoading(false);
 
