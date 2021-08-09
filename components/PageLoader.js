@@ -4,14 +4,15 @@ import { useRouter } from "next/router";
 import styles from "@/styles/PageLoader.module.scss";
 
 const PageLoader = () => {
-  const [loading, setLoading] = useState(false);
-
   const router = useRouter();
 
-  console.log(router.route);
+  const [loading, setLoading] = useState(false);
+
+  console.log(router.pathname);
 
   useEffect(() => {
-    const handleStart = (url) => url !== router.pathname && setLoading(true);
+    const handleStart = (url) =>
+      url.split("?")[0] !== router.pathname && setLoading(true);
     const handleComplete = (url) =>
       url === router.pathname && setLoading(false);
 

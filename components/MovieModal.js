@@ -68,7 +68,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
     const data = await res.json();
 
-    const key = data.results.filter((vid) => vid.type === "Trailer")[0]?.key;
+    const key = data.results?.filter((vid) => vid.type === "Trailer")[0]?.key;
 
     setYtKey(key);
   };
@@ -264,8 +264,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                   <h1
                     className={styles.title}
                     style={
-                      movie?.original_title?.length > 33 ||
-                      movie?.original_name?.length > 33
+                      movie?.title?.length > 33 || movie?.name?.length > 33
                         ? { fontSize: "3rem", maxWidth: "30ch" }
                         : {}
                     }
@@ -396,8 +395,8 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                 <div className={styles.castBox}>
                   <h2>MAIN CAST</h2>
                   <div className={styles.castList}>
-                    {castArr.length !== 0 ? (
-                      castArr.map((actor, i) => {
+                    {castArr?.length !== 0 ? (
+                      castArr?.map((actor, i) => {
                         if (i > 3) return;
                         return <CastProfile actor={actor} key={actor.id} />;
                       })
@@ -407,7 +406,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                       </p>
                     )}
                   </div>
-                  {castArr.length > 4 && <p>and more...</p>}
+                  {castArr?.length > 4 && <p>and more...</p>}
                 </div>
                 {recomArr?.length > 0 && (
                   <div className={styles.recommendBox}>

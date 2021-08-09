@@ -116,7 +116,7 @@ const RecomCard = ({ mediaData }) => {
         )}
         <div className={styles.headerDetails}>
           <h3 className={styles.title}>
-            {mediaData?.original_title || mediaData?.original_name}
+            {mediaData?.title || mediaData?.name}
           </h3>
           <p className={styles.releaseDate}>
             {mediaData?.release_date?.replaceAll("-", " / ") ||

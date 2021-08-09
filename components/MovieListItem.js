@@ -84,7 +84,7 @@ const MovieListItem = ({ movie }) => {
             (movie.profile_path && "contain") || (movie.poster_path && "cover")
           }
           layout="fill"
-          alt={movie.original_title}
+          alt={movie.title}
           className={!imageSrc ? styles.imgFix : undefined}
         />
         {movie.profile_path && (

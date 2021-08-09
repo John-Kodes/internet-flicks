@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 // Context
 import Context from "@/context/Context";
 // Components
@@ -21,6 +22,8 @@ const MyListPage = ({ watchlist, totalResults }) => {
   const [watchlistArr, setWatchlistArr] = useState(watchlist);
   const [hasMore, setHasMore] = useState(true);
 
+  const router = useRouter();
+
   const getMoreMedia = async () => {
     const moviesRes = await fetch(
       `${TMDB_API}/account/${userData.id}/watchlist/movies${API_KEY}&language=en-US&session_id=sessionId&sort_by=created_at.asc&page=${pageNum}`
@@ -39,6 +42,14 @@ const MyListPage = ({ watchlist, totalResults }) => {
   useEffect(() => {
     if (watchlistArr.length >= totalResults) setHasMore(false);
   }, [watchlistArr]);
+
+  useEffect(() => {
+    if (router.query.id) {
+      router.push(
+        `/browse/title/${router.query.id}?media=${router.query.media}`
+      );
+    }
+  }, []);
 
   return (
     <Layout
