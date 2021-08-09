@@ -22,15 +22,12 @@ export const BrowsePage = ({
   const router = useRouter();
   const { setModalData, setModalOpen, modalData } = useContext(Context);
 
-  const mediaType = modalData?.original_title
-    ? "movie"
-    : modalData?.original_name
-    ? "tv"
-    : "person";
-
   useEffect(() => {
-    if (router.query.id)
-      router.push(`/browse/title/${router.query.id}?media=${mediaType}`);
+    if (router.query.id) {
+      router.push(
+        `/browse/title/${router.query.id}?media=${router.query.media}`
+      );
+    }
   }, []);
 
   useEffect(() => {
