@@ -20,7 +20,7 @@ export const BrowsePage = ({
   nowPlayingMovies,
 }) => {
   const router = useRouter();
-  const { setModalData, setModalOpen, modalData } = useContext(Context);
+  const { setModalData, setModalOpen } = useContext(Context);
 
   useEffect(() => {
     if (router.query.id) {
