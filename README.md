@@ -12,7 +12,7 @@ After building this web app, it has given me the confidence and made me comforta
 
 - Creating a page for different Genres
 
-- Creating MediaListSliders that uses posters so that it's not always 16:9 landscape thumbnails like Netflix does it.
+- Creating MediaListSliders that uses posters so that it's not always 16:9 to make the UI more interesting.
 
 - Implementing more TMDB features
 
