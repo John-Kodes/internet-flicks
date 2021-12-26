@@ -2,7 +2,7 @@
 
 [Demo](https://internet-flicks.vercel.app/)
 
-An online database of information relating to movies, TV shows and cast members. This project uses the TMDB API. The UI is heavily inspired by the streaming service, Netflix.
+An online database of information relating to movies, TV shows and cast members. This project uses the TMDB API and built with the Next.js frame work. The UI is heavily inspired by the streaming service, Netflix.
 
 ## Lessons Learned
 
