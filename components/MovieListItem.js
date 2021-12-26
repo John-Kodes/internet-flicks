@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // API
@@ -10,6 +10,8 @@ import styles from "@/styles/MovieListItem.module.scss";
 // Images
 import DefaultBackDropThumbnail from "@/images/DefaultBackdropThumbnail.svg";
 import DefaultProfileThumbnail from "@/images/DefaultProfileThumbnail.svg";
+// Mobile Detect
+import { isMobile } from "react-device-detect";
 // Helpers
 import { fetchMediaDetails } from "@/helpers/index";
 
@@ -65,7 +67,10 @@ const MovieListItem = ({ movie }) => {
     >
       <div
         className={styles.infoBox}
-        style={{ transform: isHover && "translateY(0)" }}
+        style={{
+          transform:
+            (isHover && "translateY(0)") || (isMobile && "translateY(0)"),
+        }}
       >
         <div className={styles.movieName}>
           <div className={styles.title}>{movie?.title || movie?.name}</div>
