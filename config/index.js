@@ -4,7 +4,7 @@ export const NEXT_URL =
   process.env.NEXT_PUBLIC_FRONTEND_URL || "http://localhost:3000";
 
 export const PORTFOLIO_URL =
-  process.env.PUBLIC_PORTFOLIO_URL || "https://johndaniel.netlify.app";
+  process.env.PUBLIC_PORTFOLIO_URL || "https://johndanielsemine.com";
 
 export const TMDB_API = "https://api.themoviedb.org/3";
 
