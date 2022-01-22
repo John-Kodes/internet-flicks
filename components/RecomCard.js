@@ -94,6 +94,8 @@ const RecomCard = ({ mediaData }) => {
   useEffect(() => {
     // fetch media state
     if (mediaData?.id && mediaType !== "person" && userData) getMediaState();
+
+    return undefined;
   }, [mediaData]);
 
   return (

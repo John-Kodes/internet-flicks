@@ -134,20 +134,22 @@
 
   transition: transform 0.8s;
 
-  &:focus-within .item,
-  &:hover .item {
-    transform: translateX(-15%);
-  }
+  @media (hover: hover) {
+    &:focus-within .item,
+    &:hover .item {
+      transform: translateX(-15%);
+    }
 
-  .item:focus ~ .item,
-  .item:hover ~ .item {
-    transform: translateX(15%);
-  }
+    .item:focus ~ .item,
+    .item:hover ~ .item {
+      transform: translateX(15%);
+    }
 
-  & .item:focus,
-  & .item:hover {
-    transform: scale(1.3);
-    z-index: 3;
+    & .item:focus,
+    & .item:hover {
+      transform: scale(1.3);
+      z-index: 3;
+    }
   }
 }
 
