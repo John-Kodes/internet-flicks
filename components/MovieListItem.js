@@ -24,6 +24,7 @@ const MovieListItem = ({ movie }) => {
   } = useContext(Context);
 
   const [isHover, setIsHover] = useState(false);
+  const [isOnMobile, setIsOnMobile] = useState(false);
 
   const router = useRouter();
 
@@ -58,6 +59,11 @@ const MovieListItem = ({ movie }) => {
     setModalHistory([mov, ...modalHistory]);
   };
 
+  // This is a fix for showing infobox on mobile and when refreshing the page.
+  useEffect(() => {
+    setIsOnMobile(isMobile);
+  }, []);
+
   return (
     <div
       className={styles.container}
@@ -69,7 +75,7 @@ const MovieListItem = ({ movie }) => {
         className={styles.infoBox}
         style={{
           transform:
-            (isHover && "translateY(0)") || (isMobile && "translateY(0)"),
+            (isHover && "translateY(0)") || (isOnMobile && "translateY(0)"),
         }}
       >
         <div className={styles.movieName}>
