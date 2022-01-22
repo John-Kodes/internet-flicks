@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import Image from "next/dist/client/image";
-import { TMDB_IMAGE, NEXT_URL, TMDB_API } from "@/config/index";
+import { TMDB_IMAGE, NEXT_URL } from "@/config/index";
 // Helpers
 import { fetchMediaDetails } from "@/helpers/index";
 // Components
@@ -60,6 +60,7 @@ const RecomCard = ({ mediaData }) => {
     });
 
     const mediaState = await res.json();
+    console.log(mediaState);
 
     if (mediaState.id) {
       setIsInWatchList(mediaState.watchlist);
@@ -92,7 +93,7 @@ const RecomCard = ({ mediaData }) => {
 
   useEffect(() => {
     // fetch media state
-    if (mediaData?.id && mediaType !== "person") getMediaState();
+    if (mediaData?.id && mediaType !== "person" && userData) getMediaState();
   }, [mediaData]);
 
   return (
@@ -106,6 +107,7 @@ const RecomCard = ({ mediaData }) => {
           }
           layout="fill"
           objectFit="contain"
+          alt={mediaData?.title || mediaData?.name}
         />
       </div>
       <div className={styles.detailsBox}>

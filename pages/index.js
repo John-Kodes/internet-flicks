@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import Link from "next/dist/client/link";
 import Image from "next/dist/client/image";
 import { useContext } from "react";
@@ -23,6 +24,7 @@ export const HomePage = ({ isLoggedIn }) => {
             layout="fill"
             objectFit="cover"
             objectPosition="left"
+            alt="background Image"
           />
         </div>
         <div className={styles.btnContainer}>
