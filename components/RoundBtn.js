@@ -6,7 +6,7 @@ const RoundBtn = ({ btnHandler, icon }) => {
     <button className={styles.btn} onClick={btnHandler}>
       {icon && (
         <div className={styles.svg}>
-          <Image src={icon} layout="fill" />
+          <Image src={icon} layout="fill" alt="icon" />
         </div>
       )}
     </button>

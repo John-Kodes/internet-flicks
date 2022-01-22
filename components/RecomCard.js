@@ -60,7 +60,7 @@ const RecomCard = ({ mediaData }) => {
     });
 
     const mediaState = await res.json();
-    console.log(mediaState);
+    // console.log(mediaState);
 
     if (mediaState.id) {
       setIsInWatchList(mediaState.watchlist);

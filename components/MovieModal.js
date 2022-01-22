@@ -116,7 +116,6 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
 
   const updateRating = async (e) => {
     e.preventDefault();
-    console.log("submit");
 
     const res = await fetch(`${NEXT_URL}/api/updateRating`, {
       method: "POST",
@@ -258,6 +257,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                     layout="fill"
                     objectFit="cover"
                     priority
+                    alt={movie?.title || movie?.name}
                   />
                 </div>
                 <div className={styles.heroContent}>
@@ -277,6 +277,7 @@ const MovieModal = ({ leavePageHandler, leavePageHandlerBtn }) => {
                         className={styles.trailerBtn}
                         target="_blank"
                         href={`https://www.youtube.com/watch?v=${ytKey}`}
+                        rel="noreferrer"
                       >
                         <PlayIcon />
                         Play Trailer

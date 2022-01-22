@@ -72,28 +72,28 @@ const Nav = ({ inView = true, category }) => {
     >
       <div className={styles.navContainer}>
         <div className={styles.info}>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className={styles.logo}>Internet Flicks</div>
           </Link>
           <div className={styles.linkContainer}>
-            <Link href="/browse">
+            <Link href="/browse" passHref>
               <div className={styles.link}>Home</div>
             </Link>
-            <Link href="/browse/tv-shows">
+            <Link href="/browse/tv-shows" passHref>
               <div className={styles.link}>TV Shows</div>
             </Link>
-            <Link href="/browse/movies">
+            <Link href="/browse/movies" passHref>
               <div className={styles.link}>Movies</div>
             </Link>
             {userData && (
-              <Link href="/account/my-list">
+              <Link href="/account/my-list" passHref>
                 <div className={styles.link}>My List</div>
               </Link>
             )}
           </div>
         </div>
         <div className={styles.infoCompact}>
-          <Link href="/">
+          <Link href="/" passHref>
             <div className={styles.logo}>Internet Flicks</div>
           </Link>
           <div className={styles.browseBtn}>
@@ -103,17 +103,17 @@ const Nav = ({ inView = true, category }) => {
               <div className={styles.browsePointer}>
                 <ArrowTiny />
               </div>
-              <Link href="/browse">
+              <Link href="/browse" passHref>
                 <div className={styles.link}>Home</div>
               </Link>
-              <Link href="/browse/tv-shows">
+              <Link href="/browse/tv-shows" passHref>
                 <div className={styles.link}>TV Shows</div>
               </Link>
-              <Link href="/browse/movies">
+              <Link href="/browse/movies" passHref>
                 <div className={styles.link}>Movies</div>
               </Link>
               {userData && (
-                <Link href="/account/my-list">
+                <Link href="/account/my-list" passHref>
                   <div className={styles.link}>My List</div>
                 </Link>
               )}
@@ -165,6 +165,7 @@ const Nav = ({ inView = true, category }) => {
                 }
                 layout="fill"
                 objectFit="cover"
+                alt="avatar"
               />
             </div>
             <ArrowTiny />
@@ -173,7 +174,7 @@ const Nav = ({ inView = true, category }) => {
                 <ArrowTiny />
               </div>
               <div className={styles.btnsContainer}>
-                <a href={PORTFOLIO_URL} target="_blank">
+                <a href={PORTFOLIO_URL} target="_blank" rel="noreferrer">
                   Checkout my portfolio
                 </a>
                 {userData ? (
@@ -181,7 +182,7 @@ const Nav = ({ inView = true, category }) => {
                     <button onClick={logout}>Sign out</button>
                   </>
                 ) : (
-                  <Link href="/account/login">
+                  <Link href="/account/login" passHref>
                     <button>Sign in</button>
                   </Link>
                 )}

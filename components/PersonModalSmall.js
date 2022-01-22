@@ -24,6 +24,7 @@ const PersonModalSmall = ({ data, backBtnBool, closeHandler }) => {
             }
             layout="fill"
             objectFit="contain"
+            alt={data?.name}
           />
         </div>
         <div className={styles.mainInfoBox}>
